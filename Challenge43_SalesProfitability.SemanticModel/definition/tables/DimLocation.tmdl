@@ -1,0 +1,66 @@
+/// Eight European city markets.
+table DimLocation
+	lineageTag: 06d84c96-54f7-4f50-a5bd-b66e0cae693e
+
+	column LocationKey
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: 62f79132-deb9-406e-ad18-f717353b04b9
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+	column Region
+		dataType: string
+		lineageTag: 52e6ee18-987b-4340-8e38-518e194ce5c9
+		sourceColumn: Region
+
+	column Country
+		dataType: string
+		lineageTag: 36181eae-fb1a-4dbb-b0ab-c4b0a2fad755
+		dataCategory: Country
+		sourceColumn: Country
+
+	column City
+		dataType: string
+		lineageTag: 7bdd2761-1348-4bb3-a3c5-9deacfa037d2
+		dataCategory: City
+		sourceColumn: City
+
+	column Latitude
+		dataType: double
+		lineageTag: 6d1c0396-890a-46be-8526-7ffc6a82dec3
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+	column Longitude
+		dataType: double
+		lineageTag: 4adf7fea-26a1-491c-a73f-7789e298cf2c
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+	column LocationType
+		dataType: string
+		isHidden
+		lineageTag: 243d92f8-5f00-46a5-b6cc-0b303086bf65
+		sourceColumn: LocationType
+
+	column CoordinateSource
+		dataType: string
+		isHidden
+		lineageTag: d87f4ba2-1f8b-41c5-960a-326f74176fdb
+		sourceColumn: CoordinateSource
+
+	partition DimLocation = m
+		mode: import
+		source =
+				let
+				    Src = Excel.Workbook(File.Contents(DataFile), null, true),
+				    Data = Src{[Item="DimLocation",Kind="Sheet"]}[Data],
+				    Prom = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Prom, {{"LocationKey", Int64.Type}, {"Region", type text}, {"Country", type text}, {"City", type text}, {"Latitude", type number}, {"Longitude", type number}, {"LocationType", type text}, {"CoordinateSource", type text}})
+				in
+				    Typed
+

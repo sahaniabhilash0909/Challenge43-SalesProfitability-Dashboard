@@ -1,0 +1,102 @@
+/// Continuous calendar 2023–2026; sales exist only in Oct–Jan holiday windows.
+table DimDate
+	lineageTag: 4fc24195-7e57-4b07-ae23-0b760e089d18
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isUnique
+		isKey
+		formatString: dd mmm yyyy
+		lineageTag: 98c961e4-fcfa-4402-8a4a-45378291c5a8
+		sourceColumn: Date
+
+	column Year
+		dataType: int64
+		lineageTag: b10e95c8-d108-479a-a125-9073a6ff59de
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Quarter
+		dataType: string
+		lineageTag: a64024b6-a4c5-4c02-93c9-3109d68903e0
+		sourceColumn: Quarter
+
+	column MonthNo
+		dataType: int64
+		isHidden
+		lineageTag: c1e25de1-30d4-40a0-8040-b22a468bc143
+		summarizeBy: none
+		sourceColumn: MonthNo
+
+	column Month
+		dataType: string
+		lineageTag: bdbe28cb-6240-449a-a9e5-1373bb6d97a2
+		sourceColumn: Month
+		sortByColumn: MonthNo
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: c0ee00d5-e679-4254-adff-fbfd33116a61
+		sourceColumn: YearMonth
+		sortByColumn: YearMonthSort
+
+	column YearMonthSort
+		dataType: int64
+		isHidden
+		lineageTag: af4cbb66-c34c-4d07-97be-0a745b45968c
+		summarizeBy: none
+		sourceColumn: YearMonthSort
+
+	column Season
+		dataType: string
+		lineageTag: ad4583eb-2cdc-40b1-bd91-7dee6440709a
+		sourceColumn: HolidaySeason
+		sortByColumn: HolidaySeasonSort
+
+	column HolidaySeasonSort
+		dataType: int64
+		isHidden
+		lineageTag: e87136e6-86fb-4cd4-abaf-82e0e8822fa0
+		summarizeBy: none
+		sourceColumn: HolidaySeasonSort
+
+	column 'Season Day'
+		dataType: int64
+		lineageTag: 5449d686-62c6-41cb-9d21-3ecfe439d759
+		summarizeBy: none
+		sourceColumn: SeasonDay
+
+	column 'Season Month'
+		dataType: string
+		lineageTag: 7410b271-7ac1-42db-a429-2b8df0273364
+		sourceColumn: Season Month
+		sortByColumn: SeasonMonthSort
+
+	column SeasonMonthSort
+		dataType: int64
+		isHidden
+		lineageTag: fde83c38-a1ea-4df8-b14f-68468ba74ce3
+		summarizeBy: none
+		sourceColumn: SeasonMonthSort
+
+	column IsWeekend
+		dataType: int64
+		isHidden
+		lineageTag: 5077101d-ceaf-4be8-8c65-93d9fe1243cf
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Src = Excel.Workbook(File.Contents(DataFile), null, true),
+				    Data = Src{[Item="DimDate",Kind="Sheet"]}[Data],
+				    Prom = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Prom, {{"Date", type date}, {"Year", Int64.Type}, {"Quarter", type text}, {"MonthNo", Int64.Type}, {"Month", type text}, {"YearMonth", type text}, {"YearMonthSort", Int64.Type}, {"HolidaySeason", type text}, {"HolidaySeasonSort", Int64.Type}, {"SeasonDay", Int64.Type}, {"IsWeekend", Int64.Type}}),
+				    SMon = Table.AddColumn(Typed, "Season Month", each Date.ToText([Date], "MMM", "en-GB"), type text),
+				    SMonSort = Table.AddColumn(SMon, "SeasonMonthSort", each if [MonthNo] >= 10 then [MonthNo] - 9 else [MonthNo] + 3, Int64.Type)
+				in
+				    SMonSort
+

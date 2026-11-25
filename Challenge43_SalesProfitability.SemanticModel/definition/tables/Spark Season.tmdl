@@ -1,0 +1,20 @@
+table 'Spark Season'
+	lineageTag: 2ccde8e4-e000-44d7-8770-fa42218ba0e7
+
+	column Season
+		lineageTag: 2b0c212a-3a05-4ee9-820e-fcd31b18dddc
+		isNameInferred
+		sourceColumn: [Season]
+		sortByColumn: Sort
+
+	column Sort
+		isHidden
+		lineageTag: 3ad30238-d814-400e-9be0-5f6617ce9fa8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort]
+
+	partition 'Spark Season' = calculated
+		mode: import
+		source = DATATABLE ( "Season", STRING, "Sort", INTEGER, { { "2023/24", 1 }, { "2024/25", 2 }, { "2025/26", 3 } } )
+

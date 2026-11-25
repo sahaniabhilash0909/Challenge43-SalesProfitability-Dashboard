@@ -1,0 +1,26 @@
+table Moves
+	lineageTag: 2bfd7ab6-9627-4222-9eb3-6914fb13be15
+
+	column Move
+		isHidden
+		lineageTag: 6fbe1dd4-4a3b-4c2e-9e4f-794f7652c843
+		isNameInferred
+		sourceColumn: [Move]
+
+	column Label
+		lineageTag: ee30c026-3575-40a1-bb52-af3a79e96e1b
+		isNameInferred
+		sourceColumn: [Label]
+		sortByColumn: Sort
+
+	column Sort
+		isHidden
+		lineageTag: e8fc085c-08db-4be1-9875-c1fe0ef77950
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort]
+
+	partition Moves = calculated
+		mode: import
+		source = DATATABLE ( "Move", STRING, "Label", STRING, "Sort", INTEGER, { { "Discount", "1  Discounts below 20%", 1 }, { "OE", "2  Online electronics on value", 2 }, { "Returns", "3  Apparel returns to average", 3 }, { "NY", "4  New Year as clearance", 4 } } )
+

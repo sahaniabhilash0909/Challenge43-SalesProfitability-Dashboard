@@ -1,0 +1,179 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "ch3 \u00b7 guide",
+  "name": "bm_p3_actions_guide",
+  "options": {
+    "targetVisualNames": [
+      "p3_actions_dw_img",
+      "p3_actions_dw_close",
+      "p3_actions_dw_guide_hdr",
+      "p3_actions_dw_g_txt",
+      "p3_actions_dw_filters_hdr",
+      "p3_actions_dw_l_seg",
+      "p3_actions_dw_s_seg",
+      "p3_actions_dw_l_city",
+      "p3_actions_dw_s_city",
+      "p3_actions_dw_l_cat",
+      "p3_actions_dw_s_cat",
+      "p3_actions_dw_l_ctype",
+      "p3_actions_dw_s_ctype",
+      "p3_actions_dw_l_band",
+      "p3_actions_dw_s_band",
+      "p3_actions_dw_limits_hdr",
+      "p3_actions_dw_lim_txt"
+    ],
+    "applyOnlyToTargetVisuals": true,
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p3_actions",
+    "sections": {
+      "p3_actions": {
+        "visualContainers": {
+          "p3_actions_dw_img": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "p3_actions_dw_close": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p3_actions_dw_guide_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p3_actions_dw_g_txt": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p3_actions_dw_filters_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_l_seg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_s_seg": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_l_city": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_s_city": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_l_cat": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_s_cat": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_l_ctype": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_s_ctype": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_l_band": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_s_band": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_limits_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p3_actions_dw_lim_txt": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+/// Disconnected presentation table for the profit bridge (waterfall).
+table 'Profit Steps'
+	lineageTag: cecf7a6c-7af3-41f4-863e-6e47acfb64f6
+
+	column Step
+		lineageTag: 3d13f6a7-22ca-4698-ab97-f85f56b4cca9
+		isNameInferred
+		sourceColumn: [Step]
+		sortByColumn: Sort
+
+	column Sort
+		isHidden
+		lineageTag: 692d9885-4feb-4813-ae66-d578cb9153f0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort]
+
+	column 'Step Type'
+		lineageTag: b4f94d08-c297-4d5c-b5eb-8e2d060aaf97
+		isNameInferred
+		sourceColumn: [Step Type]
+
+	partition 'Profit Steps' = calculated
+		mode: import
+		source = DATATABLE("Step", STRING, "Sort", INTEGER, "Step Type", STRING, {{"Gross Sales", 1, "Total"}, {"Discounts", 2, "Revenue leak"}, {"Refunds", 3, "Revenue leak"}, {"Net COGS", 4, "Product cost"}, {"Fulfilment", 5, "Selling cost"}, {"Payment Fees", 6, "Selling cost"}, {"Return Handling", 7, "Selling cost"}, {"Campaign Spend", 8, "Selling cost"}, {"Contribution Profit", 9, "Total"}})
+

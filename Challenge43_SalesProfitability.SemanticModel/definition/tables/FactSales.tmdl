@@ -1,0 +1,234 @@
+/// One row per sales line (7,735 lines, 5,406 orders).
+table FactSales
+	lineageTag: ba8e9ac3-d6de-423c-8903-17f7f2d77f43
+
+	column SaleLineKey
+		dataType: int64
+		isHidden
+		lineageTag: 9851241a-2fde-4543-8f03-0edb4ebd4bdb
+		summarizeBy: none
+		sourceColumn: SaleLineKey
+
+	column OrderID
+		dataType: string
+		isHidden
+		lineageTag: 7e9886fe-25c8-4870-bd5f-b49a64b0ff5a
+		sourceColumn: OrderID
+
+	column SaleDate
+		dataType: dateTime
+		isHidden
+		formatString: dd mmm yyyy
+		lineageTag: 83394b66-bcf0-4b8b-9413-fc6d4581644b
+		sourceColumn: SaleDate
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		lineageTag: aeaa07d5-367c-4601-92be-492540d36522
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+	column CampaignKey
+		dataType: int64
+		isHidden
+		lineageTag: 5f41df13-e7b3-4734-b0dd-74d89bc54334
+		summarizeBy: none
+		sourceColumn: CampaignKey
+
+	column LocationKey
+		dataType: int64
+		isHidden
+		lineageTag: e157a820-6503-497d-b17f-25498b9372ad
+		summarizeBy: none
+		sourceColumn: LocationKey
+
+	column 'Sales Channel'
+		dataType: string
+		lineageTag: 556a3933-cdd5-405a-800b-115d331c35e1
+		sourceColumn: SalesChannel
+
+	column 'Customer Segment'
+		dataType: string
+		lineageTag: 059f0cff-ace5-471a-a999-64f495db7ebd
+		sourceColumn: CustomerSegment
+		sortByColumn: SegmentSort
+
+	column SegmentSort
+		dataType: int64
+		isHidden
+		lineageTag: 4f60158e-3d5c-4120-89c9-004b9d8c6270
+		summarizeBy: none
+		sourceColumn: SegmentSort
+
+	column UnitsSold
+		dataType: int64
+		isHidden
+		lineageTag: ff6a9a39-8d98-4bca-8239-5c66667c3c96
+		summarizeBy: sum
+		sourceColumn: UnitsSold
+
+	column UnitListPriceEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 710d87f1-b0ea-483a-b9a4-a2e04c026224
+		summarizeBy: none
+		sourceColumn: UnitListPriceEUR
+
+	column DiscountRate
+		dataType: double
+		isHidden
+		lineageTag: 3e17d7d8-4f69-4064-9392-cc0b473dadf3
+		summarizeBy: none
+		sourceColumn: DiscountRate
+
+	column ReturnedUnits
+		dataType: int64
+		isHidden
+		lineageTag: 02df7834-3571-4c1a-9c3b-f1259f0d5696
+		summarizeBy: sum
+		sourceColumn: ReturnedUnits
+
+	column UnitCostEUR
+		dataType: decimal
+		isHidden
+		lineageTag: de9c185e-2ada-4eee-9967-c85dc381f4a0
+		summarizeBy: none
+		sourceColumn: UnitCostEUR
+
+	column RecoveredCOGSEUR
+		dataType: decimal
+		isHidden
+		lineageTag: b2de3d3a-b0b1-400a-af54-d34da96be51b
+		summarizeBy: sum
+		sourceColumn: RecoveredCOGSEUR
+
+	column FulfilmentCostEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 06e7c7e5-0a1d-46ed-b607-c36f8039a8a5
+		summarizeBy: sum
+		sourceColumn: FulfilmentCostEUR
+
+	column PaymentFeesEUR
+		dataType: decimal
+		isHidden
+		lineageTag: f9b8cbc7-a412-4440-897d-d100b002f03c
+		summarizeBy: sum
+		sourceColumn: PaymentFeesEUR
+
+	column ReturnHandlingCostEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 9b2f3960-04a0-4625-9d13-2bf45770f4d3
+		summarizeBy: sum
+		sourceColumn: ReturnHandlingCostEUR
+
+	column AllocatedCampaignSpendEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 3865fc14-f321-4db9-9210-97dc98b2c787
+		summarizeBy: sum
+		sourceColumn: AllocatedCampaignSpendEUR
+
+	column 'Discount Band'
+		dataType: string
+		lineageTag: c675509f-4e2d-4e90-a523-0369b26b4416
+		sourceColumn: DiscountBand
+		sortByColumn: DiscountBandSort
+
+	column DiscountBandSort
+		dataType: int64
+		isHidden
+		lineageTag: 5cf7420d-8ff3-467d-9739-0014b67fb2db
+		summarizeBy: none
+		sourceColumn: DiscountBandSort
+
+	column GrossSalesEUR
+		dataType: decimal
+		isHidden
+		lineageTag: fa91c4b1-10b5-4b94-8f58-52072c448896
+		summarizeBy: sum
+		sourceColumn: GrossSalesEUR
+
+	column DiscountAmountEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 7df5159d-c954-4f64-85b3-14e046c20831
+		summarizeBy: sum
+		sourceColumn: DiscountAmountEUR
+
+	column SalesAfterDiscountEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 4d663d24-bf08-4fe9-83d8-e0ae9d939d78
+		summarizeBy: sum
+		sourceColumn: SalesAfterDiscountEUR
+
+	column RefundsEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 8a5e2cf6-b67c-4321-9154-dfb9c23149b4
+		summarizeBy: sum
+		sourceColumn: RefundsEUR
+
+	column NetSalesEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 792a55c9-7e17-4984-86f2-3fef8e9942a9
+		summarizeBy: sum
+		sourceColumn: NetSalesEUR
+
+	column GrossCOGSEUR
+		dataType: decimal
+		isHidden
+		lineageTag: c3a33175-9792-4fa4-a39b-57e85242fd1e
+		summarizeBy: sum
+		sourceColumn: GrossCOGSEUR
+
+	column NetCOGSEUR
+		dataType: decimal
+		isHidden
+		lineageTag: e637d5d7-d494-4977-ba84-bd05d7012f88
+		summarizeBy: sum
+		sourceColumn: NetCOGSEUR
+
+	column GrossProfitEUR
+		dataType: decimal
+		isHidden
+		lineageTag: b0b5d32f-ebc8-4fc3-990f-b0c98fe815aa
+		summarizeBy: sum
+		sourceColumn: GrossProfitEUR
+
+	column ContributionProfitEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 05f624b2-2bfc-47d4-9b51-1bb87e35b6f3
+		summarizeBy: sum
+		sourceColumn: ContributionProfitEUR
+
+	column NetUnits
+		dataType: int64
+		isHidden
+		lineageTag: 52126d7b-9ef8-47c5-83dc-a96a204e8e8a
+		summarizeBy: sum
+		sourceColumn: NetUnits
+
+	/// Short discount band label (percent) for compact visuals.
+	column Band = SWITCH ( FactSales[Discount Band], "No discount", "0", "40%+", "40+", SUBSTITUTE ( FactSales[Discount Band], "%", "" ) )
+		dataType: string
+		lineageTag: 39263570-dd4c-47c1-ba2e-2965b4f9e28c
+		sortByColumn: DiscountBandSort
+
+	partition FactSales = m
+		mode: import
+		source =
+				let
+				    Src = Excel.Workbook(File.Contents(DataFile), null, true),
+				    Data = Src{[Item="FactSales",Kind="Sheet"]}[Data],
+				    Prom = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Prom, {{"SaleLineKey", Int64.Type}, {"OrderID", type text}, {"SaleDate", type date}, {"ProductKey", Int64.Type}, {"CampaignKey", Int64.Type}, {"LocationKey", Int64.Type}, {"SalesChannel", type text}, {"CustomerSegment", type text}, {"UnitsSold", Int64.Type}, {"UnitListPriceEUR", Currency.Type}, {"DiscountRate", type number}, {"ReturnedUnits", Int64.Type}, {"UnitCostEUR", Currency.Type}, {"RecoveredCOGSEUR", Currency.Type}, {"FulfilmentCostEUR", Currency.Type}, {"PaymentFeesEUR", Currency.Type}, {"ReturnHandlingCostEUR", Currency.Type}, {"AllocatedCampaignSpendEUR", Currency.Type}, {"DiscountBand", type text}, {"DiscountBandSort", Int64.Type}, {"GrossSalesEUR", Currency.Type}, {"DiscountAmountEUR", Currency.Type}, {"SalesAfterDiscountEUR", Currency.Type}, {"RefundsEUR", Currency.Type}, {"NetSalesEUR", Currency.Type}, {"GrossCOGSEUR", Currency.Type}, {"NetCOGSEUR", Currency.Type}, {"GrossProfitEUR", Currency.Type}, {"ContributionProfitEUR", Currency.Type}, {"NetUnits", Int64.Type}}),
+				    Seg = Table.AddColumn(Typed, "SegmentSort", each if [CustomerSegment] = "Loyal members" then 1 else if [CustomerSegment] = "Premium shoppers" then 2 else if [CustomerSegment] = "Occasional buyers" then 3 else 4, Int64.Type)
+				in
+				    Seg
+

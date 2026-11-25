@@ -1,0 +1,43 @@
+table 'Bridge Lines'
+	lineageTag: 5dcb02e1-64ac-4b77-8340-a96cd02e9f42
+
+	column Line
+		isHidden
+		lineageTag: f8edab97-3fe9-4687-a3b4-0488ac447ab1
+		isNameInferred
+		sourceColumn: [Line]
+
+	column Label
+		lineageTag: 0fafc07c-89d1-43e5-bf7a-f4f8450b8aee
+		isNameInferred
+		sourceColumn: [Label]
+		sortByColumn: Sort
+
+	column Sort
+		isHidden
+		lineageTag: 3c837d92-c33d-481b-a680-5844243d5601
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort]
+
+	column Kind
+		isHidden
+		lineageTag: ea2a7034-edb3-40a2-b16d-5b686223334f
+		isNameInferred
+		sourceColumn: [Kind]
+
+	partition 'Bridge Lines' = calculated
+		mode: import
+		source =
+				DATATABLE ( "Line", STRING, "Label", STRING, "Sort", INTEGER, "Kind", STRING, {
+				    { "PY", "PY contribution", 0, "Total" },
+				    { "Gross Sales", "Gross sales", 1, "Delta" },
+				    { "Discounts", "Discounts", 2, "Delta" },
+				    { "Refunds", "Refunds", 3, "Delta" },
+				    { "Net COGS", "Product cost", 4, "Delta" },
+				    { "Fulfilment", "Fulfilment", 5, "Delta" },
+				    { "Payment Fees", "Payment fees", 6, "Delta" },
+				    { "Return Handling", "Return handling", 7, "Delta" },
+				    { "Campaign Spend", "Campaign spend", 8, "Delta" },
+				    { "AC", "AC contribution", 9, "Total" } } )
+

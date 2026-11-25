@@ -1,0 +1,16 @@
+relationship FactSales_SaleDate_DimDate_Date
+	fromColumn: FactSales.SaleDate
+	toColumn: DimDate.Date
+
+relationship FactSales_ProductKey_DimProduct_ProductKey
+	fromColumn: FactSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship FactSales_CampaignKey_DimCampaign_CampaignKey
+	fromColumn: FactSales.CampaignKey
+	toColumn: DimCampaign.CampaignKey
+
+relationship FactSales_LocationKey_DimLocation_LocationKey
+	fromColumn: FactSales.LocationKey
+	toColumn: DimLocation.LocationKey
+

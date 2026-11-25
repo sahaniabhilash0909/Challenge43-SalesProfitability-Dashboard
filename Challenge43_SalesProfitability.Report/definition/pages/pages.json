@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "p1_what_why",
+    "p2_leaks",
+    "p3_actions",
+    "p4_campaign_profile",
+    "tt_snapshot"
+  ],
+  "activePageName": "p1_what_why"
+}

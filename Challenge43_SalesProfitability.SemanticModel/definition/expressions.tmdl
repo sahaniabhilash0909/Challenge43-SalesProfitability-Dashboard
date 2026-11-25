@@ -1,0 +1,4 @@
+/// Path to the challenge workbook
+expression DataFile = "E:\Upskill\Data Analytics\Challenge_43_Dataset_Sales_and_Discounts_Analytics\Sales_Profitability_Discount_Effectiveness_Challenge_Dataset.xlsx" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: a3944343-ada8-4eda-8023-16b709691190
+

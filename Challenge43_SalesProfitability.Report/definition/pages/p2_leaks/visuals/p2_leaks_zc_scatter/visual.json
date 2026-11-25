@@ -1,0 +1,329 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "p2_leaks_zc_scatter",
+  "position": {
+    "x": 1500,
+    "y": 142,
+    "z": 5200,
+    "height": 394,
+    "width": 376,
+    "tabOrder": 5200
+  },
+  "visual": {
+    "visualType": "ZoomChartsScatterChartPaidA2C55E4B59078FDD51C4CD1C4D4E6623V9N8",
+    "query": {
+      "queryState": {
+        "category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimLocation"
+                    }
+                  },
+                  "Property": "City"
+                }
+              },
+              "queryRef": "DimLocation.City",
+              "nativeQueryRef": "City"
+            }
+          ]
+        },
+        "sourceNodes": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Discount AC"
+                }
+              },
+              "queryRef": "_Measures.Discount AC",
+              "nativeQueryRef": "Discount AC",
+              "displayName": "Weighted discount"
+            }
+          ]
+        },
+        "targetNodes": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Margin AC"
+                }
+              },
+              "queryRef": "_Measures.Margin AC",
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Contribution margin"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Net Sales AC"
+                }
+              },
+              "queryRef": "_Measures.Net Sales AC",
+              "nativeQueryRef": "Net Sales AC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Contribution AC"
+                }
+              },
+              "queryRef": "_Measures.Contribution AC",
+              "nativeQueryRef": "Contribution AC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Return AC"
+                }
+              },
+              "queryRef": "_Measures.Return AC",
+              "nativeQueryRef": "Return AC"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "advanced": [
+        {
+          "properties": {
+            "shouldApplyNewDefaults": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "toolbar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "colors1": [
+        {
+          "properties": {
+            "propertyCache": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"source\":\"\",\"props\":{}}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "shapes1": [
+        {
+          "properties": {
+            "propertyCache": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"source\":\"\",\"props\":{}}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryColors1": [
+        {
+          "properties": {
+            "propertyCache": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"source\":\"DimLocation.City\",\"props\":{\"Amsterdam\":{\"color\":\"#4F5D75\"},\"Berlin\":{\"color\":\"#EF8354\"},\"Lisbon\":{\"color\":\"#7B89A0\"},\"Madrid\":{\"color\":\"#3B465A\"},\"Paris\":{\"color\":\"#2D3142\"},\"Riga\":{\"color\":\"#B5BECC\"},\"Stockholm\":{\"color\":\"#646B7D\"},\"Warsaw\":{\"color\":\"#8B909E\"}}}'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

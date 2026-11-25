@@ -1,0 +1,152 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "profile \u00b7 filters",
+  "name": "bm_p4_campaign_profile_filters",
+  "options": {
+    "targetVisualNames": [
+      "p4_campaign_profile_dw_img",
+      "p4_campaign_profile_dw_close",
+      "p4_campaign_profile_dw_filters_hdr",
+      "p4_campaign_profile_dw_l_seg",
+      "p4_campaign_profile_dw_s_seg",
+      "p4_campaign_profile_dw_l_city",
+      "p4_campaign_profile_dw_s_city",
+      "p4_campaign_profile_dw_l_cat",
+      "p4_campaign_profile_dw_s_cat",
+      "p4_campaign_profile_dw_l_ctype",
+      "p4_campaign_profile_dw_s_ctype",
+      "p4_campaign_profile_dw_l_band",
+      "p4_campaign_profile_dw_s_band",
+      "p4_campaign_profile_dw_guide_hdr",
+      "p4_campaign_profile_dw_g_txt",
+      "p4_campaign_profile_dw_limits_hdr",
+      "p4_campaign_profile_dw_lim_txt"
+    ],
+    "applyOnlyToTargetVisuals": true,
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p4_campaign_profile",
+    "sections": {
+      "p4_campaign_profile": {
+        "visualContainers": {
+          "p4_campaign_profile_dw_img": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_close": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_filters_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_l_seg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_s_seg": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_l_city": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_s_city": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_l_cat": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_s_cat": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_l_ctype": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_s_ctype": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_l_band": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_s_band": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_dw_guide_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4_campaign_profile_dw_g_txt": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4_campaign_profile_dw_limits_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4_campaign_profile_dw_lim_txt": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

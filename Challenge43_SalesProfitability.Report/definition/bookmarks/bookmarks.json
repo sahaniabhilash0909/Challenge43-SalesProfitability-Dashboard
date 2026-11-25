@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "bm_p1_what_why_filters"
+    },
+    {
+      "name": "bm_p1_what_why_guide"
+    },
+    {
+      "name": "bm_p1_what_why_limits"
+    },
+    {
+      "name": "bm_p1_what_why_close"
+    },
+    {
+      "name": "bm_p2_leaks_filters"
+    },
+    {
+      "name": "bm_p2_leaks_guide"
+    },
+    {
+      "name": "bm_p2_leaks_limits"
+    },
+    {
+      "name": "bm_p2_leaks_close"
+    },
+    {
+      "name": "bm_p3_actions_filters"
+    },
+    {
+      "name": "bm_p3_actions_guide"
+    },
+    {
+      "name": "bm_p3_actions_limits"
+    },
+    {
+      "name": "bm_p3_actions_close"
+    },
+    {
+      "name": "bm_p4_campaign_profile_filters"
+    },
+    {
+      "name": "bm_p4_campaign_profile_guide"
+    },
+    {
+      "name": "bm_p4_campaign_profile_limits"
+    },
+    {
+      "name": "bm_p4_campaign_profile_close"
+    },
+    {
+      "name": "bm_p1_what_why_reset"
+    },
+    {
+      "name": "bm_p2_leaks_reset"
+    },
+    {
+      "name": "bm_p3_actions_reset"
+    },
+    {
+      "name": "bm_p4_campaign_profile_reset"
+    }
+  ]
+}

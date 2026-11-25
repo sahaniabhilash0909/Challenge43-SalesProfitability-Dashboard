@@ -1,0 +1,29 @@
+table Scope
+	isHidden
+	lineageTag: 53993b23-a6f2-40c4-97dc-0d7dda83d5c6
+
+	/// IBCS scenarios. AC = the season in the current date filter, or the latest season with sales when no date filter is set. PY = the same dates one year earlier. Used only inside CALCULATE by the AC/PY measures; not for visuals.
+	calculationGroup
+		precedence: 10
+
+		calculationItem AC =
+				VAR _sel = CALCULATETABLE ( VALUES ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
+				VAR _maxSale = CALCULATE ( MAX ( FactSales[SaleDate] ), REMOVEFILTERS ( DimDate ), _sel )
+				VAR _acSeason = LOOKUPVALUE ( DimDate[Season], DimDate[Date], _maxSale )
+				RETURN CALCULATE ( SELECTEDMEASURE (), KEEPFILTERS ( DimDate[Season] = _acSeason ) )
+
+		calculationItem PY =
+				VAR _sel = CALCULATETABLE ( VALUES ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
+				VAR _maxSale = CALCULATE ( MAX ( FactSales[SaleDate] ), REMOVEFILTERS ( DimDate ), _sel )
+				VAR _acSeason = LOOKUPVALUE ( DimDate[Season], DimDate[Date], _maxSale )
+				VAR _acRows = CALCULATE ( COUNTROWS ( FactSales ), KEEPFILTERS ( DimDate[Season] = _acSeason ) )
+				RETURN
+				    IF ( ISBLANK ( _acRows ), BLANK (),
+				        CALCULATE ( CALCULATE ( SELECTEDMEASURE (), SAMEPERIODLASTYEAR ( DimDate[Date] ) ), KEEPFILTERS ( DimDate[Season] = _acSeason ) ) )
+
+	column Scope
+		dataType: string
+		lineageTag: b198a766-78cb-4b1b-a5cf-5fb1bfdf0a59
+
+	partition Partition_Scope = calculationGroup
+

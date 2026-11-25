@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Challenge43_SalesProfitability"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d17ca8f0-5259-43a1-a1c8-67bd0cde6327"
+  }
+}

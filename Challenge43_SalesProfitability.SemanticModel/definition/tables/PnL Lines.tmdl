@@ -1,0 +1,43 @@
+table 'PnL Lines'
+	lineageTag: 9322e8d6-a969-46a8-84a7-795fe42f0c23
+
+	column Line
+		isHidden
+		lineageTag: 4f24582b-9926-45a4-bba8-fa26e4cbd504
+		isNameInferred
+		sourceColumn: [Line]
+
+	column Label
+		lineageTag: a680ad91-ce7a-4307-af07-33046fac1c0b
+		isNameInferred
+		sourceColumn: [Label]
+		sortByColumn: Sort
+
+	column Sort
+		isHidden
+		lineageTag: 51f89f2c-f405-441f-bb98-f15a3b006722
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort]
+
+	column Kind
+		isHidden
+		lineageTag: 7183dcda-1355-4585-906c-9008093d4ed5
+		isNameInferred
+		sourceColumn: [Kind]
+
+	partition 'PnL Lines' = calculated
+		mode: import
+		source =
+				DATATABLE ( "Line", STRING, "Label", STRING, "Sort", INTEGER, "Kind", STRING, {
+				    { "Gross Sales", "+ Gross sales", 1, "Total" },
+				    { "Discounts", "− Discounts", 2, "Cost" },
+				    { "Refunds", "− Refunds", 3, "Cost" },
+				    { "Net Sales", "= Net sales", 4, "Total" },
+				    { "Net COGS", "− Product cost", 5, "Cost" },
+				    { "Fulfilment", "− Fulfilment", 6, "Cost" },
+				    { "Payment Fees", "− Payment fees", 7, "Cost" },
+				    { "Return Handling", "− Return handling", 8, "Cost" },
+				    { "Campaign Spend", "− Campaign spend", 9, "Cost" },
+				    { "Contribution Profit", "= Contribution profit", 10, "Total" } } )
+

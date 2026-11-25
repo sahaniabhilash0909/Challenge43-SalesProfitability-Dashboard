@@ -1,0 +1,119 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "Fluent2-CY26SU10",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "HolidayPnL_C43_Theme.json",
+      "reportVersionAtImport": {
+        "visual": "2.14.0",
+        "report": "3.4.0",
+        "page": "2.3.1"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
+    "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
+    "ZoomChartsPieChartPaidE77E4ED357DC402ABA005987437CF500",
+    "ZoomChartsScatterChartPaidA2C55E4B59078FDD51C4CD1C4D4E6623V9N8"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "Fluent2-CY26SU10",
+          "path": "BaseThemes/Fluent2-CY26SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "bg_ch1_c43.png",
+          "path": "bg_ch1_c43.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_ch2_c43.png",
+          "path": "bg_ch2_c43.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_ch3_c43.png",
+          "path": "bg_ch3_c43.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_profile_c43.png",
+          "path": "bg_profile_c43.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_tooltip_c43.png",
+          "path": "bg_tooltip_c43.png",
+          "type": "Image"
+        },
+        {
+          "name": "overlay_drawer_c43.png",
+          "path": "overlay_drawer_c43.png",
+          "type": "Image"
+        },
+        {
+          "name": "HolidayPnL_C43_Theme.json",
+          "path": "HolidayPnL_C43_Theme.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

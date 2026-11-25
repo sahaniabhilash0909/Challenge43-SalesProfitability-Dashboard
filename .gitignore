@@ -1,0 +1,16 @@
+# Power BI Desktop local caches & settings
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/editorSettings.json
+
+# Python bytecode & local backups
+**/__pycache__/
+*.pyc
+*.bak*
+
+# Exclude build archives, older versions, and private credentials except V11 source & license helper
+_build/*
+!_build/src_v11/
+!_build/src_v11/**
+_build/src_v11/__pycache__/
+!_build/merge_zc_license.py

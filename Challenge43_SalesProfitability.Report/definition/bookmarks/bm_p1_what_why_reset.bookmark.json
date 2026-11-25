@@ -1,0 +1,693 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "ch1 \u00b7 reset all filters",
+  "name": "bm_p1_what_why_reset",
+  "options": {
+    "targetVisualNames": []
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p1_what_why",
+    "sections": {
+      "p1_what_why": {
+        "visualContainers": {
+          "p1_what_why_brand": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_nav_ch1": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_nav_ch2": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_nav_ch3": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_guide": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_limits": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_reset": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_filters": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_kicker": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_period": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_msg": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_lbl_season": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_chip_season": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f_what_why_chip_season",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DimDate",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "d"
+                                    }
+                                  },
+                                  "Property": "Season"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2023/24'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2024/25'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2025/26'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimDate"
+                        }
+                      },
+                      "Property": "Season"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            }
+          },
+          "p1_what_why_lbl_channel": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_chip_channel": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r166861871760",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactSales"
+                        }
+                      },
+                      "Property": "Sales Channel"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p1_what_why_filt": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_foot": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_next": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k0_lbl": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k0_val": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k0_d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k0_py": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k0_spark": {
+            "singleVisual": {
+              "visualType": "areaChart",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k1_lbl": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k1_val": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k1_d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k1_py": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k1_spark": {
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k2_lbl": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k2_val": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k2_d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k2_py": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k2_spark": {
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k3_lbl": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k3_val": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k3_d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k3_py": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k3_spark": {
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k4_lbl": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k4_val": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k4_d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k4_py": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_k4_spark": {
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {}
+            }
+          },
+          "p1_what_why_br_t": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_br_m": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_br_leg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_br_0": {
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_month_t": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_month_m": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_month": {
+            "singleVisual": {
+              "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_band_t": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_band_m": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_band": {
+            "singleVisual": {
+              "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_type_t": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_type_m": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_zc_type": {
+            "singleVisual": {
+              "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
+              "objects": {}
+            }
+          },
+          "p1_what_why_dw_img": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_close": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_filters_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_l_seg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_s_seg": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r48254498954",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactSales"
+                        }
+                      },
+                      "Property": "Customer Segment"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p1_what_why_dw_l_city": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_s_city": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r597930099439",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimLocation"
+                        }
+                      },
+                      "Property": "City"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p1_what_why_dw_l_cat": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_s_cat": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r794875479411",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimProduct"
+                        }
+                      },
+                      "Property": "Category"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p1_what_why_dw_l_ctype": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_s_ctype": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r66733108916",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimCampaign"
+                        }
+                      },
+                      "Property": "Campaign Type"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p1_what_why_dw_l_band": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_s_band": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r117330351999",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactSales"
+                        }
+                      },
+                      "Property": "Discount Band"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p1_what_why_dw_guide_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_g_txt": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_limits_hdr": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1_what_why_dw_lim_txt": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2457 @@
+/// All report measures.
+table _Measures
+	lineageTag: 6e1b4f27-8e1c-4bc6-89dc-6b2d8d8227aa
+
+	/// Units x list price, before discounts and refunds.
+	measure 'Gross Sales' = SUM ( FactSales[GrossSalesEUR] )
+		formatString: \€#,0
+		displayFolder: 1 Revenue
+		lineageTag: 9af7d32c-33fc-4d67-84be-53d0e949e2e4
+
+	measure 'Discount Amount' = SUM ( FactSales[DiscountAmountEUR] )
+		formatString: \€#,0
+		displayFolder: 1 Revenue
+		lineageTag: c850d45f-d87a-48ab-b122-42dcc45ad45a
+
+	measure 'Sales After Discount' = SUM ( FactSales[SalesAfterDiscountEUR] )
+		formatString: \€#,0
+		displayFolder: 1 Revenue
+		lineageTag: bf4f38d1-ec0c-4474-903d-c40e9ccca22a
+
+	measure Refunds = SUM ( FactSales[RefundsEUR] )
+		formatString: \€#,0
+		displayFolder: 1 Revenue
+		lineageTag: 6c928915-7d96-4a38-8a27-b481c5f4a04c
+
+	/// Discounted sales less refunds.
+	measure 'Net Sales' = SUM ( FactSales[NetSalesEUR] )
+		formatString: \€#,0
+		displayFolder: 1 Revenue
+		lineageTag: 643118bd-6ad3-4d63-8a18-1ea243eb9c6d
+
+	measure 'Gross COGS' = SUM ( FactSales[GrossCOGSEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: 6ffaa723-0fa3-4639-90ed-23842c06a527
+
+	measure 'Recovered COGS' = SUM ( FactSales[RecoveredCOGSEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: 814fb281-f78b-48f6-ab82-007e4d7d6618
+
+	/// Product cost less recoverable value of returned stock.
+	measure 'Net COGS' = SUM ( FactSales[NetCOGSEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: 9da95e0d-39ff-4447-bc30-9d1943312f9b
+
+	measure 'Fulfilment Cost' = SUM ( FactSales[FulfilmentCostEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: 7b939050-7393-4c9d-89f8-b635ea1ec95e
+
+	measure 'Payment Fees' = SUM ( FactSales[PaymentFeesEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: 1d8897af-d2bf-448e-80da-cc6f1b0d88ff
+
+	measure 'Return Handling Cost' = SUM ( FactSales[ReturnHandlingCostEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: 554276fb-5bd1-4833-ae93-c8cfc01a893a
+
+	/// Event budget allocated to lines by gross sales share. Zero for regular trading.
+	measure 'Campaign Spend' = SUM ( FactSales[AllocatedCampaignSpendEUR] )
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: f44497c4-c716-4f65-be61-c8786411fd51
+
+	measure 'Selling Costs' = [Fulfilment Cost] + [Payment Fees] + [Return Handling Cost] + [Campaign Spend]
+		formatString: \€#,0
+		displayFolder: 2 Costs
+		lineageTag: c415b0d5-4f22-4070-aa5d-e599895ab8f7
+
+	measure 'Gross Profit' = SUM ( FactSales[GrossProfitEUR] )
+		formatString: \€#,0
+		displayFolder: 3 Profit
+		lineageTag: b566fd1b-ceec-4f17-841c-bed42127b8f4
+
+	/// Gross profit less fulfilment, payment fees, return handling and campaign spend. Excludes overhead, interest and tax.
+	measure 'Contribution Profit' = SUM ( FactSales[ContributionProfitEUR] )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 3 Profit
+		lineageTag: ad54d518-909f-4322-95b0-c0152c8d4346
+
+	measure 'Units Sold' = SUM ( FactSales[UnitsSold] )
+		formatString: #,0
+		displayFolder: 4 Volume
+		lineageTag: 9999d350-b026-4f15-b54f-fba534e23678
+
+	measure 'Returned Units' = SUM ( FactSales[ReturnedUnits] )
+		formatString: #,0
+		displayFolder: 4 Volume
+		lineageTag: dae8efbc-dde6-4691-9530-e4da36887049
+
+	measure Orders = DISTINCTCOUNT ( FactSales[OrderID] )
+		formatString: #,0
+		displayFolder: 4 Volume
+		lineageTag: 1e5380d2-c96f-40e9-bdc0-5547ee587b9d
+
+	measure 'Sales Lines' = COUNTROWS ( FactSales )
+		formatString: #,0
+		displayFolder: 4 Volume
+		lineageTag: 157b4165-7167-4838-a543-632cc3e34f30
+
+	/// Days with at least one sale in the current filter context.
+	measure 'Trading Days' = DISTINCTCOUNT ( FactSales[SaleDate] )
+		formatString: #,0
+		displayFolder: 4 Volume
+		lineageTag: 7db7392a-a677-41db-a889-c83fcb19e75f
+
+	/// Discount amount / gross sales (value-weighted).
+	measure 'Weighted Discount %' = DIVIDE ( [Discount Amount], [Gross Sales] )
+		formatString: 0.0%
+		displayFolder: 5 Ratios
+		lineageTag: 924622a6-0cff-4f09-a108-7f65bca14629
+
+	measure 'Contribution Margin %' = DIVIDE ( [Contribution Profit], [Net Sales] )
+		formatString: 0.0%;-0.0%
+		displayFolder: 5 Ratios
+		lineageTag: 5697c522-c60c-45da-a877-c8f438d0734d
+
+	measure 'Gross Margin %' = DIVIDE ( [Gross Profit], [Net Sales] )
+		formatString: 0.0%;-0.0%
+		displayFolder: 5 Ratios
+		lineageTag: bb8d6be6-265d-4b27-a45a-120228b33908
+
+	/// Returned units / units sold.
+	measure 'Return Rate %' = DIVIDE ( [Returned Units], [Units Sold] )
+		formatString: 0.0%
+		displayFolder: 5 Ratios
+		lineageTag: 72dec40d-19a6-4273-9dab-351640403403
+
+	measure 'Refund Rate %' = DIVIDE ( [Refunds], [Sales After Discount] )
+		formatString: 0.0%
+		displayFolder: 5 Ratios
+		lineageTag: 5cc17aeb-13b5-4edb-ad65-dbb324e16652
+
+	measure 'Avg Order Value' = DIVIDE ( [Net Sales], [Orders] )
+		formatString: \€#,0
+		displayFolder: 5 Ratios
+		lineageTag: a456236a-39e0-43d7-899c-57ae0f863c20
+
+	measure 'Contribution per €100 Gross' = DIVIDE ( [Contribution Profit], [Gross Sales] ) * 100
+		formatString: \€#,0.0;-\€#,0.0
+		displayFolder: 5 Ratios
+		lineageTag: 3a0a8f06-b443-433f-bd1f-6e1a7b11c93f
+
+	/// Net sales / days with sales. Use to compare 3-day events with 15-17 day events fairly.
+	measure 'Net Sales per Day' = DIVIDE ( [Net Sales], [Trading Days] )
+		formatString: \€#,0
+		displayFolder: 6 Daily
+		lineageTag: ba909cd6-2e22-4a95-a7a3-2e9f7640adef
+
+	measure 'Contribution per Day' = DIVIDE ( [Contribution Profit], [Trading Days] )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 6 Daily
+		lineageTag: 1ef76a34-c12f-4607-b1f6-63ee4a17b1dd
+
+	measure 'Orders per Day' = DIVIDE ( [Orders], [Trading Days] )
+		formatString: #,0.0
+		displayFolder: 6 Daily
+		lineageTag: 86f3b3aa-ba5f-4ead-80d2-79db9526b809
+
+	measure 'COGS per € Net' = DIVIDE ( [Net COGS], [Net Sales] )
+		formatString: 0%;-0%
+		displayFolder: 7 Cost per €
+		lineageTag: b2e7100b-c7a7-4cba-9351-a2f8ad9a51c4
+
+	measure 'Fulfilment and Fees per € Net' = DIVIDE ( [Fulfilment Cost] + [Payment Fees], [Net Sales] )
+		formatString: 0%;-0%
+		displayFolder: 7 Cost per €
+		lineageTag: d997f1e3-39b5-45c4-82a4-e686fa8d8262
+
+	measure 'Return Handling per € Net' = DIVIDE ( [Return Handling Cost], [Net Sales] )
+		formatString: 0%;-0%
+		displayFolder: 7 Cost per €
+		lineageTag: 49b649b6-68e1-4ff8-925b-72fb5250f511
+
+	measure 'Campaign Spend per € Net' = DIVIDE ( [Campaign Spend], [Net Sales] )
+		formatString: 0%;-0%
+		displayFolder: 7 Cost per €
+		lineageTag: 643f323f-a0b8-46d1-b9de-c4a82043b0a5
+
+	measure 'Contribution per € Net' = DIVIDE ( [Contribution Profit], [Net Sales] )
+		formatString: 0%;-0%
+		displayFolder: 7 Cost per €
+		lineageTag: d013e6a7-a7dd-4c01-9325-e73410aeb5ff
+
+	measure 'Campaign Net Sales' = CALCULATE ( [Net Sales], DimCampaign[IsCampaign] = 1 )
+		formatString: \€#,0
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 2602538d-1250-4ce1-9b93-8476c47fa576
+
+	measure 'Regular Net Sales' = CALCULATE ( [Net Sales], DimCampaign[IsCampaign] = 0 )
+		formatString: \€#,0
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 2694e3e7-a4f4-455b-a65e-8237b63597e3
+
+	measure 'Campaign Contribution' = CALCULATE ( [Contribution Profit], DimCampaign[IsCampaign] = 1 )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 4ae1d84c-1bfd-4590-b0d5-52918226f841
+
+	measure 'Regular Contribution' = CALCULATE ( [Contribution Profit], DimCampaign[IsCampaign] = 0 )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 8 Campaign vs regular
+		lineageTag: d9409cf4-1ae8-4712-b00b-f576a7a1612f
+
+	measure 'Campaign Share of Net Sales' = DIVIDE ( [Campaign Net Sales], [Campaign Net Sales] + [Regular Net Sales] )
+		formatString: 0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 0abbf00e-742a-4685-a4f2-b6174586b793
+
+	measure 'Campaign Share of Contribution' = DIVIDE ( [Campaign Contribution], [Campaign Contribution] + [Regular Contribution] )
+		formatString: 0%;-0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: a2b7dcf9-ea6f-4524-9f37-cd9eb7fcfecd
+
+	measure 'Campaign Margin %' = CALCULATE ( [Contribution Margin %], DimCampaign[IsCampaign] = 1 )
+		formatString: 0.0%;-0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 0f195b06-6907-4d4a-93b9-b94b0e2ee6ab
+
+	measure 'Regular Margin %' = CALCULATE ( [Contribution Margin %], DimCampaign[IsCampaign] = 0 )
+		formatString: 0.0%;-0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: e56c2aae-8b07-42f7-a371-0d8e33be2de5
+
+	/// Baseline: regular-trading net sales per day in the current season/market/channel context.
+	measure 'Regular Net Sales per Day' = CALCULATE ( [Net Sales per Day], REMOVEFILTERS ( DimCampaign ), DimCampaign[IsCampaign] = 0 )
+		formatString: \€#,0
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 478b9fbc-8919-45b3-a9c1-8195a96f4fad
+
+	measure 'Sales per Day vs Regular' = DIVIDE ( [Net Sales per Day], [Regular Net Sales per Day] )
+		formatString: 0.0x
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 9bcd2807-6eb2-48b4-b4fe-c89b109350b5
+
+	measure 'Loss-making Net Sales' = CALCULATE ( [Net Sales], FactSales[ContributionProfitEUR] < 0 )
+		formatString: \€#,0
+		displayFolder: 3 Profit
+		lineageTag: 4c385c08-837b-47ae-b7be-83df543abc7f
+
+	measure 'Loss-making Share of Net Sales' = DIVIDE ( [Loss-making Net Sales], [Net Sales] )
+		formatString: 0%
+		displayFolder: 3 Profit
+		lineageTag: 81c1ddfb-2e90-48bc-a105-e4e183cbf1de
+
+	measure 'Net Sales Share' = DIVIDE ( [Net Sales], CALCULATE ( [Net Sales], ALLSELECTED () ) )
+		formatString: 0.0%
+		displayFolder: 5 Ratios
+		lineageTag: 3b79325d-f705-4201-94f2-d2096de57bca
+
+	measure 'Contribution Share' = DIVIDE ( [Contribution Profit], CALCULATE ( [Contribution Profit], ALLSELECTED () ) )
+		formatString: 0.0%;-0.0%
+		displayFolder: 5 Ratios
+		lineageTag: 6aab2320-e564-41e4-929a-177829e89950
+
+	/// Signed values for the profit bridge. Mark Contribution Profit as total in the visual.
+	measure 'Profit Step Value' =
+			SWITCH ( SELECTEDVALUE ( 'Profit Steps'[Step] ),
+			    "Gross Sales", [Gross Sales],
+			    "Discounts", -[Discount Amount],
+			    "Refunds", -[Refunds],
+			    "Net COGS", -[Net COGS],
+			    "Fulfilment", -[Fulfilment Cost],
+			    "Payment Fees", -[Payment Fees],
+			    "Return Handling", -[Return Handling Cost],
+			    "Campaign Spend", -[Campaign Spend],
+			    "Contribution Profit", [Contribution Profit]
+			)
+		formatString: \€#,0;-\€#,0
+		displayFolder: 9 Bridge
+		lineageTag: 73317a5c-d79b-4262-9f2b-482d02b5c142
+
+	measure 'Profit Step per €100 Gross' = DIVIDE ( [Profit Step Value], [Gross Sales] ) * 100
+		formatString: \€#,0.0;-\€#,0.0
+		displayFolder: 9 Bridge
+		lineageTag: 35eae82a-c8bd-46ec-8a8a-38fc57db8d23
+
+	/// Steps only (no totals) for waterfalls that add the total automatically.
+	measure 'Profit Step Movement' = IF ( SELECTEDVALUE ( 'Profit Steps'[Step] ) IN { "Gross Sales", "Contribution Profit" }, BLANK (), [Profit Step Value] )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 9 Bridge
+		lineageTag: 922cf473-f7ae-4981-9f12-06a4c2f9f7ef
+
+	measure 'Title Bridge' =
+			VAR g = [Gross Sales]
+			VAR per = DIVIDE ( [Contribution Profit], g ) * 100
+			VAR leaks = { ( "discounts", [Discount Amount] ), ( "refunds", [Refunds] ), ( "campaign spend", [Campaign Spend] ), ( "fulfilment", [Fulfilment Cost] ), ( "payment fees", [Payment Fees] ), ( "return handling", [Return Handling Cost] ) }
+			VAR topLeak = TOPN ( 1, leaks, [Value2], DESC )
+			VAR nm = MAXX ( topLeak, [Value1] )
+			VAR amt = DIVIDE ( MAXX ( topLeak, [Value2] ), g ) * 100
+			RETURN
+			    IF ( ISBLANK ( g ), "No sales in this selection",
+			        IF ( per >= 0, "Of every €100 of gross sales, €" & FORMAT ( per, "0.0" ) & " survives as contribution", "Every €100 of gross sales loses €" & FORMAT ( -per, "0.0" ) & " after all costs" )
+			        & " — biggest leak after product cost: " & nm & " (€" & FORMAT ( amt, "0.0" ) & ")" )
+		displayFolder: 10 Titles\Overview
+		lineageTag: 4bf45ea6-c0d1-46fe-a3a2-033de880127d
+
+	measure 'Title Campaign Daily' =
+			VAR t = ADDCOLUMNS ( CALCULATETABLE ( VALUES ( DimCampaign[Campaign Type] ), DimCampaign[IsCampaign] = 1 ), "@d", [Net Sales per Day], "@m", [Contribution Margin %] )
+			VAR tt = TOPN ( 1, FILTER ( t, NOT ISBLANK ( [@d] ) ), [@d], DESC )
+			VAR nm = MAXX ( tt, DimCampaign[Campaign Type] )
+			VAR d = MAXX ( tt, [@d] )
+			VAR m = MAXX ( tt, [@m] )
+			VAR x = DIVIDE ( d, [Regular Net Sales per Day] )
+			RETURN
+			    IF ( ISBLANK ( nm ),
+			        "Regular trading: " & FORMAT ( [Net Sales per Day] / 1000, "\€#,0.0\k" ) & " net sales a day at " & FORMAT ( [Contribution Margin %], "0.0%;−0.0%" ) & " margin",
+			        nm & " sells " & FORMAT ( d / 1000, "\€#,0.0\k" ) & " a day" & IF ( NOT ISBLANK ( x ), ", " & FORMAT ( x, "0.0" ) & "× regular trading,", "" ) & IF ( m < 0.1, " yet runs a ", " and keeps a " ) & FORMAT ( m, "0.0%;−0.0%" ) & " margin" )
+		displayFolder: 10 Titles\Overview
+		lineageTag: 84993e53-1b54-41ec-a63c-89f2b6e5d2e6
+
+	measure 'Hero Contribution' = FORMAT ( [Contribution Profit] / 1000, "\€#,0.0\k;−\€#,0.0\k" )
+		displayFolder: 10 Titles\Overview
+		lineageTag: 024b5e70-0995-4ba0-a0bb-cd16b45b92c3
+
+	measure 'Hero Subtitle' =
+			VAR n = [Net Sales]
+			RETURN "contribution profit on " & IF ( n >= 1000000, FORMAT ( n / 1000000, "\€#,0.00\M" ), FORMAT ( n / 1000, "\€#,0.0\k" ) ) & " net sales · " & FORMAT ( [Contribution Margin %], "0.0%;−0.0%" ) & " margin"
+		displayFolder: 10 Titles\Overview
+		lineageTag: 0daf4d0f-c5ce-456d-a817-1a12eaab026d
+
+	measure 'Hero Campaign Line' =
+			VAR s = [Campaign Share of Net Sales]
+			VAR c = [Campaign Share of Contribution]
+			RETURN IF ( ISBLANK ( s ) || s = 0, "No campaign sales in this selection", "Campaigns: " & FORMAT ( s, "0%" ) & " of net sales, " & FORMAT ( c, "0%;−0%" ) & " of contribution" )
+		displayFolder: 10 Titles\Overview
+		lineageTag: 9b0a1bcd-2402-4689-a447-7ebaa11dd162
+
+	measure 'Note Heads Up' =
+			VAR t = ADDCOLUMNS ( CALCULATETABLE ( VALUES ( DimCampaign[Campaign] ), DimCampaign[IsCampaign] = 1 ), "@cp", [Contribution Profit], "@d", [Weighted Discount %] )
+			VAR w = TOPN ( 1, FILTER ( t, NOT ISBLANK ( [@cp] ) ), [@cp], ASC )
+			VAR nm = MAXX ( w, DimCampaign[Campaign] )
+			VAR cp = MAXX ( w, [@cp] )
+			VAR d = MAXX ( w, [@d] )
+			RETURN
+			    IF ( ISBLANK ( nm ), "No campaign sales in this selection",
+			        IF ( cp < 0, nm & " lost " & FORMAT ( -cp / 1000, "\€#,0.0\k" ) & " at a " & FORMAT ( d, "0%" ) & " average discount", "Weakest campaign: " & nm & " earned only " & FORMAT ( cp / 1000, "\€#,0.0\k" ) ) )
+		displayFolder: 10 Titles\Overview
+		lineageTag: 20626a7e-c749-4989-9505-b4d09fea498c
+
+	measure 'Note Watch' =
+			VAR b = ADDCOLUMNS ( SUMMARIZE ( FactSales, FactSales[Discount Band], FactSales[DiscountBandSort] ), "@m", [Contribution Margin %] )
+			VAR neg = TOPN ( 1, FILTER ( b, [@m] < 0 ), FactSales[DiscountBandSort], ASC )
+			VAR nb = MAXX ( neg, FactSales[Discount Band] )
+			VAR nm = MAXX ( neg, [@m] )
+			VAR low = TOPN ( 1, b, [@m], ASC )
+			RETURN
+			    IF ( NOT ISBLANK ( nb ), "Margin turns negative from the " & nb & " discount band (" & FORMAT ( nm, "0.0%;−0.0%" ) & ")",
+			        IF ( COUNTROWS ( b ) = 0, "No sales in this selection", "Margin stays positive at every discount level (lowest " & FORMAT ( MAXX ( low, [@m] ), "0.0%" ) & " at " & MAXX ( low, FactSales[Discount Band] ) & ")" ) )
+		displayFolder: 10 Titles\Overview
+		lineageTag: cdfd3dff-da21-472e-a067-8bba77dd3e3f
+
+	measure 'Note Small Win' =
+			VAR t = ADDCOLUMNS ( CALCULATETABLE ( VALUES ( DimCampaign[Campaign] ), DimCampaign[IsCampaign] = 1 ), "@m", [Contribution Margin %], "@n", [Net Sales], "@d", [Weighted Discount %] )
+			VAR b = TOPN ( 1, FILTER ( t, [@n] > 0 ), [@m], DESC )
+			VAR nm = MAXX ( b, DimCampaign[Campaign] )
+			VAR m = MAXX ( b, [@m] )
+			RETURN
+			    SWITCH ( TRUE (),
+			        ISBLANK ( nm ), "Regular trading keeps a " & FORMAT ( [Contribution Margin %], "0.0%;−0.0%" ) & " margin with almost no discounting",
+			        m < 0, "No campaign made money here; " & nm & " came closest at " & FORMAT ( m, "0.0%;−0.0%" ),
+			        nm & " kept a " & FORMAT ( m, "0.0%" ) & " margin on " & FORMAT ( MAXX ( b, [@n] ) / 1000, "\€#,0.0\k" ) & " net sales at a " & FORMAT ( MAXX ( b, [@d] ), "0%" ) & " discount" )
+		displayFolder: 10 Titles\Overview
+		lineageTag: ba60d01f-0dd2-4d39-a207-39e79170dead
+
+	measure 'Title Cost Strip' =
+			VAR cm = [Contribution per € Net]
+			RETURN
+			    IF ( ISBLANK ( [Net Sales] ), "No sales in this selection",
+			        "Each €1 of net sales: " & FORMAT ( [COGS per € Net] * 100, "0" ) & "c product cost, " & FORMAT ( [Campaign Spend per € Net] * 100, "0" ) & "c campaign spend, " & FORMAT ( ( [Fulfilment and Fees per € Net] + [Return Handling per € Net] ) * 100, "0" ) & "c fulfilment, fees and returns — " & IF ( cm >= 0, FORMAT ( cm * 100, "0" ) & "c left as contribution", FORMAT ( -cm * 100, "0" ) & "c lost" ) )
+		displayFolder: 10 Titles\Overview
+		lineageTag: eb7632bf-6978-4bbe-a83c-aa28b0e5874e
+
+	measure 'KPI Net Sales Sub' = FORMAT ( [Net Sales per Day] / 1000, "\€#,0.0\k" ) & " a trading day · " & FORMAT ( [Orders], "#,0" ) & " orders"
+		displayFolder: 10 Titles\KPI
+		lineageTag: e2fec032-b37c-4b0a-ad8f-d756ce943264
+
+	measure 'KPI Margin Sub' = "Campaigns " & IF ( ISBLANK ( [Campaign Margin %] ), "–", FORMAT ( [Campaign Margin %], "0.0%;−0.0%" ) ) & " · Regular " & IF ( ISBLANK ( [Regular Margin %] ), "–", FORMAT ( [Regular Margin %], "0.0%;−0.0%" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: a6020918-4dde-46fb-9eab-d799460bafe0
+
+	measure 'KPI Discount Sub' = FORMAT ( [Discount Amount] / 1000, "\€#,0.0\k" ) & " given away on " & IF ( [Gross Sales] >= 1000000, FORMAT ( [Gross Sales] / 1000000, "\€#,0.00\M" ), FORMAT ( [Gross Sales] / 1000, "\€#,0.0\k" ) ) & " gross"
+		displayFolder: 10 Titles\KPI
+		lineageTag: 059ff753-bb53-4f79-83ce-43e979cb6ec1
+
+	measure 'KPI Return Sub' = FORMAT ( [Returned Units], "#,0" ) & " units back · " & FORMAT ( [Refunds] / 1000, "\€#,0.0\k" ) & " refunded"
+		displayFolder: 10 Titles\KPI
+		lineageTag: eb574233-c3e7-4606-9164-e3a4540671e9
+
+	measure 'Title Campaign Scorecard' =
+			VAR t = FILTER ( ADDCOLUMNS ( CALCULATETABLE ( VALUES ( DimCampaign[Campaign Type] ), DimCampaign[IsCampaign] = 1 ), "@m", [Contribution Margin %], "@cp", [Contribution Profit] ), NOT ISBLANK ( [@cp] ) )
+			VAR best = TOPN ( 1, t, [@m], DESC )
+			VAR worst = TOPN ( 1, t, [@cp], ASC )
+			VAR nDouble = COUNTROWS ( FILTER ( t, [@m] >= 0.1 ) )
+			VAR bn = MAXX ( best, DimCampaign[Campaign Type] )
+			VAR bm = MAXX ( best, [@m] )
+			VAR wn = MAXX ( worst, DimCampaign[Campaign Type] )
+			VAR wcp = MAXX ( worst, [@cp] )
+			RETURN
+			    SWITCH ( TRUE (),
+			        COUNTROWS ( t ) = 0, "No campaign sales in this selection",
+			        COUNTROWS ( t ) = 1, bn & " runs a " & FORMAT ( bm, "0.0%;−0.0%" ) & " margin (" & FORMAT ( wcp / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " contribution)",
+			        bm < 0, "Every campaign type lost money here; " & bn & " came closest (" & FORMAT ( bm, "0.0%;−0.0%" ) & "), " & wn & " lost " & FORMAT ( -wcp / 1000, "\€#,0.0\k" ),
+			        IF ( nDouble = 1, "Only " & bn & " earns a double-digit margin (" & FORMAT ( bm, "0.0%" ) & ")", bn & " leads at a " & FORMAT ( bm, "0.0%" ) & " margin" )
+			            & "; " & wn & IF ( wcp < 0, " loses " & FORMAT ( -wcp / 1000, "\€#,0.0\k" ), " trails with " & FORMAT ( wcp / 1000, "\€#,0.0\k" ) ) )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: a4574180-5907-4fa2-ac20-fe8836bdc4da
+
+	measure 'Title Discount Curve' =
+			VAR b = ADDCOLUMNS ( SUMMARIZE ( FactSales, FactSales[Discount Band], FactSales[DiscountBandSort] ), "@m", [Contribution Margin %] )
+			VAR base = MAXX ( FILTER ( b, FactSales[DiscountBandSort] = 0 ), [@m] )
+			VAR neg = TOPN ( 1, FILTER ( b, [@m] < 0 ), FactSales[DiscountBandSort], ASC )
+			VAR nb = MAXX ( neg, FactSales[Discount Band] )
+			VAR low = TOPN ( 1, b, [@m], ASC )
+			RETURN
+			    IF ( NOT ISBLANK ( nb ),
+			        "Margin turns negative once discounts reach " & nb & " (" & FORMAT ( MAXX ( neg, [@m] ), "0.0%;−0.0%" ) & ")" & IF ( NOT ISBLANK ( base ), " — vs " & FORMAT ( base, "0.0%" ) & " with no discount", "" ),
+			        IF ( COUNTROWS ( b ) = 0, "No sales in this selection", "Margin holds above zero at every discount level; lowest is " & FORMAT ( MAXX ( low, [@m] ), "0.0%" ) & " at " & MAXX ( low, FactSales[Discount Band] ) ) )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: 99dd7092-f1dd-40d6-823c-b150b7d7e548
+
+	measure 'Title Discount Scatter' =
+			VAR pts = FILTER ( ADDCOLUMNS ( VALUES ( DimCampaign[Campaign] ), "@x", [Weighted Discount %], "@y", [Contribution Margin %] ), NOT ISBLANK ( [@y] ) )
+			VAR n = COUNTROWS ( pts )
+			VAR fit = LINESTX ( pts, [@y], [@x] )
+			VAR slope = MAXX ( fit, [Slope1] )
+			RETURN
+			    IF ( n < 3, "Select three or more campaigns to see the discount-to-margin trend",
+			        IF ( slope < 0, "Each extra 10 pts of discount costs about " & FORMAT ( -slope * 10, "0.0" ) & " pts of margin across " & n & " campaigns", "Deeper discounts did not cut margin across these " & n & " campaigns" ) )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: 186386cd-83ed-4f14-867c-1b8bfef6396b
+
+	measure 'Title Peak Day' =
+			VAR t = ADDCOLUMNS ( VALUES ( DimDate[Date] ), "@n", [Net Sales], "@cp", [Contribution Profit] )
+			VAR pk = TOPN ( 1, FILTER ( t, NOT ISBLANK ( [@n] ) ), [@n], DESC )
+			VAR dt = MAXX ( pk, DimDate[Date] )
+			VAR n = MAXX ( pk, [@n] )
+			VAR cp = MAXX ( pk, [@cp] )
+			VAR k = CALCULATE ( MAX ( FactSales[CampaignKey] ), DimDate[Date] = dt )
+			VAR camp = LOOKUPVALUE ( DimCampaign[Campaign], DimCampaign[CampaignKey], k )
+			RETURN
+			    IF ( ISBLANK ( dt ), "No sales in this selection",
+			        "Peak day " & FORMAT ( dt, "d mmm yyyy" ) & " (" & camp & ") sold " & FORMAT ( n / 1000, "\€#,0.0\k" ) & IF ( cp < 0, " but lost " & FORMAT ( -cp / 1000, "\€#,0.0\k" ), " and earned " & FORMAT ( cp / 1000, "\€#,0.0\k" ) ) )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: f821560f-ca6c-4972-98c4-b9c0ee71be99
+
+	measure 'Title Heatmap' =
+			VAR t = FILTER ( ADDCOLUMNS ( SUMMARIZE ( FactSales, DimProduct[Category], FactSales[Discount Band] ), "@m", [Contribution Margin %], "@n", [Net Sales] ), [@n] >= 5000 )
+			VAR w = TOPN ( 1, t, [@m], ASC )
+			VAR b = TOPN ( 1, t, [@m], DESC )
+			VAR wb = MAXX ( w, FactSales[Discount Band] )
+			VAR bb = MAXX ( b, FactSales[Discount Band] )
+			VAR wm = MAXX ( w, [@m] )
+			RETURN
+			    IF ( COUNTROWS ( t ) = 0, "Not enough sales in this selection",
+			        IF ( wm < 0, "Deepest loss: ", "Lowest margin: " ) & MAXX ( w, DimProduct[Category] ) & IF ( wb = "No discount", " with no discount", " at " & wb & " off" ) & " (" & FORMAT ( wm, "0.0%;−0.0%" ) & ") · best: " & MAXX ( b, DimProduct[Category] ) & IF ( bb = "No discount", " with no discount", " at " & bb & " off" ) & " (" & FORMAT ( MAXX ( b, [@m] ), "0.0%" ) & ")" )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: 85bea2bc-eb18-4b91-84ae-49af62ce9c01
+
+	measure 'Title Season' =
+			VAR t = ADDCOLUMNS ( SUMMARIZE ( FactSales, DimDate[Season], DimDate[HolidaySeasonSort] ), "@m", [Campaign Margin %], "@d", CALCULATE ( [Weighted Discount %], DimCampaign[IsCampaign] = 1 ) )
+			VAR t2 = FILTER ( t, NOT ISBLANK ( [@m] ) )
+			VAR lastS = TOPN ( 1, t2, DimDate[HolidaySeasonSort], DESC )
+			VAR ls = MAXX ( lastS, DimDate[HolidaySeasonSort] )
+			VAR prevS = TOPN ( 1, FILTER ( t2, DimDate[HolidaySeasonSort] < ls ), DimDate[HolidaySeasonSort], DESC )
+			VAR lm = MAXX ( lastS, [@m] )
+			VAR pm = MAXX ( prevS, [@m] )
+			VAR ld = MAXX ( lastS, [@d] )
+			VAR pd = MAXX ( prevS, [@d] )
+			RETURN
+			    IF ( COUNTROWS ( t2 ) < 2,
+			        IF ( COUNTROWS ( t2 ) = 1, MAXX ( lastS, DimDate[Season] ) & " campaigns: " & FORMAT ( lm, "0.0%;−0.0%" ) & " margin at " & FORMAT ( ld, "0.0%" ) & " discount", "No campaign sales in this selection" ),
+			        "Campaign margin " & IF ( lm >= pm, "recovered", "slipped" ) & " to " & FORMAT ( lm, "0.0%;−0.0%" ) & " in " & MAXX ( lastS, DimDate[Season] ) & " (from " & FORMAT ( pm, "0.0%;−0.0%" ) & ") as discounts " & IF ( ld <= pd, "eased", "rose" ) & " to " & FORMAT ( ld, "0.0%" ) )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: 12c29df9-5c37-45dc-b878-62f9bcbaab54
+
+	measure 'Title Category' =
+			VAR totN = [Net Sales]
+			VAR totC = [Contribution Profit]
+			VAR t = ADDCOLUMNS ( VALUES ( DimProduct[Category] ), "@s", DIVIDE ( [Net Sales], totN ), "@c", DIVIDE ( [Contribution Profit], totC ) )
+			VAR t2 = FILTER ( t, NOT ISBLANK ( [@s] ) )
+			VAR g = TOPN ( 1, t2, [@s] - [@c], DESC )
+			VAR p = TOPN ( 1, FILTER ( ADDCOLUMNS ( VALUES ( DimProduct[Product] ), "@cp", [Contribution Profit], "@n", [Net Sales] ), NOT ISBLANK ( [@n] ) ), [@cp], ASC )
+			RETURN
+			    IF ( COUNTROWS ( t2 ) > 1,
+			        MAXX ( g, DimProduct[Category] ) & " brings " & FORMAT ( MAXX ( g, [@s] ), "0%" ) & " of net sales but " & IF ( MAXX ( g, [@c] ) < 0, "drags contribution down", "just " & FORMAT ( MAXX ( g, [@c] ), "0%" ) & " of contribution" ),
+			        IF ( COUNTROWS ( p ) = 0, "No sales in this selection", MAXX ( p, DimProduct[Product] ) & IF ( MAXX ( p, [@cp] ) < 0, " loses " & FORMAT ( -MAXX ( p, [@cp] ) / 1000, "\€#,0.0\k" ), " earns the least (" & FORMAT ( MAXX ( p, [@cp] ) / 1000, "\€#,0.0\k" ) & ")" ) & " on " & FORMAT ( MAXX ( p, [@n] ) / 1000, "\€#,0.0\k" ) & " net sales" ) )
+		displayFolder: 10 Titles\Products
+		lineageTag: 248a20ef-4666-411d-aabf-18126aa97057
+
+	measure 'Title Map' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( DimLocation[City] ), "@n", [Net Sales], "@m", [Contribution Margin %] ), NOT ISBLANK ( [@n] ) )
+			VAR big = TOPN ( 1, t, [@n], DESC )
+			VAR best = TOPN ( 1, t, [@m], DESC )
+			VAR bc = MAXX ( big, DimLocation[City] )
+			VAR sc = MAXX ( best, DimLocation[City] )
+			RETURN
+			    SWITCH ( TRUE (),
+			        COUNTROWS ( t ) = 0, "No sales in this selection",
+			        COUNTROWS ( t ) = 1, bc & ": " & FORMAT ( MAXX ( big, [@n] ) / 1000, "\€#,0.0\k" ) & " net sales at a " & FORMAT ( MAXX ( big, [@m] ), "0.0%;−0.0%" ) & " margin",
+			        bc = sc, bc & " leads on both sales (" & FORMAT ( MAXX ( big, [@n] ) / 1000, "\€#,0.0\k" ) & ") and margin (" & FORMAT ( MAXX ( big, [@m] ), "0.0%" ) & ")",
+			        bc & " is the largest market (" & FORMAT ( MAXX ( big, [@n] ) / 1000, "\€#,0.0\k" ) & ") but keeps " & FORMAT ( MAXX ( big, [@m] ), "0.0%;−0.0%" ) & "; " & sc & " keeps the most (" & FORMAT ( MAXX ( best, [@m] ), "0.0%" ) & ")" )
+		displayFolder: 10 Titles\Products
+		lineageTag: 51e9ddeb-8ecd-430b-93af-0d85301bece0
+
+	measure 'Title Channel' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( FactSales[Sales Channel] ), "@n", [Net Sales], "@m", [Contribution Margin %] ), NOT ISBLANK ( [@n] ) )
+			VAR hi = TOPN ( 1, t, [@n], DESC )
+			VAR lo = TOPN ( 1, t, [@n], ASC )
+			VAR hm = MAXX ( hi, [@m] )
+			VAR lm = MAXX ( lo, [@m] )
+			RETURN
+			    IF ( COUNTROWS ( t ) < 2,
+			        IF ( COUNTROWS ( t ) = 0, "No sales in this selection", MAXX ( hi, FactSales[Sales Channel] ) & " keeps a " & FORMAT ( hm, "0.0%;−0.0%" ) & " margin on " & FORMAT ( MAXX ( hi, [@n] ) / 1000, "\€#,0.0\k" ) ),
+			        MAXX ( hi, FactSales[Sales Channel] ) & " sells " & FORMAT ( DIVIDE ( MAXX ( hi, [@n] ), MAXX ( lo, [@n] ) ), "0.0" ) & "× " & LOWER ( MAXX ( lo, FactSales[Sales Channel] ) ) & IF ( hm < lm, " but keeps ", " and keeps " ) & FORMAT ( hm, "0.0%;−0.0%" ) & " vs " & FORMAT ( lm, "0.0%;−0.0%" ) )
+		displayFolder: 10 Titles\Products
+		lineageTag: 7d1e1d82-9654-4664-8fae-aec8070a0ac1
+
+	measure 'Title Segment' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( FactSales[Customer Segment] ), "@cp", [Contribution Profit], "@r", [Return Rate %] ), NOT ISBLANK ( [@cp] ) )
+			VAR topSeg = TOPN ( 1, t, [@cp], DESC )
+			VAR retSeg = TOPN ( 1, t, [@r], DESC )
+			RETURN
+			    IF ( COUNTROWS ( t ) = 0, "No sales in this selection",
+			        MAXX ( topSeg, FactSales[Customer Segment] ) & " earn the most contribution (" & FORMAT ( MAXX ( topSeg, [@cp] ) / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & ")" & IF ( COUNTROWS ( t ) > 1, "; " & LOWER ( MAXX ( retSeg, FactSales[Customer Segment] ) ) & " return the most (" & FORMAT ( MAXX ( retSeg, [@r] ), "0.0%" ) & " of units)", "" ) )
+		displayFolder: 10 Titles\Products
+		lineageTag: 4702bca0-468c-4933-8132-b12faa6fe165
+
+	measure 'Title Returns' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( DimProduct[Category] ), "@r", [Return Rate %] ), NOT ISBLANK ( [@r] ) )
+			VAR hi = TOPN ( 1, t, [@r], DESC )
+			VAR lo = TOPN ( 1, t, [@r], ASC )
+			RETURN
+			    IF ( COUNTROWS ( t ) < 2,
+			        IF ( COUNTROWS ( t ) = 0, "No sales in this selection", MAXX ( hi, DimProduct[Category] ) & " returns " & FORMAT ( MAXX ( hi, [@r] ), "0.0%" ) & " of units sold" ),
+			        MAXX ( hi, DimProduct[Category] ) & " returns " & FORMAT ( MAXX ( hi, [@r] ), "0.0%" ) & " of units — " & FORMAT ( DIVIDE ( MAXX ( hi, [@r] ), MAXX ( lo, [@r] ) ), "0.0" ) & "× " & MAXX ( lo, DimProduct[Category] ) & " (" & FORMAT ( MAXX ( lo, [@r] ), "0.0%" ) & ")" )
+		displayFolder: 10 Titles\Products
+		lineageTag: 165b1e1f-ddbb-41cc-b819-e8668817c66d
+
+	measure 'Title Cost Structure' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( FactSales[Sales Channel] ), "@m", [Contribution Margin %] ), NOT ISBLANK ( [@m] ) )
+			VAR w = TOPN ( 1, t, [@m], ASC )
+			VAR b = TOPN ( 1, t, [@m], DESC )
+			VAR wn = MAXX ( w, FactSales[Sales Channel] )
+			VAR bn = MAXX ( b, FactSales[Sales Channel] )
+			VAR wm = MAXX ( w, [@m] )
+			VAR keepTxt = IF ( wm < 0, " loses " & FORMAT ( -wm * 100, "0" ), " keeps " & FORMAT ( wm * 100, "0" ) )
+			VAR gaps = {
+			    ( "product cost", CALCULATE ( [COGS per € Net], FactSales[Sales Channel] = wn ) - CALCULATE ( [COGS per € Net], FactSales[Sales Channel] = bn ) ),
+			    ( "fulfilment and fees", CALCULATE ( [Fulfilment and Fees per € Net], FactSales[Sales Channel] = wn ) - CALCULATE ( [Fulfilment and Fees per € Net], FactSales[Sales Channel] = bn ) ),
+			    ( "return handling", CALCULATE ( [Return Handling per € Net], FactSales[Sales Channel] = wn ) - CALCULATE ( [Return Handling per € Net], FactSales[Sales Channel] = bn ) ),
+			    ( "campaign spend", CALCULATE ( [Campaign Spend per € Net], FactSales[Sales Channel] = wn ) - CALCULATE ( [Campaign Spend per € Net], FactSales[Sales Channel] = bn ) ) }
+			VAR g = TOPN ( 1, gaps, [Value2], DESC )
+			RETURN
+			    IF ( COUNTROWS ( t ) < 2,
+			        IF ( COUNTROWS ( t ) = 0, "No sales in this selection", wn & keepTxt & "c of each €1 of net sales" ),
+			        wn & keepTxt & "c of each €1 vs " & FORMAT ( MAXX ( b, [@m] ) * 100, "0;−0" ) & "c " & LOWER ( bn ) & " — mostly higher " & MAXX ( g, [Value1] ) & " (+" & FORMAT ( MAXX ( g, [Value2] ) * 100, "0.0" ) & "c)" )
+		displayFolder: 10 Titles\Products
+		lineageTag: 0059ad45-abfa-4c3a-bc79-8787b2aebed6
+
+	measure 'Title Drill Campaign' =
+			VAR c = SELECTEDVALUE ( DimCampaign[Campaign] )
+			VAR t = SELECTEDVALUE ( DimCampaign[Campaign Type] )
+			VAR nm = COALESCE ( c, IF ( NOT ISBLANK ( t ), t & " (all years)" ), "All campaigns and regular trading" )
+			VAR n = [Net Sales]
+			RETURN nm & ": " & IF ( n >= 1000000, FORMAT ( n / 1000000, "\€#,0.00\M" ), FORMAT ( n / 1000, "\€#,0.0\k" ) ) & " net sales, " & FORMAT ( [Contribution Margin %], "0.0%;−0.0%" ) & " margin at " & FORMAT ( [Weighted Discount %], "0.0%" ) & " average discount"
+		displayFolder: 10 Titles\Drillthrough
+		lineageTag: bef2475a-c1e9-484f-abf4-173d99250703
+
+	measure 'Drill Campaign Facts' =
+			VAR o = SELECTEDVALUE ( DimCampaign[Objective] )
+			VAR nEvents = CALCULATE ( DISTINCTCOUNT ( DimCampaign[CampaignKey] ), DimCampaign[IsCampaign] = 1 )
+			VAR budget = SUMX ( FILTER ( VALUES ( DimCampaign[CampaignKey] ), NOT ISBLANK ( [Net Sales] ) ), CALCULATE ( MAX ( DimCampaign[ActualCampaignSpendEUR] ) ) )
+			VAR s = SELECTEDVALUE ( DimCampaign[Start Date] )
+			VAR e = SELECTEDVALUE ( DimCampaign[End Date] )
+			VAR d = SELECTEDVALUE ( DimCampaign[Duration Days] )
+			RETURN
+			    SWITCH ( TRUE (),
+			        ISBLANK ( o ), "Several campaign types selected · " & nEvents & " events · combined budget " & FORMAT ( budget / 1000, "\€#,0.0\k" ),
+			        o = "Regular trading", "Regular (non-campaign) trading · no event budget",
+			        NOT ISBLANK ( s ), "Objective: " & o & " · " & FORMAT ( s, "d mmm" ) & " – " & FORMAT ( e, "d mmm yyyy" ) & " (" & d & " days) · event budget " & FORMAT ( budget / 1000, "\€#,0.0\k" ),
+			        "Objective: " & o & " · " & nEvents & " events across the seasons · combined budget " & FORMAT ( budget / 1000, "\€#,0.0\k" ) )
+		displayFolder: 10 Titles\Drillthrough
+		lineageTag: cffe48e7-f331-4576-9b17-055a028dd41f
+
+	measure 'Selection Summary' =
+			VAR s = IF ( ISFILTERED ( DimDate[Season] ), CONCATENATEX ( VALUES ( DimDate[Season] ), DimDate[Season], ", " ), "All seasons" )
+			VAR c = IF ( ISFILTERED ( FactSales[Sales Channel] ), CONCATENATEX ( VALUES ( FactSales[Sales Channel] ), FactSales[Sales Channel], ", " ), "All channels" )
+			VAR g = IF ( ISFILTERED ( FactSales[Customer Segment] ), CONCATENATEX ( VALUES ( FactSales[Customer Segment] ), FactSales[Customer Segment], ", " ), "All segments" )
+			VAR m = IF ( ISFILTERED ( DimLocation[City] ), CONCATENATEX ( VALUES ( DimLocation[City] ), DimLocation[City], ", " ), "All markets" )
+			VAR p = IF ( ISFILTERED ( DimProduct[Category] ), CONCATENATEX ( VALUES ( DimProduct[Category] ), DimProduct[Category], ", " ), "All categories" )
+			RETURN s & "  ·  " & c & "  ·  " & g & "  ·  " & m & "  ·  " & p
+		displayFolder: 10 Titles
+		lineageTag: 50df0de1-fee6-441b-ad69-a8b7b4fb1d29
+
+	measure 'Colour Margin' =
+			VAR m = [Contribution Margin %]
+			RETURN SWITCH ( TRUE (), ISBLANK ( m ), BLANK (), m < 0, "#EF8354", m < 0.10, "#F4A37F", m < 0.25, "#7B89A0", "#4F5D75" )
+		displayFolder: 11 Formatting
+		lineageTag: 9411befe-465e-4d76-9108-86928cd68914
+
+	measure 'Colour Contribution' = IF ( [Contribution Profit] < 0, "#EF8354", "#2D3142" )
+		displayFolder: 11 Formatting
+		lineageTag: a1959c4c-5a7a-4a6c-b661-cdfc67997ae2
+
+	measure 'Colour Bridge Step' = SWITCH ( SELECTEDVALUE ( 'Profit Steps'[Step Type] ), "Total", IF ( [Profit Step Value] < 0, "#EF8354", "#4F5D75" ), "Revenue leak", "#EF8354", "Product cost", "#7B89A0", "#B5BECC" )
+		displayFolder: 11 Formatting
+		lineageTag: e7dfd833-1ada-444d-bf78-710a33207afe
+
+	/// Signed bridge values without the closing total (the native waterfall adds the total itself).
+	measure 'Profit Step Bridge' = IF ( SELECTEDVALUE ( 'Profit Steps'[Step] ) = "Contribution Profit", BLANK (), [Profit Step Value] )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 9 Bridge
+		lineageTag: 17e8db84-7e72-4a94-b236-09c64ae8d414
+
+	measure 'Campaign Net Sales per Day' = CALCULATE ( [Net Sales per Day], DimCampaign[IsCampaign] = 1 )
+		formatString: \€#,0
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 3cd2b6b8-9332-41f5-b525-5cc08e641e35
+
+	measure 'Campaign Discount %' = CALCULATE ( [Weighted Discount %], DimCampaign[IsCampaign] = 1 )
+		formatString: 0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: b4599cea-775e-41db-8acc-f485bba0b307
+
+	measure 'Regular Discount %' = CALCULATE ( [Weighted Discount %], DimCampaign[IsCampaign] = 0 )
+		formatString: 0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: 0483494a-8686-40bd-8f43-0d000a8d9c9e
+
+	measure 'Campaign Return Rate %' = CALCULATE ( [Return Rate %], DimCampaign[IsCampaign] = 1 )
+		formatString: 0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: a69d99b8-c547-4cd7-9097-4cc72b7321d1
+
+	measure 'Regular Return Rate %' = CALCULATE ( [Return Rate %], DimCampaign[IsCampaign] = 0 )
+		formatString: 0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: fc105414-7fe1-4c38-8fbc-9bf056dfb7a5
+
+	/// Allocated campaign spend / campaign net sales.
+	measure 'Campaign Spend Ratio' = CALCULATE ( DIVIDE ( [Campaign Spend], [Net Sales] ), DimCampaign[IsCampaign] = 1 )
+		formatString: 0.0%
+		displayFolder: 8 Campaign vs regular
+		lineageTag: c2647369-2785-4876-baa7-1c323ef84094
+
+	measure 'Hero P2 Value' = IF ( ISBLANK ( [Campaign Margin %] ), "–", FORMAT ( [Campaign Margin %], "0.0%;−0.0%" ) )
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: 960403f5-1ac3-4d69-b6c2-9979c5505c54
+
+	measure 'Hero P2 Sub' = "campaign contribution margin vs " & IF ( ISBLANK ( [Regular Margin %] ), "–", FORMAT ( [Regular Margin %], "0.0%;−0.0%" ) ) & " in regular trading"
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: 1655dfbb-c526-4cf7-9e32-6da7143001ca
+
+	measure 'Hero P2 Line' = FORMAT ( [Campaign Spend] / 1000, "\€#,0.0\k" ) & " campaign spend · " & FORMAT ( [Campaign Contribution] / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " contribution left after it"
+		displayFolder: 10 Titles\Campaigns
+		lineageTag: f63e672e-7eb8-4bde-bc00-0f4980fe73b7
+
+	measure 'KPI P2 Daily Sub' =
+			VAR x = DIVIDE ( [Campaign Net Sales per Day], [Regular Net Sales per Day] )
+			RETURN IF ( ISBLANK ( x ), "no regular baseline in this selection", FORMAT ( x, "0.0" ) & "× a regular trading day" )
+		displayFolder: 10 Titles\KPI
+		lineageTag: bc9ac728-1efe-404e-819b-b78efecb15dd
+
+	measure 'KPI P2 Discount Sub' = "vs " & IF ( ISBLANK ( [Regular Discount %] ), "–", FORMAT ( [Regular Discount %], "0.0%" ) ) & " in regular trading"
+		displayFolder: 10 Titles\KPI
+		lineageTag: e458b8d5-30f4-4012-8562-3c7387d72bfb
+
+	measure 'KPI P2 Return Sub' = "vs " & IF ( ISBLANK ( [Regular Return Rate %] ), "–", FORMAT ( [Regular Return Rate %], "0.0%" ) ) & " in regular trading"
+		displayFolder: 10 Titles\KPI
+		lineageTag: 4aa2c093-d78c-4f15-8a44-891661ad93dd
+
+	measure 'KPI P2 Spend Sub' = FORMAT ( [Campaign Spend] / 1000, "\€#,0.0\k" ) & " of event budget allocated"
+		displayFolder: 10 Titles\KPI
+		lineageTag: dcede2af-e87c-4ee9-a419-973a3725d7e0
+
+	measure 'Units per Order' = DIVIDE ( [Units Sold], [Orders] )
+		formatString: 0.00
+		displayFolder: 5 Ratios
+		lineageTag: 82b5e50e-024f-40d4-9c35-8c4ee8111604
+
+	measure 'Online Share of Net Sales' = DIVIDE ( CALCULATE ( [Net Sales], KEEPFILTERS ( FactSales[Sales Channel] = "Online" ) ), [Net Sales] )
+		formatString: 0%
+		displayFolder: 5 Ratios
+		lineageTag: 2b8effb8-9b6b-47c3-87ab-b2948c441eaa
+
+	measure 'Best Market' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( DimLocation[City] ), "@m", [Contribution Margin %] ), NOT ISBLANK ( [@m] ) )
+			RETURN MAXX ( TOPN ( 1, t, [@m], DESC ), DimLocation[City] )
+		displayFolder: 10 Titles\Products
+		lineageTag: a427a964-9e63-4b56-b091-4ea7e64d640c
+
+	measure 'KPI P3 Market Sub' =
+			VAR c = [Best Market]
+			RETURN IF ( ISBLANK ( c ), "–", FORMAT ( CALCULATE ( [Contribution Margin %], DimLocation[City] = c ), "0.0%" ) & " margin on " & FORMAT ( CALCULATE ( [Net Sales], DimLocation[City] = c ) / 1000, "\€#,0.0\k" ) & " net sales" )
+		displayFolder: 10 Titles\KPI
+		lineageTag: cd360721-0836-443b-93dd-884d71da567b
+
+	measure 'KPI P3 AOV Sub' = FORMAT ( [Units per Order], "0.00" ) & " units per order · " & FORMAT ( [Orders], "#,0" ) & " orders"
+		displayFolder: 10 Titles\KPI
+		lineageTag: 03435358-b28f-43a9-80b7-85681884da46
+
+	measure 'KPI P3 Online Sub' = "Online margin " & FORMAT ( CALCULATE ( [Contribution Margin %], KEEPFILTERS ( FactSales[Sales Channel] = "Online" ) ), "0.0%;−0.0%" ) & " vs in-store " & FORMAT ( CALCULATE ( [Contribution Margin %], KEEPFILTERS ( FactSales[Sales Channel] = "In-store" ) ), "0.0%;−0.0%" )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 3e49c9b1-d3de-47af-bd2c-6a86b107a567
+
+	measure 'Hero P3 Value' = FORMAT ( [Loss-making Share of Net Sales], "0%" )
+		displayFolder: 10 Titles\Products
+		lineageTag: d7b32029-4626-43df-973f-44cb196f7b95
+
+	measure 'Hero P3 Sub' = "of net sales came on lines that lost money after all costs (" & FORMAT ( [Loss-making Net Sales] / 1000, "\€#,0.0\k" ) & ")"
+		displayFolder: 10 Titles\Products
+		lineageTag: 4656d788-3f7f-44c5-a33f-e847df6b1f80
+
+	measure 'Hero P3 Line' =
+			VAR lossCP = CALCULATE ( [Contribution Profit], FactSales[ContributionProfitEUR] < 0 )
+			RETURN "Those lines gave up " & FORMAT ( -lossCP / 1000, "\€#,0.0\k" ) & " of contribution"
+		displayFolder: 10 Titles\Products
+		lineageTag: 8ecb9410-4670-4145-9265-9efc2bbfcb3d
+
+	measure 'TT Header' =
+			SWITCH ( TRUE (),
+			    ISFILTERED ( DimProduct[Product] ) && HASONEVALUE ( DimProduct[Product] ), VALUES ( DimProduct[Product] ),
+			    ISFILTERED ( DimCampaign[Campaign] ) && HASONEVALUE ( DimCampaign[Campaign] ), VALUES ( DimCampaign[Campaign] ),
+			    ISFILTERED ( DimLocation[City] ) && HASONEVALUE ( DimLocation[City] ), VALUES ( DimLocation[City] ),
+			    ISFILTERED ( DimProduct[Subcategory] ) && HASONEVALUE ( DimProduct[Subcategory] ), VALUES ( DimProduct[Subcategory] ),
+			    ISFILTERED ( DimProduct[Category] ) && HASONEVALUE ( DimProduct[Category] ), VALUES ( DimProduct[Category] ),
+			    ISFILTERED ( DimCampaign[Campaign Type] ) && HASONEVALUE ( DimCampaign[Campaign Type] ), VALUES ( DimCampaign[Campaign Type] ),
+			    ISFILTERED ( FactSales[Customer Segment] ) && HASONEVALUE ( FactSales[Customer Segment] ), VALUES ( FactSales[Customer Segment] ),
+			    ISFILTERED ( FactSales[Sales Channel] ) && HASONEVALUE ( FactSales[Sales Channel] ), VALUES ( FactSales[Sales Channel] ),
+			    ISFILTERED ( FactSales[Discount Band] ) && HASONEVALUE ( FactSales[Discount Band] ), "Discount " & VALUES ( FactSales[Discount Band] ),
+			    ISFILTERED ( DimDate[Date] ) && HASONEVALUE ( DimDate[Date] ), FORMAT ( VALUES ( DimDate[Date] ), "ddd d mmm yyyy" ),
+			    "Current selection" )
+		displayFolder: 12 Tooltip
+		lineageTag: 4f815af3-886d-4151-8b9a-92301b55a978
+
+	measure 'TT Net Sales' = IF ( [Net Sales] >= 1000000, FORMAT ( [Net Sales] / 1000000, "\€#,0.00\M" ), FORMAT ( [Net Sales] / 1000, "\€#,0.0\k" ) )
+		displayFolder: 12 Tooltip
+		lineageTag: c4d83b95-d411-440d-a08c-8c7ab9c70a85
+
+	measure 'TT Contribution' = FORMAT ( [Contribution Profit] / 1000, "\€#,0.0\k;−\€#,0.0\k" )
+		displayFolder: 12 Tooltip
+		lineageTag: 64d12343-73c9-464e-9dfa-2f987663d096
+
+	measure 'TT Margin' = FORMAT ( [Contribution Margin %], "0.0%;−0.0%" )
+		displayFolder: 12 Tooltip
+		lineageTag: 31c42d35-5211-466b-91b5-4f00c4c37c7c
+
+	measure 'TT Discount' = FORMAT ( [Weighted Discount %], "0.0%" )
+		displayFolder: 12 Tooltip
+		lineageTag: f2d9496f-d1ff-422f-af44-00319ea31862
+
+	measure 'TT Footer' = FORMAT ( [Orders], "#,0" ) & " orders · " & FORMAT ( [Return Rate %], "0.0%" ) & " of units returned · " & FORMAT ( [Net Sales per Day] / 1000, "\€#,0.0\k" ) & "/day"
+		displayFolder: 12 Tooltip
+		lineageTag: 8f4f66ca-8c86-4c55-9e3e-3a2537285690
+
+	measure 'Colour Margin Font' =
+			VAR m = [Contribution Margin %]
+			RETURN IF ( NOT ISBLANK ( m ) && ( m < 0 || m >= 0.25 ), "#FFFFFF", "#2D3142" )
+		displayFolder: 11 Formatting
+		lineageTag: 89a82620-ed31-487e-b4f2-24ea6a290995
+
+	measure 'Colour TT Margin' =
+			VAR m = [Contribution Margin %]
+			RETURN SWITCH ( TRUE (), m < 0, "#EF8354", m < 0.10, "#F4A37F", "#4F5D75" )
+		displayFolder: 11 Formatting
+		lineageTag: 4aeb02a2-cdb3-4a1a-9249-58ac2f3a9e5c
+
+	measure 'KV Net Sales' = IF ( ISBLANK ( [Net Sales] ), "–", [TT Net Sales] )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 4aab70ae-4169-4ef4-a91f-41b3da7e8338
+
+	measure 'KV Margin' = IF ( ISBLANK ( [Net Sales] ), "–", [TT Margin] )
+		displayFolder: 10 Titles\KPI
+		lineageTag: a74e3fed-761c-4f1c-81ff-488277db866d
+
+	measure 'KV Discount' = IF ( ISBLANK ( [Gross Sales] ), "–", [TT Discount] )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 68b9e318-db34-4e04-b482-56e990b6f4fd
+
+	measure 'KV Return' = IF ( ISBLANK ( [Units Sold] ), "–", FORMAT ( [Return Rate %], "0.0%" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 14ab8ab2-b2a9-49ae-b50a-78dc9c23722b
+
+	measure 'KV P2 Daily' = IF ( ISBLANK ( [Campaign Net Sales per Day] ), "–", FORMAT ( [Campaign Net Sales per Day] / 1000, "\€#,0.0\k" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 8e6cc08b-3d11-4404-a9a3-b10e0d8c2869
+
+	measure 'KV P2 Discount' = IF ( ISBLANK ( [Campaign Discount %] ), "–", FORMAT ( [Campaign Discount %], "0.0%" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 27aeff18-6df0-426c-929a-04c942612658
+
+	measure 'KV P2 Return' = IF ( ISBLANK ( [Campaign Return Rate %] ), "–", FORMAT ( [Campaign Return Rate %], "0.0%" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 15ec568e-eef7-402d-8da8-cf0203eec349
+
+	measure 'KV P2 Spend' = IF ( ISBLANK ( [Campaign Spend Ratio] ), "–", FORMAT ( [Campaign Spend Ratio], "0.0%" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: d0fbc5fc-0cfd-4dd1-8ff2-90cae3cc711f
+
+	measure 'KV AOV' = IF ( ISBLANK ( [Avg Order Value] ), "–", FORMAT ( [Avg Order Value], "\€#,0" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 98600206-11eb-4811-8d28-0126365aecf5
+
+	measure 'KV Online' = IF ( ISBLANK ( [Net Sales] ), "–", FORMAT ( [Online Share of Net Sales], "0%" ) )
+		displayFolder: 10 Titles\KPI
+		lineageTag: 59d33a09-7f3c-4aee-8df1-8f46075f182d
+
+	measure 'KV Best Market' = IF ( ISBLANK ( [Best Market] ), "–", [Best Market] )
+		displayFolder: 10 Titles\KPI
+		lineageTag: c1bc512a-9b35-4238-bffd-5703fba7326a
+
+	measure 'Heat Margin' = [Contribution Margin %]
+		formatString: 0%;-0%
+		displayFolder: 11 Formatting
+		lineageTag: ca6e80f9-c7f7-4007-b725-3ca5bbc3bc0a
+
+	measure 'AC Season' =
+			VAR d = CALCULATE ( MAX ( FactSales[SaleDate] ), 'Scope'[Scope] = "AC" )
+			RETURN LOOKUPVALUE ( DimDate[Season], DimDate[Date], d )
+		displayFolder: 13 IBCS
+		lineageTag: 52baaee3-678b-4b38-9b07-5b857a3c7205
+
+	measure 'PY Season' =
+			VAR s = [AC Season]
+			VAR k = CALCULATE ( MAX ( DimDate[HolidaySeasonSort] ), DimDate[Season] = s, REMOVEFILTERS ( DimDate ) )
+			RETURN CALCULATE ( MAX ( DimDate[Season] ), DimDate[HolidaySeasonSort] = k - 1, REMOVEFILTERS ( DimDate ) )
+		displayFolder: 13 IBCS
+		lineageTag: 91dc4c26-c334-4d1b-a733-622e6c1b7057
+
+	measure 'Period Line' = "Holiday retail · EUR · AC " & [AC Season] & IF ( ISBLANK ( [Net Sales PY] ), " (no PY)", " vs PY " & [PY Season] )
+		displayFolder: 13 IBCS
+		lineageTag: 0890377c-7a49-4a84-a40c-1c916a92aa90
+
+	measure 'Net Sales AC' = CALCULATE ( [Net Sales], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: 32f4062e-c7b0-4676-8353-f49351bb2ad2
+
+	measure 'Net Sales PY' = CALCULATE ( [Net Sales], 'Scope'[Scope] = "PY" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: 87bab818-c21e-4699-8544-89e87f2147b4
+
+	measure 'Net Sales ΔPY' = VAR a = [Net Sales AC] VAR p = [Net Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), a - p )
+		formatString: +\€#,0;-\€#,0;\€0
+		displayFolder: 13 IBCS
+		lineageTag: af9320c9-3545-49d0-bb89-491aca20ac37
+
+	measure 'Net Sales ΔPY%' = DIVIDE ( [Net Sales ΔPY], ABS ( [Net Sales PY] ) )
+		formatString: +0%;-0%;0%
+		displayFolder: 13 IBCS
+		lineageTag: 859eed77-dd2a-439e-adf3-4139273311af
+
+	measure 'Contribution AC' = CALCULATE ( [Contribution Profit], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: c89d1612-cbbf-46da-8fd0-56ec38fc51eb
+
+	measure 'Contribution PY' = CALCULATE ( [Contribution Profit], 'Scope'[Scope] = "PY" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: b8fd3a81-aa3b-44dd-9218-83017e5b5699
+
+	measure 'Contribution ΔPY' = VAR a = [Contribution AC] VAR p = [Contribution PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), a - p )
+		formatString: +\€#,0;-\€#,0;\€0
+		displayFolder: 13 IBCS
+		lineageTag: 6a6dbe33-fa1c-4075-9440-4c8586e60bf1
+
+	measure 'Contribution ΔPY%' = DIVIDE ( [Contribution ΔPY], ABS ( [Contribution PY] ) )
+		formatString: +0%;-0%;0%
+		displayFolder: 13 IBCS
+		lineageTag: 82b09eba-1396-47ce-88b9-eb664a3dd2a7
+
+	measure 'Margin AC' = CALCULATE ( [Contribution Margin %], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 9004e472-a4c3-40a6-a6f1-6a922c7b33c7
+
+	measure 'Margin PY' = CALCULATE ( [Contribution Margin %], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 58400d14-5be0-4fd0-96c2-0d82f5964fe4
+
+	/// Change in contribution margin vs PY, in percentage points.
+	measure 'Margin ΔPY pp' = VAR a = [Margin AC] VAR p = [Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 1095d199-4caa-4307-9487-558091365616
+
+	measure 'Discount AC' = CALCULATE ( [Weighted Discount %], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 66102683-a4a7-402d-99f2-e2a8743a15bc
+
+	measure 'Discount PY' = CALCULATE ( [Weighted Discount %], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 25081b86-6eb6-4490-a210-330873dc7046
+
+	measure 'Discount ΔPY pp' = VAR a = [Discount AC] VAR p = [Discount PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 85f02a36-67ee-466b-9e01-812ef34f8ab8
+
+	measure 'Return AC' = CALCULATE ( [Return Rate %], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 311c6e50-b47f-4488-8f1c-edc3c2d25893
+
+	measure 'Return PY' = CALCULATE ( [Return Rate %], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: f530e598-4717-49db-9ae6-a6a0f75e78b3
+
+	measure 'Return ΔPY pp' = VAR a = [Return AC] VAR p = [Return PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 5c5dc47b-4b2d-4713-aa2d-12b5e8954d18
+
+	measure 'Camp Margin AC' = CALCULATE ( [Campaign Margin %], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%;-0.0%
+		displayFolder: 13 IBCS
+		lineageTag: a5e561a3-346c-4578-959d-2b7ebcee3ad9
+
+	measure 'Camp Margin PY' = CALCULATE ( [Campaign Margin %], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%;-0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 92ac36b0-bc32-45aa-898c-46f2c7f859df
+
+	measure 'Camp Margin ΔPY pp' = VAR a = [Camp Margin AC] VAR p = [Camp Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 23c5da58-e9b5-4c18-ba8b-48cefe1e472b
+
+	measure 'Camp Daily AC' = CALCULATE ( [Campaign Net Sales per Day], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: 6b282aa2-2255-4e40-a83f-b0107d629f24
+
+	measure 'Camp Daily PY' = CALCULATE ( [Campaign Net Sales per Day], 'Scope'[Scope] = "PY" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: d5c12e13-9609-4c53-9624-3f660ed735be
+
+	measure 'Camp Daily ΔPY' = VAR a = [Camp Daily AC] VAR p = [Camp Daily PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), a - p )
+		formatString: +\€#,0;-\€#,0;\€0
+		displayFolder: 13 IBCS
+		lineageTag: b726ea0d-d335-43ef-8cbb-2f8b43fdca2c
+
+	measure 'Camp Daily ΔPY%' = DIVIDE ( [Camp Daily ΔPY], ABS ( [Camp Daily PY] ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 737838b3-64d1-4131-bc7a-b1d59d443907
+
+	measure 'Camp Discount AC' = CALCULATE ( [Campaign Discount %], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 31da5a6b-f79a-495e-902b-b190824add25
+
+	measure 'Camp Discount PY' = CALCULATE ( [Campaign Discount %], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 9d3c8ac0-4065-4d0c-9539-1490d32fb484
+
+	measure 'Camp Discount ΔPY pp' = VAR a = [Camp Discount AC] VAR p = [Camp Discount PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 96764150-ec5d-4a16-bc37-9c87a8246810
+
+	measure 'Camp Return AC' = CALCULATE ( [Campaign Return Rate %], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: bd53c9bf-c224-4692-acf4-aae7398ec7c1
+
+	measure 'Camp Return PY' = CALCULATE ( [Campaign Return Rate %], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: ee8422ea-de51-4b9b-863e-c3b83149eec2
+
+	measure 'Camp Return ΔPY pp' = VAR a = [Camp Return AC] VAR p = [Camp Return PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 9aa836c5-0e95-450b-a4ad-2f1fe90aa7e6
+
+	measure 'Spend Ratio AC' = CALCULATE ( [Campaign Spend Ratio], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: e7ef109e-83f0-453e-9869-c6153a1ac750
+
+	measure 'Spend Ratio PY' = CALCULATE ( [Campaign Spend Ratio], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%
+		displayFolder: 13 IBCS
+		lineageTag: b3f7cf22-caac-42fb-8968-07bf424df685
+
+	measure 'Spend Ratio ΔPY pp' = VAR a = [Spend Ratio AC] VAR p = [Spend Ratio PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 366246cf-4716-4adc-852b-0dbe01d68f90
+
+	measure 'AOV AC' = CALCULATE ( [Avg Order Value], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: b5c90785-f8e8-42f8-94cf-7996d74e212b
+
+	measure 'AOV PY' = CALCULATE ( [Avg Order Value], 'Scope'[Scope] = "PY" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: 42970f22-ab60-40fe-ba5f-7e216ba14e3f
+
+	measure 'AOV ΔPY' = VAR a = [AOV AC] VAR p = [AOV PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), a - p )
+		formatString: +\€#,0;-\€#,0;\€0
+		displayFolder: 13 IBCS
+		lineageTag: 35061b7f-36fe-42c1-a544-69b96e28fddf
+
+	measure 'AOV ΔPY%' = DIVIDE ( [AOV ΔPY], ABS ( [AOV PY] ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 13 IBCS
+		lineageTag: 58276407-4b99-405d-aa39-52d1c7d60372
+
+	measure 'Online AC' = CALCULATE ( [Online Share of Net Sales], 'Scope'[Scope] = "AC" )
+		formatString: 0%
+		displayFolder: 13 IBCS
+		lineageTag: 587501f9-5998-486b-ac03-a6af105e22b9
+
+	measure 'Online PY' = CALCULATE ( [Online Share of Net Sales], 'Scope'[Scope] = "PY" )
+		formatString: 0%
+		displayFolder: 13 IBCS
+		lineageTag: e018a6c6-48c5-40c9-88de-0834edc42208
+
+	measure 'Online ΔPY pp' = VAR a = [Online AC] VAR p = [Online PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: 8da9792a-180c-429e-8419-2bdd9218f108
+
+	measure 'Loss Share AC' = CALCULATE ( [Loss-making Share of Net Sales], 'Scope'[Scope] = "AC" )
+		formatString: 0%
+		displayFolder: 13 IBCS
+		lineageTag: 32479af2-2b79-423f-a414-1ca2cdb38b47
+
+	measure 'Loss Share PY' = CALCULATE ( [Loss-making Share of Net Sales], 'Scope'[Scope] = "PY" )
+		formatString: 0%
+		displayFolder: 13 IBCS
+		lineageTag: 96024bb4-7873-4b0a-be33-3aa0aa617d1c
+
+	measure 'Loss Share ΔPY pp' = VAR a = [Loss Share AC] VAR p = [Loss Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * 100 )
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: e3a92edd-3929-45d3-8a22-62537b674d4c
+
+	/// Calculation bridge (AC), without the closing total.
+	measure 'Step AC' = CALCULATE ( [Profit Step Bridge], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 13 IBCS
+		lineageTag: bd322203-293d-48c4-b0bc-4b4b30a8c176
+
+	/// Impact of each P&L line on the change in contribution vs PY. Sums to Contribution ΔPY.
+	measure 'Step ΔPY' = VAR a = [Step AC] VAR p = CALCULATE ( [Profit Step Bridge], 'Scope'[Scope] = "PY" ) RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), a - p )
+		formatString: +\€#,0;-\€#,0;\€0
+		displayFolder: 13 IBCS
+		lineageTag: 57bf079b-4fa8-40bd-88d6-504665672178
+
+	measure 'COGS per € AC' = CALCULATE ( [COGS per € Net], 'Scope'[Scope] = "AC" )
+		formatString: 0%;-0%
+		displayFolder: 13 IBCS
+		lineageTag: 407d4ec6-dac2-40a0-ab6d-13e0a3d6978d
+
+	measure 'Fulfil per € AC' = CALCULATE ( [Fulfilment and Fees per € Net], 'Scope'[Scope] = "AC" )
+		formatString: 0%;-0%
+		displayFolder: 13 IBCS
+		lineageTag: 09652fef-5eaa-44b6-b9cb-2393813e1b4e
+
+	measure 'Returns per € AC' = CALCULATE ( [Return Handling per € Net], 'Scope'[Scope] = "AC" )
+		formatString: 0%;-0%
+		displayFolder: 13 IBCS
+		lineageTag: effdd9bf-3c7e-4e97-b068-e6021f100e52
+
+	measure 'Campaign per € AC' = CALCULATE ( [Campaign Spend per € Net], 'Scope'[Scope] = "AC" )
+		formatString: 0%;-0%
+		displayFolder: 13 IBCS
+		lineageTag: 87abe7fa-2fcc-48b5-a688-a0caacd42e5f
+
+	measure 'Contribution per € AC' = CALCULATE ( [Contribution per € Net], 'Scope'[Scope] = "AC" )
+		formatString: 0%;-0%
+		displayFolder: 13 IBCS
+		lineageTag: 193b9fa2-f282-41f0-a81a-230f6359bf53
+
+	measure 'Net Sales per Day AC' = CALCULATE ( [Net Sales per Day], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: 9604173c-0d48-4bef-a082-27d23482f30c
+
+	measure 'Net Sales per Day PY' = CALCULATE ( [Net Sales per Day], 'Scope'[Scope] = "PY" )
+		formatString: \€#,0
+		displayFolder: 13 IBCS
+		lineageTag: a387d01b-b5b1-4fc5-ad83-31dd79e2f651
+
+	measure 'Colour Δ Net Sales' = VAR d = [Net Sales ΔPY] RETURN IF ( ISBLANK ( d ), "#B5BECC", IF ( d >= 0, "#4F5D75", "#EF8354" ) )
+		displayFolder: 11 Formatting
+		lineageTag: da742eab-315b-440f-bd63-d63ce1278321
+
+	measure 'Colour Δ Contribution' = VAR d = [Contribution ΔPY] RETURN IF ( ISBLANK ( d ), "#B5BECC", IF ( d >= 0, "#4F5D75", "#EF8354" ) )
+		displayFolder: 11 Formatting
+		lineageTag: 23eb66d4-07f2-4747-80e5-4804678d6376
+
+	measure 'Colour Δ Margin' = VAR d = [Margin ΔPY pp] RETURN IF ( ISBLANK ( d ), "#B5BECC", IF ( d >= 0, "#4F5D75", "#EF8354" ) )
+		displayFolder: 11 Formatting
+		lineageTag: 36e20d77-a0bb-4427-92db-9c2b98e77f29
+
+	/// Higher return rate is bad, so the colours are inverted.
+	measure 'Colour Δ Return' = VAR d = [Return ΔPY pp] RETURN IF ( ISBLANK ( d ), "#B5BECC", IF ( d <= 0, "#4F5D75", "#EF8354" ) )
+		displayFolder: 11 Formatting
+		lineageTag: f758cf5c-dc62-4d5e-b000-239727b64b77
+
+	measure 'Colour Loss Value' = IF ( [Contribution AC] < 0, "#EF8354", "#2D3142" )
+		displayFolder: 11 Formatting
+		lineageTag: 8378c709-d76f-4f5a-9f98-21b52e646513
+
+	measure 'KPI Contribution AC' = VAR a = [Contribution AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: b6683759-f8b8-42f6-b519-85436ce55949
+
+	measure 'KPI Contribution PY' = VAR p = [Contribution PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 21000816-bff7-4223-a86d-abab73f1aca6
+
+	measure 'KPI Contribution Δ' = VAR d = [Contribution ΔPY] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & "   " & FORMAT ( [Contribution ΔPY%], "+0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 8b4606a6-451e-4008-a898-7c6a5156e21b
+
+	measure 'KPI Contribution Col' = VAR d = [Contribution ΔPY] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d > 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 55786ec3-a6d1-45e3-8bc8-ac95ca775b8a
+
+	measure 'KPI Net Sales AC' = VAR a = [Net Sales AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: e1d3490d-2628-4158-81e0-5673a51727e2
+
+	measure 'KPI Net Sales PY' = VAR p = [Net Sales PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: e8129f89-c406-4641-9be0-e7b595cab240
+
+	measure 'KPI Net Sales Δ' = VAR d = [Net Sales ΔPY] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & "   " & FORMAT ( [Net Sales ΔPY%], "+0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 9a56c4ba-c3df-4d66-921c-4c49c785623e
+
+	measure 'KPI Net Sales Col' = VAR d = [Net Sales ΔPY] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d > 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 3b7d8990-8983-4fba-b3a8-63edcbcb95bb
+
+	measure 'KPI Margin AC' = VAR a = [Margin AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: a66e8894-2493-4f32-866b-b91f57a3ce96
+
+	measure 'KPI Margin PY' = VAR p = [Margin PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 56be5790-eec3-4234-83ab-4448b0735c61
+
+	measure 'KPI Margin Δ' = VAR d = [Margin ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 56606f2c-e45f-487f-8024-1952575175c1
+
+	measure 'KPI Margin Col' = VAR d = [Margin ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d > 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 07501e0c-f58e-4786-af7b-2417d75f6a65
+
+	measure 'KPI Discount AC' = VAR a = [Discount AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: a245814f-2e9b-4823-94cb-53e73a19a144
+
+	measure 'KPI Discount PY' = VAR p = [Discount PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: c318e888-5973-4a30-8ffb-fc16f93f0d41
+
+	measure 'KPI Discount Δ' = VAR d = [Discount ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: deade42f-3c13-4e09-a6a0-63cb61dbeb35
+
+	measure 'KPI Discount Col' = VAR d = [Discount ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d < 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 21576df2-0072-4262-a5bd-b45ebd30915a
+
+	measure 'KPI Return AC' = VAR a = [Return AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: c68d87fa-113f-4bfb-9e8f-70066f55d9fe
+
+	measure 'KPI Return PY' = VAR p = [Return PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 0a1ffc52-40fc-41f5-aedf-2edd93ba4cc9
+
+	measure 'KPI Return Δ' = VAR d = [Return ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 69b3246d-5d41-433c-addf-90d4cbc3c5f5
+
+	measure 'KPI Return Col' = VAR d = [Return ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d < 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 698d6778-49b7-4838-b92f-8f7c4d1f26f2
+
+	measure 'KPI Camp Margin AC' = VAR a = [Camp Margin AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: b7e956e8-5289-46be-903c-c6d0ddafac90
+
+	measure 'KPI Camp Margin PY' = VAR p = [Camp Margin PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: a4261d19-18c0-49c2-8764-621e81de0029
+
+	measure 'KPI Camp Margin Δ' = VAR d = [Camp Margin ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 86d39235-953a-44b3-be9b-3df51ed3e899
+
+	measure 'KPI Camp Margin Col' = VAR d = [Camp Margin ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d > 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 6993bec3-bd49-4565-8709-d6ef41ba814e
+
+	measure 'KPI Camp Daily AC' = VAR a = [Camp Daily AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 5a0dac7f-3346-4e62-ae53-fe26d6c86491
+
+	measure 'KPI Camp Daily PY' = VAR p = [Camp Daily PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 4b773e3e-12d7-4e1f-b176-e6bb9fe419da
+
+	measure 'KPI Camp Daily Δ' = VAR d = [Camp Daily ΔPY] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & "   " & FORMAT ( [Camp Daily ΔPY%], "+0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 9039b600-1934-46cb-9c4b-0ce9e9b8f230
+
+	measure 'KPI Camp Daily Col' = VAR d = [Camp Daily ΔPY] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d > 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: d5e396f6-217e-48c4-b981-8a78d3e0c6cf
+
+	measure 'KPI Camp Discount AC' = VAR a = [Camp Discount AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: c5930cf9-980c-43c6-93d1-12cd6528fc12
+
+	measure 'KPI Camp Discount PY' = VAR p = [Camp Discount PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: f418331b-047e-422d-94c8-6634bdabc2de
+
+	measure 'KPI Camp Discount Δ' = VAR d = [Camp Discount ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 0eda573a-3d99-47c3-b367-0e09525a9333
+
+	measure 'KPI Camp Discount Col' = VAR d = [Camp Discount ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d < 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: c595c9c4-ab2a-47af-aac8-f2f43f3405b1
+
+	measure 'KPI Camp Return AC' = VAR a = [Camp Return AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 435595ea-8e78-4fdd-9570-9c24a1b8f86e
+
+	measure 'KPI Camp Return PY' = VAR p = [Camp Return PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 5e5f6c13-1061-4b7a-9644-a52efdd5beb9
+
+	measure 'KPI Camp Return Δ' = VAR d = [Camp Return ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 1e567753-0893-461c-b465-65e6bb0fc70b
+
+	measure 'KPI Camp Return Col' = VAR d = [Camp Return ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d < 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 7106302e-0173-442c-97af-26d2b10dca89
+
+	measure 'KPI Spend Ratio AC' = VAR a = [Spend Ratio AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 76f6b57c-41b3-4d73-8172-2f44d7dbc5fd
+
+	measure 'KPI Spend Ratio PY' = VAR p = [Spend Ratio PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 91586297-b168-490f-bc5b-4a0923651278
+
+	measure 'KPI Spend Ratio Δ' = VAR d = [Spend Ratio ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: c280e429-b7d0-439d-b3c2-3765bb2dd320
+
+	measure 'KPI Spend Ratio Col' = VAR d = [Spend Ratio ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d < 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 3542c7e1-3ddb-4f93-ac94-850cde9450e0
+
+	measure 'KPI Loss Share AC' = VAR a = [Loss Share AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 2aded2fe-2026-4f49-b358-f148973ee164
+
+	measure 'KPI Loss Share PY' = VAR p = [Loss Share PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: da50d714-2019-4781-8b1f-a82ccbbaa45c
+
+	measure 'KPI Loss Share Δ' = VAR d = [Loss Share ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 7d73982a-321c-4eb2-9f5e-5514a5fe55c9
+
+	measure 'KPI Loss Share Col' = VAR d = [Loss Share ΔPY pp] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d < 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 8646f47c-06f0-4b1d-bc74-d0b86722cc25
+
+	measure 'KPI AOV AC' = VAR a = [AOV AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "\€#,0" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 1013dbe0-c2c6-488c-a580-f1956cf5d20a
+
+	measure 'KPI AOV PY' = VAR p = [AOV PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "\€#,0" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 4ce00e8d-f8cf-4592-bdd4-db1686a4d29c
+
+	measure 'KPI AOV Δ' = VAR d = [AOV ΔPY] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+\€#,0;−\€#,0" ) & "   " & FORMAT ( [AOV ΔPY%], "+0.0%;−0.0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: af1e7b46-3c80-4d37-8bec-d207391715e7
+
+	measure 'KPI AOV Col' = VAR d = [AOV ΔPY] RETURN SWITCH ( TRUE (), ISBLANK ( d ) || d = 0, "#8B909E", d > 0, "#4F5D75", "#BA4B1D" )
+		displayFolder: 11 Formatting
+		lineageTag: 964c1f7b-d15d-4d33-b9e1-000bdc211ccc
+
+	measure 'KPI Online AC' = VAR a = [Online AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 1f7404d0-db79-4230-ac84-ec3e691c9008
+
+	measure 'KPI Online PY' = VAR p = [Online PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0%" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: 4e92eb80-d1c0-450a-9ad9-c7a9e33e649b
+
+	measure 'KPI Online Δ' = VAR d = [Online ΔPY pp] RETURN IF ( ISBLANK ( d ), "no PY to compare", "ΔPY " & FORMAT ( d, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 14 IBCS text
+		lineageTag: 34de6c5a-eee6-4b7f-a66f-5fb99d729eb9
+
+	measure 'KPI Online Col' = "#8B909E"
+		displayFolder: 11 Formatting
+		lineageTag: fb587cff-6dee-4c30-8ed4-277a789e5153
+
+	measure 'Title Bridge AC' = CALCULATE ( [Title Bridge], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: e3991531-5e00-410c-88c8-6296343b1984
+
+	measure 'Note Heads Up AC' = CALCULATE ( [Note Heads Up], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 87e5edcb-0e04-4c34-ae55-92b44fe9e6d5
+
+	measure 'Note Watch AC' = CALCULATE ( [Note Watch], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: d3af20fa-6848-4bbc-8063-dde999862bef
+
+	measure 'Note Small Win AC' = CALCULATE ( [Note Small Win], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: ca47ea2e-52fd-495f-9696-09385f528125
+
+	measure 'Title Cost Strip AC' = CALCULATE ( [Title Cost Strip], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: e81707fd-0f1d-4182-ba8a-088c74ae83a9
+
+	measure 'Title Discount Curve AC' = CALCULATE ( [Title Discount Curve], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 03f4a035-b7da-46d0-9310-dee8ff728109
+
+	measure 'Title Heatmap AC' = CALCULATE ( [Title Heatmap], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 8cf2dfea-392e-41e6-ac73-8426474084b9
+
+	measure 'Title Category AC' = CALCULATE ( [Title Category], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 7c315370-537a-4be4-985b-184e19c08f2a
+
+	measure 'Title Map AC' = CALCULATE ( [Title Map], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: e6c5b500-0802-4c11-b4be-f10afd11994a
+
+	measure 'Title Channel AC' = CALCULATE ( [Title Channel], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 0e3e684f-c918-4f3d-8c69-2bcf093831f1
+
+	measure 'Title Segment AC' = CALCULATE ( [Title Segment], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: dbc847a4-4946-4494-a9c2-68061008f2a5
+
+	measure 'Title Returns AC' = CALCULATE ( [Title Returns], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: f4f52ff7-870e-43c2-a18d-fee266e5e216
+
+	measure 'Title Cost Structure AC' = CALCULATE ( [Title Cost Structure], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 6dfddfb3-6800-45c8-a01f-f94aa7d7a612
+
+	measure 'Title Campaign Daily AC' = CALCULATE ( [Title Campaign Daily], 'Scope'[Scope] = "AC" )
+		displayFolder: 15 Redesign\Story\V7
+		lineageTag: cb0cd52a-fe15-4542-8448-71b67f3ec759
+
+	measure 'KPI Best Market AC' = CALCULATE ( [KV Best Market], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 8f57867d-a9f8-4da0-84cb-b0f20eefd99b
+
+	measure 'KPI Best Market Sub' = CALCULATE ( [KPI P3 Market Sub], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 732c956a-043d-440b-8f2d-010585f4198f
+
+	measure 'Hero Campaign Line AC' = CALCULATE ( [Hero Campaign Line], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: bbf97afd-9d53-443e-97d0-6dc398d90e92
+
+	measure 'Hero Loss Line AC' = CALCULATE ( [Hero P3 Line], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: ba8c0096-468d-4d6a-a84b-a628cedcbeee
+
+	measure 'Hero Camp Line AC' = CALCULATE ( [Hero P2 Line], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 2bb1a08f-938d-4c5b-ae61-859272221f22
+
+	measure 'Hero Label' = "CONTRIBUTION PROFIT · AC " & [AC Season]
+		displayFolder: 14 IBCS text
+		lineageTag: 715e084d-e472-4750-a4f1-89ad29e10d17
+
+	measure 'Hero Label P2' = "CAMPAIGN CONTRIBUTION MARGIN · AC " & [AC Season]
+		displayFolder: 14 IBCS text
+		lineageTag: 39939bb7-d159-49fb-97ba-e9c75a6a1510
+
+	measure 'Hero Label P3' = "NET SALES ON LOSS-MAKING LINES · AC " & [AC Season]
+		displayFolder: 14 IBCS text
+		lineageTag: e97d7c29-4fc6-4862-b4e5-a35bdb8bd635
+
+	measure 'Title Variance Bridge' =
+			VAR d = [Contribution ΔPY]
+			VAR steps = ADDCOLUMNS ( FILTER ( VALUES ( 'Profit Steps'[Step] ), 'Profit Steps'[Step] <> "Contribution Profit" ), "@d", [Step ΔPY] )
+			VAR topStep = TOPN ( 1, steps, ABS ( [@d] ), DESC )
+			VAR nm = MAXX ( topStep, 'Profit Steps'[Step] )
+			VAR v = MAXX ( topStep, [@d] )
+			RETURN
+			    IF ( ISBLANK ( d ), "No previous season to compare with " & [AC Season],
+			        "Contribution " & IF ( d >= 0, "rose ", "fell " ) & FORMAT ( ABS ( d ) / 1000, "\€#,0.0\k" ) & " vs PY (" & FORMAT ( [Contribution ΔPY%], "+0%;−0%" ) & ") — biggest driver: " & LOWER ( nm ) & " (" & FORMAT ( v / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & ")" )
+		displayFolder: 14 IBCS text
+		lineageTag: e2f1d3c7-f884-4e87-9167-7895fa2bf75f
+
+	measure 'Title Scorecard Var' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( DimCampaign[Campaign Type] ), "@ac", [Contribution AC], "@d", [Contribution ΔPY] ), NOT ISBLANK ( [@ac] ) )
+			VAR loss = TOPN ( 1, t, [@ac], ASC )
+			VAR up = TOPN ( 1, FILTER ( t, NOT ISBLANK ( [@d] ) ), [@d], DESC )
+			VAR dn = TOPN ( 1, FILTER ( t, NOT ISBLANK ( [@d] ) ), [@d], ASC )
+			VAR la = MAXX ( loss, [@ac] )
+			VAR ln = MAXX ( loss, DimCampaign[Campaign Type] )
+			VAR un = MAXX ( up, DimCampaign[Campaign Type] )
+			VAR ud = MAXX ( up, [@d] )
+			RETURN
+			    SWITCH ( TRUE (),
+			        COUNTROWS ( t ) = 0, "No sales in this selection",
+			        la < 0 && ln = un && ud > 0, ln & " cut its loss by " & FORMAT ( ud / 1000, "\€#,0.0\k" ) & " vs PY but still loses " & FORMAT ( -la / 1000, "\€#,0.0\k" ),
+			        la < 0, ln & " still loses " & FORMAT ( -la / 1000, "\€#,0.0\k" ) & IF ( ISBLANK ( ud ), "", "; biggest gain vs PY: " & un & " (" & FORMAT ( ud / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & ")" ),
+			        ISBLANK ( ud ), "Every campaign type is profitable; " & ln & " earns the least",
+			        "Biggest gain vs PY: " & un & " (" & FORMAT ( ud / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & ")" & IF ( MAXX ( dn, [@d] ) < 0, "; biggest drop: " & MAXX ( dn, DimCampaign[Campaign Type] ) & " (" & FORMAT ( MAXX ( dn, [@d] ) / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & ")", "" ) )
+		displayFolder: 14 IBCS text
+		lineageTag: d8c9b50b-2954-4deb-8076-8305b12b19cf
+
+	measure 'Title Drill AC' =
+			VAR c = SELECTEDVALUE ( DimCampaign[Campaign] )
+			VAR t = SELECTEDVALUE ( DimCampaign[Campaign Type] )
+			VAR nm = COALESCE ( c, IF ( NOT ISBLANK ( t ), t & " " & [AC Season] ), "All trading " & [AC Season] )
+			RETURN nm & ": " & [KPI Net Sales AC] & " net sales at a " & [KPI Margin AC] & " margin and " & [KPI Discount AC] & " average discount"
+		displayFolder: 14 IBCS text
+		lineageTag: 59f06f0c-6470-4d7e-963e-8484c1730c6e
+
+	measure 'TT Var Line' = "Net sales " & [KPI Net Sales Δ] & "  ·  margin " & [KPI Margin Δ]
+		displayFolder: 12 Tooltip
+		lineageTag: 0817becb-45b8-480e-a0f1-dc4b84104d0d
+
+	measure 'Title Season Trend' =
+			VAR t = ADDCOLUMNS ( SUMMARIZE ( FactSales, DimDate[Season], DimDate[HolidaySeasonSort] ), "@c", [Contribution Profit], "@m", [Contribution Margin %] )
+			VAR firstS = TOPN ( 1, t, DimDate[HolidaySeasonSort], ASC )
+			VAR lastS = TOPN ( 1, t, DimDate[HolidaySeasonSort], DESC )
+			RETURN
+			    IF ( COUNTROWS ( t ) < 2, "Contribution by season (select fewer filters to compare seasons)",
+			        "Contribution went from " & FORMAT ( MAXX ( firstS, [@c] ) / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " in " & MAXX ( firstS, DimDate[Season] ) & " to " & FORMAT ( MAXX ( lastS, [@c] ) / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " in " & MAXX ( lastS, DimDate[Season] ) & " (margin " & FORMAT ( MAXX ( firstS, [@m] ), "0.0%;−0.0%" ) & " → " & FORMAT ( MAXX ( lastS, [@m] ), "0.0%;−0.0%" ) & ")" )
+		displayFolder: 14 IBCS text
+		lineageTag: 73468287-9f86-41ba-a9ba-a6e40524f093
+
+	measure 'Colour Scatter AC' =
+			VAR acS = CALCULATE ( [AC Season], REMOVEFILTERS ( DimCampaign ) )
+			VAR s = SELECTEDVALUE ( DimCampaign[Campaign Season] )
+			RETURN IF ( s = acS, "#4F5D75", "#BFC0C0" )
+		displayFolder: 11 Formatting
+		lineageTag: 84f899f1-7e4f-47a4-8c2c-26f59193dfb0
+
+	measure 'Colour Neg Font' = IF ( [Contribution Margin %] < 0, "#BA4B1D", "#2D3142" )
+		displayFolder: 11 Formatting
+		lineageTag: 3c689131-789d-4421-a102-c27f6aa83170
+
+	measure 'Colour Neg Font AC' = IF ( [Margin AC] < 0, "#BA4B1D", "#2D3142" )
+		displayFolder: 11 Formatting
+		lineageTag: 4e18eaa3-4f9e-44d0-8470-a3beea23127e
+
+	measure 'Colour Δ Net Sales Font' = VAR d = [Net Sales ΔPY%] RETURN IF ( ISBLANK ( d ), "#8B909E", IF ( d >= 0, "#4F5D75", "#BA4B1D" ) )
+		displayFolder: 11 Formatting
+		lineageTag: 00df7fed-f08a-4494-ba71-aa1a6cfc3440
+
+	measure 'Colour Bar AC Neg' = IF ( [Contribution AC] < 0, "#EF8354", "#4F5D75" )
+		displayFolder: 11 Formatting
+		lineageTag: 97ae0d4f-cecc-43d6-b980-c6a17070b8a4
+
+	measure 'Colour Margin AC Bar' = IF ( [Margin AC] < 0, "#EF8354", "#B5BECC" )
+		displayFolder: 11 Formatting
+		lineageTag: 26db2635-2dea-4762-93be-fe01a5be9cf2
+
+	/// Contribution ΔPY in €k for variance bar labels (unit shown in the chart title, IBCS style).
+	measure 'Contribution ΔPY k' = DIVIDE ( [Contribution ΔPY], 1000 )
+		formatString: +#,0.0;-#,0.0;0.0
+		displayFolder: 13 IBCS
+		lineageTag: fda5d07e-1268-47e9-a4c4-e73b6bb6a6d2
+
+	measure 'Margin AC Heat' = [Margin AC]
+		formatString: 0%
+		displayFolder: 13 IBCS
+		lineageTag: 7f7b0b62-d599-4cd3-844c-4ce2ea70a4f2
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contribution by Type' =
+			VAR mn = MINX ( ALLSELECTED ( DimCampaign[Campaign Type] ), MIN ( [Contribution AC], [Contribution PY] ) )
+			VAR mx = MAXX ( ALLSELECTED ( DimCampaign[Campaign Type] ), MAX ( [Contribution AC], [Contribution PY] ) )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 7e3e0293-42df-4fc9-8d45-741ece98cee4
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contrib Delta by Type' =
+			VAR mn = MINX ( ALLSELECTED ( DimCampaign[Campaign Type] ), [Contribution ΔPY k] )
+			VAR mx = MAXX ( ALLSELECTED ( DimCampaign[Campaign Type] ), [Contribution ΔPY k] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 78b24e2e-9148-45cf-9db3-8b02cfc99c0b
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contrib Delta Pct by Type' =
+			VAR mn = MINX ( ALLSELECTED ( DimCampaign[Campaign Type] ), [Contribution ΔPY%] )
+			VAR mx = MAXX ( ALLSELECTED ( DimCampaign[Campaign Type] ), [Contribution ΔPY%] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 60152fb1-63b3-426c-8d56-9aaab4df5c97
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contribution by Band' =
+			VAR mn = MINX ( ALLSELECTED ( FactSales[Discount Band] ), MIN ( [Contribution AC], [Contribution PY] ) )
+			VAR mx = MAXX ( ALLSELECTED ( FactSales[Discount Band] ), MAX ( [Contribution AC], [Contribution PY] ) )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: d5ba863c-ea7b-4115-b2c3-447d6edd9e4c
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contrib Delta by Band' =
+			VAR mn = MINX ( ALLSELECTED ( FactSales[Discount Band] ), [Contribution ΔPY k] )
+			VAR mx = MAXX ( ALLSELECTED ( FactSales[Discount Band] ), [Contribution ΔPY k] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 6c0f672a-896f-4ede-80eb-70dfebb269c9
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Margin by Band' =
+			VAR mn = MINX ( ALLSELECTED ( FactSales[Discount Band] ), [Margin AC] )
+			VAR mx = MAXX ( ALLSELECTED ( FactSales[Discount Band] ), [Margin AC] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 616a57ec-4e30-4e34-ad76-c36800228407
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis NS Delta Pct by Subcat' =
+			VAR mn = MINX ( ALLSELECTED ( DimProduct[Subcategory] ), [Net Sales ΔPY%] )
+			VAR mx = MAXX ( ALLSELECTED ( DimProduct[Subcategory] ), [Net Sales ΔPY%] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: ede24231-bdc3-4543-addc-d88e22721986
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contribution AC by Subcat' =
+			VAR mn = MINX ( ALLSELECTED ( DimProduct[Subcategory] ), [Contribution AC] )
+			VAR mx = MAXX ( ALLSELECTED ( DimProduct[Subcategory] ), [Contribution AC] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: c60d2382-44db-43cc-a463-a7a9f9519f04
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Margin by Subcat' =
+			VAR mn = MINX ( ALLSELECTED ( DimProduct[Subcategory] ), [Margin AC] )
+			VAR mx = MAXX ( ALLSELECTED ( DimProduct[Subcategory] ), [Margin AC] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 41085446-e266-4a81-83b5-6c0b874b7dd0
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis NS Delta Pct by City' =
+			VAR mn = MINX ( ALLSELECTED ( DimLocation[City] ), [Net Sales ΔPY%] )
+			VAR mx = MAXX ( ALLSELECTED ( DimLocation[City] ), [Net Sales ΔPY%] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: f525a11e-e5f4-4a44-9f3c-e4b67f142e7e
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Margin by City' =
+			VAR mn = MINX ( ALLSELECTED ( DimLocation[City] ), [Margin AC] )
+			VAR mx = MAXX ( ALLSELECTED ( DimLocation[City] ), [Margin AC] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 55423b70-048e-484e-9b28-425efd35a4c1
+
+	/// Value-axis start: leaves room for labels of negative bars.
+	measure 'Axis Contrib Delta by Segment' =
+			VAR mn = MINX ( ALLSELECTED ( FactSales[Customer Segment] ), [Contribution ΔPY k] )
+			VAR mx = MAXX ( ALLSELECTED ( FactSales[Customer Segment] ), [Contribution ΔPY k] )
+			RETURN IF ( mn < 0, mn - 0.45 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: 366a772f-caeb-4ae9-bb29-de070677ed02
+
+	measure 'PL Value' =
+			SWITCH ( SELECTEDVALUE ( 'PnL Lines'[Line] ),
+			    "Gross Sales", [Gross Sales],
+			    "Discounts", [Discount Amount],
+			    "Refunds", [Refunds],
+			    "Net Sales", [Net Sales],
+			    "Net COGS", [Net COGS],
+			    "Fulfilment", [Fulfilment Cost],
+			    "Payment Fees", [Payment Fees],
+			    "Return Handling", [Return Handling Cost],
+			    "Campaign Spend", [Campaign Spend],
+			    "Contribution Profit", [Contribution Profit] )
+		displayFolder: 15 Redesign
+		lineageTag: 0d177849-e121-4e38-a598-a328eaea6b63
+
+	measure 'PL Sign' = IF ( SELECTEDVALUE ( 'PnL Lines'[Kind] ) = "Cost", -1, 1 )
+		displayFolder: 15 Redesign
+		lineageTag: d7e6b154-8b16-464f-b522-593946927985
+
+	measure 'PL AC k' = DIVIDE ( CALCULATE ( [PL Value], 'Scope'[Scope] = "AC" ), 1000 )
+		displayFolder: 15 Redesign
+		lineageTag: 9b54a840-d2ac-4935-b593-4ceb55535937
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( 'PnL Lines'[Kind] ) = "Cost", "\(#,0.0\)", "#,0.0;−#,0.0" )
+
+	measure 'PL PY k' = DIVIDE ( CALCULATE ( [PL Value], 'Scope'[Scope] = "PY" ), 1000 )
+		displayFolder: 15 Redesign
+		lineageTag: c20273ec-c27d-427e-9c87-17889536d84c
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( 'PnL Lines'[Kind] ) = "Cost", "\(#,0.0\)", "#,0.0;−#,0.0" )
+
+	measure 'PL ΔPY k' = VAR a = [PL AC k] VAR p = [PL PY k] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), ( a - p ) * [PL Sign] )
+		formatString: +#,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign
+		lineageTag: f9027367-a64c-4db8-8845-bd1a921865cc
+
+	measure 'PL ΔPY%' = DIVIDE ( [PL ΔPY k], ABS ( [PL PY k] ) )
+		formatString: +0%;−0%;0%
+		displayFolder: 15 Redesign
+		lineageTag: a326d9c1-9b37-4c44-bc26-1b700c3a130c
+
+	measure 'Colour PL Δ' = IF ( [PL ΔPY k] >= 0, "#4F5D75", "#EF8354" )
+		displayFolder: 15 Redesign
+		lineageTag: 9f991f8d-15ae-483d-bcbb-7278b7ebf85b
+
+	measure 'Axis PL Start' =
+			VAR mn = MINX ( ALLSELECTED ( 'PnL Lines' ), MIN ( [PL AC k], [PL PY k] ) )
+			VAR mx = MAXX ( ALLSELECTED ( 'PnL Lines' ), MAX ( [PL AC k], [PL PY k] ) )
+			RETURN IF ( mn < 0, mn - 0.35 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 15 Redesign
+		lineageTag: d0d8b4ed-76fb-4445-aa35-7e1a5d88f036
+
+	measure 'Axis PL End' = MAX ( MAXX ( ALLSELECTED ( 'PnL Lines' ), MAX ( [PL AC k], [PL PY k] ) ), 0 ) * 1.3 + 0.1
+		displayFolder: 15 Redesign
+		lineageTag: 6c06f95f-1086-473c-be77-a0bbc92ec48a
+
+	measure 'Axis PL Δ Start' = -1.7 * MAXX ( ALLSELECTED ( 'PnL Lines' ), ABS ( [PL ΔPY k] ) ) - 0.1
+		displayFolder: 15 Redesign
+		lineageTag: 2da1f9ca-a3e3-4b8b-9c63-aba9c65ae991
+
+	measure 'Axis PL Δ End' = 1.7 * MAXX ( ALLSELECTED ( 'PnL Lines' ), ABS ( [PL ΔPY k] ) ) + 0.1
+		displayFolder: 15 Redesign
+		lineageTag: 3e7fb792-86a1-44f4-9c3f-df496b9b2bb9
+
+	measure 'Axis PL Δ% Start' = -1.8 * MAXX ( ALLSELECTED ( 'PnL Lines' ), ABS ( [PL ΔPY%] ) ) - 0.01
+		displayFolder: 15 Redesign
+		lineageTag: 45b06730-506f-42b8-a417-b8bd23da70b7
+
+	measure 'Axis PL Δ% End' = 1.8 * MAXX ( ALLSELECTED ( 'PnL Lines' ), ABS ( [PL ΔPY%] ) ) + 0.01
+		displayFolder: 15 Redesign
+		lineageTag: b90e68b1-0815-4dc9-b8f3-ce3850fc70fe
+
+	measure 'Axis Contribution End by Type' = MAX ( MAXX ( ALLSELECTED ( DimCampaign[Campaign Type] ), MAX ( [Contribution AC], [Contribution PY] ) ), 0 ) * 1.3 + 1
+		displayFolder: 15 Redesign
+		lineageTag: a6fe5ea0-1c62-4370-aa94-8e5263e6b388
+
+	measure 'Axis Contribution End by Band' = MAX ( MAXX ( ALLSELECTED ( FactSales[Discount Band] ), MAX ( [Contribution AC], [Contribution PY] ) ), 0 ) * 1.3 + 1
+		displayFolder: 15 Redesign
+		lineageTag: e75864c1-48ae-4c23-8abc-3e800ad9b6c5
+
+	measure 'Axis NS End by Subcat' = MAXX ( ALLSELECTED ( DimProduct[Subcategory] ), MAX ( [Net Sales AC], [Net Sales PY] ) ) * 1.3 + 1
+		displayFolder: 15 Redesign
+		lineageTag: 5e3d978f-93fa-4c84-8807-3f5f6d0cb57f
+
+	measure 'Axis NS End by City' = MAXX ( ALLSELECTED ( DimLocation[City] ), MAX ( [Net Sales AC], [Net Sales PY] ) ) * 1.3 + 1
+		displayFolder: 15 Redesign
+		lineageTag: a74a883a-0f3c-4ccb-aee6-5e032733c39c
+
+	measure 'Axis Return End by Category' = MAXX ( ALLSELECTED ( DimProduct[Category] ), MAX ( [Return AC], [Return PY] ) ) * 1.3 + 0.001
+		displayFolder: 15 Redesign
+		lineageTag: 916b96a6-0295-4bbf-afc3-2c0a46c22413
+
+	measure 'Title Month AC' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( DimDate[Season Month] ), "@a", [Contribution AC], "@d", [Contribution ΔPY] ), NOT ISBLANK ( [@a] ) )
+			VAR best = TOPN ( 1, t, [@a], DESC )
+			VAR td = FILTER ( t, NOT ISBLANK ( [@d] ) )
+			VAR up = TOPN ( 1, td, [@d], DESC )
+			RETURN
+			    IF ( COUNTROWS ( t ) = 0, "No sales in this selection",
+			        MAXX ( best, DimDate[Season Month] ) & " earns the most contribution (" & FORMAT ( MAXX ( best, [@a] ) / 1000, "\€#,0.0\k" ) & ")"
+			        & IF ( COUNTROWS ( td ) = 0, "", "; " & MAXX ( up, DimDate[Season Month] ) & " gained the most vs PY (" & FORMAT ( MAXX ( up, [@d] ) / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & ")" ) )
+		displayFolder: 15 Redesign
+		lineageTag: c3636cd9-b25f-43c3-9953-b0949feea5b1
+
+	measure 'Period Short' = "AC " & [AC Season] & IF ( ISBLANK ( [Net Sales PY] ), " (no PY available)", " vs PY " & [PY Season] )
+		displayFolder: 15 Redesign
+		lineageTag: 3395ed5e-71a5-44d3-ab69-ffef43d4cfea
+
+	measure 'Filters Line' =
+			VAR f = { ( "Channel", IF ( ISFILTERED ( FactSales[Sales Channel] ), CONCATENATEX ( VALUES ( FactSales[Sales Channel] ), FactSales[Sales Channel], ", " ) ) ),
+			    ( "Segment", IF ( ISFILTERED ( FactSales[Customer Segment] ), CONCATENATEX ( VALUES ( FactSales[Customer Segment] ), FactSales[Customer Segment], ", " ) ) ),
+			    ( "Market", IF ( ISFILTERED ( DimLocation[City] ), CONCATENATEX ( VALUES ( DimLocation[City] ), DimLocation[City], ", " ) ) ),
+			    ( "Category", IF ( ISFILTERED ( DimProduct[Category] ), CONCATENATEX ( VALUES ( DimProduct[Category] ), DimProduct[Category], ", " ) ) ),
+			    ( "Campaign", IF ( ISFILTERED ( DimCampaign[Campaign Type] ), CONCATENATEX ( VALUES ( DimCampaign[Campaign Type] ), DimCampaign[Campaign Type], ", " ) ) ),
+			    ( "Discount", IF ( ISFILTERED ( FactSales[Discount Band] ), CONCATENATEX ( VALUES ( FactSales[Discount Band] ), FactSales[Discount Band], ", " ) ) ) }
+			VAR txt = CONCATENATEX ( FILTER ( f, NOT ISBLANK ( [Value2] ) ), [Value1] & ": " & [Value2], "  ·  " )
+			RETURN "Filters  ·  " & IF ( ISBLANK ( txt ) || txt = "", "none (all channels, segments, markets, categories)", txt )
+		displayFolder: 15 Redesign
+		lineageTag: b313fbba-0970-4fc2-b104-67ff33fa3e09
+
+	measure 'Msg Overview' = [Title Variance Bridge]
+		displayFolder: 15 Redesign
+		lineageTag: f4aca6c6-fe74-4340-8c06-a52b7a7e1295
+
+	measure 'Msg Campaigns' = [Title Scorecard Var]
+		displayFolder: 15 Redesign
+		lineageTag: 685fc09b-41bd-4272-9ea6-2e99adb5ec7d
+
+	measure 'Msg Products' = [Title Category AC]
+		displayFolder: 15 Redesign
+		lineageTag: d0740470-48e4-4b7c-a8b8-d76995f8bda4
+
+	measure 'Anchor PL' = IF ( NOT ISBLANK ( [PL AC k] ) || NOT ISBLANK ( [PL PY k] ), 0 )
+		displayFolder: 15 Redesign\Row anchors
+		lineageTag: 259459a0-9b08-42b7-956f-77a3463b6619
+
+	measure 'Anchor Contribution' = IF ( NOT ISBLANK ( [Contribution AC] ) || NOT ISBLANK ( [Contribution PY] ), 0 )
+		displayFolder: 15 Redesign\Row anchors
+		lineageTag: 13b2add0-5524-4810-8451-d602bc6df5a0
+
+	measure 'Anchor Net Sales' = IF ( NOT ISBLANK ( [Net Sales AC] ) || NOT ISBLANK ( [Net Sales PY] ), 0 )
+		displayFolder: 15 Redesign\Row anchors
+		lineageTag: 2ef4d835-ea9e-481d-8952-118b670a361f
+
+	measure 'Anchor Return' = IF ( NOT ISBLANK ( [Return AC] ) || NOT ISBLANK ( [Return PY] ), 0 )
+		displayFolder: 15 Redesign\Row anchors
+		lineageTag: 6affeeae-1ebd-4667-ade0-fcdcbe91c7d2
+
+	measure 'Axis Margin by Type' =
+			VAR mn = MINX ( ALLSELECTED ( DimCampaign[Campaign Type] ), [Margin AC] )
+			VAR mx = MAXX ( ALLSELECTED ( DimCampaign[Campaign Type] ), [Margin AC] )
+			RETURN IF ( mn < 0, mn - 0.8 * ( MAX ( mx, 0 ) - mn ), 0 )
+		displayFolder: 11 Formatting\Axis
+		lineageTag: fe798661-2a45-4bda-b8d3-f8f7aebba29f
+
+	measure 'Contribution AC k' = DIVIDE ( [Contribution AC], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 4cb5445a-345c-4a13-800a-aad769a05671
+
+	measure 'Contribution PY k' = DIVIDE ( [Contribution PY], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 9e75d45e-77c8-4730-b2d5-7eb98e4dd43c
+
+	measure 'Net Sales AC k' = DIVIDE ( [Net Sales AC], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 05874114-1288-4a44-8b3d-d0c632792efc
+
+	measure 'Net Sales PY k' = DIVIDE ( [Net Sales PY], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 48d677b7-3f65-4779-b0d3-ba617c61a11c
+
+	measure 'Axis k Contribution by Type' = [Axis Contribution by Type] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: e0630b58-b57e-4654-988d-8c88cfe1127c
+
+	measure 'Axis k Contribution End by Type' = [Axis Contribution End by Type] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 120c1493-ace6-4361-96a3-ab4b601d13b0
+
+	measure 'Axis k Contribution by Band' = [Axis Contribution by Band] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 47d874ed-9234-4c91-bb23-5fcb31604f37
+
+	measure 'Axis k Contribution End by Band' = [Axis Contribution End by Band] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: a3123a42-1fe0-4473-b109-09334e918e4f
+
+	measure 'Axis k NS End by Subcat' = [Axis NS End by Subcat] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: ad16ba4a-c895-4bd4-a299-b1dd584dc996
+
+	measure 'Axis k NS End by City' = [Axis NS End by City] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 0ae33ec1-5e41-406b-b926-15ca910d754a
+
+	measure 'Axis k Contribution AC by Subcat' = [Axis Contribution AC by Subcat] / 1000
+		displayFolder: 15 Redesign\kEUR
+		lineageTag: 81ef34c4-89e0-4ea9-9963-489bb6a11d9e
+
+	measure 'Title Subcat AC' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( DimProduct[Subcategory] ), "@n", [Net Sales AC], "@m", [Margin AC] ), NOT ISBLANK ( [@n] ) )
+			VAR big = TOPN ( 1, t, [@n], DESC )
+			VAR best = TOPN ( 1, t, [@m], DESC )
+			RETURN
+			    IF ( COUNTROWS ( t ) = 0, "No sales in this selection",
+			        MAXX ( big, DimProduct[Subcategory] ) & " is the largest subcategory (" & FORMAT ( MAXX ( big, [@n] ) / 1000, "\€#,0.0\k" ) & ") at a " & FORMAT ( MAXX ( big, [@m] ), "0.0%" ) & " margin; " & MAXX ( best, DimProduct[Subcategory] ) & " keeps the most (" & FORMAT ( MAXX ( best, [@m] ), "0.0%" ) & ")" )
+		displayFolder: 15 Redesign
+		lineageTag: 63439994-9152-461d-9ff6-cf29eae537e7
+
+	measure 'Deep Net Sales' = CALCULATE ( [Net Sales], KEEPFILTERS ( FactSales[DiscountBandSort] >= 3 ) )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 1b9ca921-dd14-4c4a-8e8d-e89f34f6f83e
+
+	measure 'Deep Contribution' = CALCULATE ( [Contribution Profit], KEEPFILTERS ( FactSales[DiscountBandSort] >= 3 ) )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 6fb7db90-c110-4085-b43d-132024b62299
+
+	measure 'Deep Share' = DIVIDE ( [Deep Net Sales], [Net Sales] )
+		formatString: 0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 96824e4a-d5e5-4b63-8135-8e230b5d07c0
+
+	measure 'Deep Margin' = DIVIDE ( [Deep Contribution], [Deep Net Sales] )
+		formatString: 0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 4bb923a9-45b7-4d75-ba94-0890aa15447e
+
+	measure 'OE Net Sales' = CALCULATE ( [Net Sales], KEEPFILTERS ( FactSales[Sales Channel] = "Online" ), KEEPFILTERS ( DimProduct[Category] = "Electronics" ) )
+		displayFolder: 15 Redesign\Story
+		lineageTag: e7c125c7-27bc-491e-b948-06554fa65a1a
+
+	measure 'OE Margin' = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( FactSales[Sales Channel] = "Online" ), KEEPFILTERS ( DimProduct[Category] = "Electronics" ) )
+		formatString: 0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: a7037e39-9759-4619-a6b1-6e3094873f3f
+
+	measure 'IE Margin' = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( FactSales[Sales Channel] = "In-store" ), KEEPFILTERS ( DimProduct[Category] = "Electronics" ) )
+		formatString: 0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: f6c886bf-ba4a-45d5-a7d6-6ebecf0237b1
+
+	measure 'Apparel Return Rate' = CALCULATE ( [Return Rate %], KEEPFILTERS ( DimProduct[Category] = "Apparel" ) )
+		formatString: 0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: ed00378d-de3e-4ea5-9161-1ef4f51c95d1
+
+	measure 'Apparel Return Cost' = CALCULATE ( [Refunds] + [Return Handling Cost] - [Recovered COGS], KEEPFILTERS ( DimProduct[Category] = "Apparel" ) )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 88a2cc66-b75a-43d9-808a-f2cfc229c33a
+
+	measure 'Gross Sales AC' = CALCULATE ( [Gross Sales], 'Scope'[Scope] = "AC" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: fac60e2e-623e-4eb0-b38f-707da3c39a88
+
+	measure 'Gross Sales PY' = CALCULATE ( [Gross Sales], 'Scope'[Scope] = "PY" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 1b3b8ea1-b223-45e6-88fa-93c77854168a
+
+	measure 'Deep Net Sales AC' = CALCULATE ( [Deep Net Sales], 'Scope'[Scope] = "AC" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: c701f735-80e0-4ffc-91bb-abf5eb913fec
+
+	measure 'Deep Net Sales PY' = CALCULATE ( [Deep Net Sales], 'Scope'[Scope] = "PY" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: e32ec204-97a9-4149-bd1c-e07c963b5d24
+
+	measure 'Deep Contribution AC' = CALCULATE ( [Deep Contribution], 'Scope'[Scope] = "AC" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 808b7ce1-88a8-4cad-9431-ca0898d3cd46
+
+	measure 'Deep Contribution PY' = CALCULATE ( [Deep Contribution], 'Scope'[Scope] = "PY" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 4bc147eb-a828-4994-9e32-386740b27208
+
+	measure 'Deep Share AC' = CALCULATE ( [Deep Share], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 71a9d2e8-abc1-4280-9544-ab1727502432
+
+	measure 'Deep Share PY' = CALCULATE ( [Deep Share], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 5edd8293-b27e-45d6-8881-8a69ae1124ad
+
+	measure 'Deep Margin AC' = CALCULATE ( [Deep Margin], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: ce589eaa-32ea-43bb-8c12-ee6d9ee7fa76
+
+	measure 'Deep Margin PY' = CALCULATE ( [Deep Margin], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 215b87b3-42f5-4589-a8d7-857de3593046
+
+	measure 'OE Net Sales AC' = CALCULATE ( [OE Net Sales], 'Scope'[Scope] = "AC" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 5eb7d817-7926-465e-9de1-02a5765026d6
+
+	measure 'OE Net Sales PY' = CALCULATE ( [OE Net Sales], 'Scope'[Scope] = "PY" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: ac1d2424-c2f4-4bee-8b41-4fbba5b620e8
+
+	measure 'OE Margin AC' = CALCULATE ( [OE Margin], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 25fac5b7-3051-4eeb-a375-3e4ed5acb222
+
+	measure 'OE Margin PY' = CALCULATE ( [OE Margin], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 7b9ccb59-53d6-41cb-8c98-4ec87bb3049b
+
+	measure 'IE Margin AC' = CALCULATE ( [IE Margin], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 099ef7ae-e175-42ed-820f-5818314e63af
+
+	measure 'IE Margin PY' = CALCULATE ( [IE Margin], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: e6da7a5e-852d-4b61-8410-92288f187987
+
+	measure 'Apparel Return Rate AC' = CALCULATE ( [Apparel Return Rate], 'Scope'[Scope] = "AC" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 253e574c-f325-4244-ba77-2b86833cff09
+
+	measure 'Apparel Return Rate PY' = CALCULATE ( [Apparel Return Rate], 'Scope'[Scope] = "PY" )
+		formatString: 0.0%;−0.0%;0.0%
+		displayFolder: 15 Redesign\Story
+		lineageTag: 5a12ec06-542e-4936-9b8e-75c59efaf157
+
+	measure 'Apparel Return Cost AC' = CALCULATE ( [Apparel Return Cost], 'Scope'[Scope] = "AC" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: ce602682-293e-40ba-8e84-f3496114de25
+
+	measure 'Apparel Return Cost PY' = CALCULATE ( [Apparel Return Cost], 'Scope'[Scope] = "PY" )
+		displayFolder: 15 Redesign\Story
+		lineageTag: 7015bdf4-865d-41f3-8360-f73c0249fb9b
+
+	measure 'KPI Gross AC' = VAR a = [Gross Sales AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: bf63f57e-71c6-4751-a35d-2bfddc4605ae
+
+	measure 'KPI Gross PY' = VAR p = [Gross Sales PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: c33c47e0-2268-4257-8f97-6637722d3176
+
+	measure 'KPI Gross Δ' = VAR a = [Gross Sales AC] VAR p = [Gross Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), "no PY to compare", "ΔPY " & FORMAT ( ( a - p ) / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & IF ( p <> 0, "   " & FORMAT ( DIVIDE ( a - p, ABS ( p ) ), "+0.0%;−0.0%" ) ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 760532d8-ae1e-47aa-acce-0a3789683934
+
+	measure 'KPI Gross Col' = VAR a = [Gross Sales AC] VAR p = [Gross Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#8B909E", IF ( a > p, "#4F5D75", "#BA4B1D" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: fd7e8022-d48e-4400-98f2-4d0cf356d2d7
+
+	measure 'KPI Deep AC' = VAR a = [Deep Share AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: d5afb85e-6df3-48e9-8529-84689210c24c
+
+	measure 'KPI Deep PY' = VAR p = [Deep Share PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 819e97df-a74d-4ee3-b28d-b32a9f2e258e
+
+	measure 'KPI Deep Δ' = VAR a = [Deep Share AC] VAR p = [Deep Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), "no PY to compare", "ΔPY " & FORMAT ( ( a - p ) * 100, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 41cfae63-98a0-47d7-af4f-38ee079f5e1d
+
+	measure 'KPI Deep Col' = VAR a = [Deep Share AC] VAR p = [Deep Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#8B909E", IF ( a < p, "#4F5D75", "#BA4B1D" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 21193fa8-7a8a-4555-8ac9-761264553790
+
+	measure 'KPI Deep Contribution AC' = VAR a = [Deep Contribution AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: b3f722a3-df5c-4d87-b13a-5230b64e2e76
+
+	measure 'KPI Deep Contribution PY' = VAR p = [Deep Contribution PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: e64b95e1-92c4-4285-ba07-b79aeff5b2d6
+
+	measure 'KPI Deep Contribution Δ' = VAR a = [Deep Contribution AC] VAR p = [Deep Contribution PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), "no PY to compare", "ΔPY " & FORMAT ( ( a - p ) / 1000, "+\€#,0.0\k;−\€#,0.0\k" ) & IF ( p <> 0, "   " & FORMAT ( DIVIDE ( a - p, ABS ( p ) ), "+0.0%;−0.0%" ) ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 0958ebf4-28ad-4e2a-82aa-90892c2f4742
+
+	measure 'KPI Deep Contribution Col' = VAR a = [Deep Contribution AC] VAR p = [Deep Contribution PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#8B909E", IF ( a > p, "#4F5D75", "#BA4B1D" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: e390a251-1253-4d7d-aa55-4bc1c4923b2e
+
+	measure 'KPI OE Margin AC' = VAR a = [OE Margin AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 3e3ca6dc-81a0-41b8-bb86-9323f14f247b
+
+	measure 'KPI OE Margin PY' = VAR p = [OE Margin PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: a5ca7097-118c-412e-a14c-9d095dd1e2fa
+
+	measure 'KPI OE Margin Δ' = VAR a = [OE Margin AC] VAR p = [OE Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), "no PY to compare", "ΔPY " & FORMAT ( ( a - p ) * 100, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 23e83f9a-e2a6-4dbf-8d28-0f063d182866
+
+	measure 'KPI OE Margin Col' = VAR a = [OE Margin AC] VAR p = [OE Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#8B909E", IF ( a > p, "#4F5D75", "#BA4B1D" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 6a15dde1-e03c-4256-8ed6-c79a8e5d734f
+
+	measure 'KPI Apparel Return AC' = VAR a = [Apparel Return Rate AC] RETURN IF ( ISBLANK ( a ), "–", FORMAT ( a, "0.0%;−0.0%" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 09632d30-3b01-4a7a-9e71-1538c9b1170a
+
+	measure 'KPI Apparel Return PY' = VAR p = [Apparel Return Rate PY] RETURN IF ( ISBLANK ( p ), "PY –", "PY " & FORMAT ( p, "0.0%;−0.0%" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 1035d7ec-02c8-43d7-8741-75936889561f
+
+	measure 'KPI Apparel Return Δ' = VAR a = [Apparel Return Rate AC] VAR p = [Apparel Return Rate PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), "no PY to compare", "ΔPY " & FORMAT ( ( a - p ) * 100, "+0.0;−0.0;0.0" ) & " pp" )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 69fcc5d8-e6d7-4db5-841c-0bf9d49e969d
+
+	measure 'KPI Apparel Return Col' = VAR a = [Apparel Return Rate AC] VAR p = [Apparel Return Rate PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#8B909E", IF ( a < p, "#4F5D75", "#BA4B1D" ) )
+		displayFolder: 15 Redesign\Story\KPI
+		lineageTag: 4dcb3898-d28a-4049-9974-5586f7ecc549
+
+	measure 'Spark Gross' = DIVIDE ( CALCULATE ( [Gross Sales], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) ), 1000 )
+		formatString: #,0;−#,0
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: e3ef6d6c-ac16-418d-91b9-61877b2a6737
+
+	measure 'Spark Net Sales' = DIVIDE ( CALCULATE ( [Net Sales], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) ), 1000 )
+		formatString: #,0;−#,0
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: 886bc773-53a8-4065-ae80-37c6c26ace78
+
+	measure 'Spark Contribution' = DIVIDE ( CALCULATE ( [Contribution Profit], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) ), 1000 )
+		formatString: #,0;−#,0
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: 09b35fbc-1f40-4bee-8f9a-14a5ad2a8d10
+
+	measure 'Spark Margin' = CALCULATE ( [Contribution Margin %], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: cbea2211-ac9f-42ca-b7ae-e801e8087387
+
+	measure 'Spark Discount' = CALCULATE ( [Weighted Discount %], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: 617d1c4e-2e7d-46df-8139-d9a7014aedcf
+
+	measure 'Spark Deep' = CALCULATE ( [Deep Share], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: 673f49d8-2b5e-4461-b557-977a2f940bb5
+
+	measure 'Spark Camp Margin' = CALCULATE ( [Campaign Margin %], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: c3e7f024-7be0-48db-91a3-6d6e5d79f6c6
+
+	measure 'Spark Spend Ratio' = CALCULATE ( [Campaign Spend Ratio], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: ffa82078-5b87-43d6-a127-0c331adeaf2d
+
+	measure 'Spark OE Margin' = CALCULATE ( [OE Margin], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: e66dfb86-eaab-4ffc-8862-7b56daf5b230
+
+	measure 'Spark Deep Contribution' = DIVIDE ( CALCULATE ( [Deep Contribution], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) ), 1000 )
+		formatString: #,0;−#,0
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: fd2aa36e-69e6-4561-92da-68bca1bab0fa
+
+	measure 'Spark Apparel Return' = CALCULATE ( [Apparel Return Rate], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: 895f3191-0946-4beb-9475-d3138ce0688b
+
+	measure 'Spark Loss Share' = CALCULATE ( [Loss-making Share of Net Sales], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: ca905cb4-e780-4c3e-97f9-c7a6c7268595
+
+	measure 'Colour Spark' = VAR s = SELECTEDVALUE ( 'Spark Season'[Season] ) RETURN SWITCH ( TRUE (), s = [AC Season], "#4F5D75", s = [PY Season], "#8B909E", "#CFD5DF" )
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: 4f1d90ae-3fc4-4b41-b4fa-5ef9e402e999
+
+	measure 'Bridge Raw' = SWITCH ( SELECTEDVALUE ( 'Bridge Lines'[Line] ), "Gross Sales", [Gross Sales], "Discounts", [Discount Amount], "Refunds", [Refunds], "Net COGS", [Net COGS], "Fulfilment", [Fulfilment Cost], "Payment Fees", [Payment Fees], "Return Handling", [Return Handling Cost], "Campaign Spend", [Campaign Spend] )
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 6d9304bd-4568-4fdd-8570-071e48b9939b
+
+	measure 'Bridge Impact k' = VAR l = SELECTEDVALUE ( 'Bridge Lines'[Line] ) VAR a = CALCULATE ( [Bridge Raw], 'Scope'[Scope] = "AC" ) VAR p = CALCULATE ( [Bridge Raw], 'Scope'[Scope] = "PY" ) RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ), BLANK (), IF ( l = "Gross Sales", 1, -1 ) * ( a - p ) / 1000 )
+		formatString: +#,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 378563fa-e4ce-432e-9e1f-d787d9ed2e58
+
+	measure 'Bridge Cum k' = VAR cur = SELECTEDVALUE ( 'Bridge Lines'[Sort] ) RETURN [Contribution PY k] + SUMX ( FILTER ( ALL ( 'Bridge Lines' ), 'Bridge Lines'[Kind] = "Delta" && 'Bridge Lines'[Sort] < cur ), [Bridge Impact k] )
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 02e2d98b-792a-4b5a-8cd7-c2c5ef510eed
+
+	measure 'Bridge Base k' = IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Delta" && NOT ISBLANK ( [Bridge Impact k] ), MIN ( [Bridge Cum k], [Bridge Cum k] + [Bridge Impact k] ) )
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: d3d57639-112f-43bb-8bce-b2e04cd6ede7
+
+	measure 'Bridge Up k' = VAR i = [Bridge Impact k] RETURN IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Delta" && i >= 0, i )
+		formatString: "+"#,0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 0f4e2e3c-06fa-4097-ba71-c7dedff3f516
+
+	measure 'Bridge Down k' = VAR i = [Bridge Impact k] RETURN IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Delta" && i < 0, -i )
+		formatString: "−"#,0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: c01e2173-6af7-40c3-9e47-9810dc291dcd
+
+	measure 'Bridge PY k' = IF ( SELECTEDVALUE ( 'Bridge Lines'[Line] ) = "PY", [Contribution PY k] )
+		formatString: #,0.0;−#,0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 7a2ecf8c-2ab0-48d1-9e32-e7ada0793753
+
+	measure 'Bridge AC k' = IF ( SELECTEDVALUE ( 'Bridge Lines'[Line] ) = "AC" && NOT ISBLANK ( [Contribution PY k] ), [Contribution AC k] )
+		formatString: #,0.0;−#,0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 8da1e008-a1f2-407d-b78a-bbc52b3fecf9
+
+	measure 'Anchor Bridge' = IF ( NOT ISBLANK ( [Contribution PY k] ), 0 )
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 6d0247af-8382-4cd2-b907-f685099d8e74
+
+	measure 'Axis Bridge End' = MAX ( MAX ( [Contribution AC k], [Contribution PY k] ), MAXX ( FILTER ( ALL ( 'Bridge Lines' ), 'Bridge Lines'[Kind] = "Delta" ), [Bridge Cum k] + MAX ( [Bridge Impact k], 0 ) ) ) * 1.15
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: b2e3cc75-608b-481a-ae33-d3c9cbe73368
+
+	measure 'Pot Discount k' = VAR ns = [Deep Net Sales AC] VAR md = [Deep Margin AC] VAR mm = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( FactSales[DiscountBandSort] = 2 ), 'Scope'[Scope] = "AC" ) RETURN IF ( ISBLANK ( ns ) || ISBLANK ( mm ), BLANK (), MAX ( 0, ns * ( mm - md ) ) / 1000 )
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 35dafde7-66f6-40bf-a745-181fa7debd87
+
+	measure 'Pot OE k' = VAR ns = [OE Net Sales AC] VAR mo = [OE Margin AC] VAR mi = [IE Margin AC] RETURN IF ( ISBLANK ( ns ) || ISBLANK ( mi ), BLANK (), MAX ( 0, ns * 0.5 * ( mi - mo ) ) / 1000 )
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 9598531d-4cf6-4cce-83bc-52dd36bf2ad4
+
+	measure 'Pot Returns k' = VAR c = [Apparel Return Cost AC] VAR ra = [Apparel Return Rate AC] VAR rs = CALCULATE ( [Return Rate %], 'Scope'[Scope] = "AC" ) RETURN IF ( ISBLANK ( c ) || ISBLANK ( ra ) || ra = 0, BLANK (), MAX ( 0, c * ( 1 - rs / ra ) ) / 1000 )
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 12c78c03-bb74-405c-bbc6-b2877c0cf74c
+
+	measure 'Pot NY k' = VAR ns = CALCULATE ( [Net Sales], KEEPFILTERS ( DimCampaign[Campaign Type] = "New Year" ), 'Scope'[Scope] = "AC" ) VAR mn = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( DimCampaign[Campaign Type] = "New Year" ), 'Scope'[Scope] = "AC" ) VAR mx = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( DimCampaign[Campaign Type] = "Christmas" ), 'Scope'[Scope] = "AC" ) RETURN IF ( ISBLANK ( ns ) || ISBLANK ( mx ), BLANK (), MAX ( 0, ns * ( 0.5 * mx - mn ) ) / 1000 )
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 436cc3af-fe2f-443e-b3ab-8b882d6a0441
+
+	measure 'Pot Total k' = [Pot Discount k] + [Pot OE k] + [Pot Returns k] + [Pot NY k]
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 4ac3cf6b-eb4f-4f75-898f-b6a99a5da0f2
+
+	measure 'Pot Discount Text' = VAR v = [Pot Discount k] RETURN IF ( ISBLANK ( v ), "n/a in this selection", "up to " & FORMAT ( v, "+\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 91977aba-2042-4cd5-a6fb-24ca5d1ded9e
+
+	measure 'Pot OE Text' = VAR v = [Pot OE k] RETURN IF ( ISBLANK ( v ), "n/a in this selection", "up to " & FORMAT ( v, "+\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 34d5dcfd-e0b6-4701-87df-353f82268b40
+
+	measure 'Pot Returns Text' = VAR v = [Pot Returns k] RETURN IF ( ISBLANK ( v ), "n/a in this selection", "up to " & FORMAT ( v, "+\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 5df4b765-cda6-4e23-a54b-81714e89012c
+
+	measure 'Pot NY Text' = VAR v = [Pot NY k] RETURN IF ( ISBLANK ( v ), "n/a in this selection", "up to " & FORMAT ( v, "+\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: c0638980-fd89-4d48-a6e5-410d57d0299e
+
+	measure 'Evidence Discount' = VAR ns = [Deep Net Sales AC] RETURN IF ( ISBLANK ( ns ), "No 20%+ discount sales in this selection", FORMAT ( ns / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " of net sales went out at 20%+ discount and earned " & FORMAT ( [Deep Margin AC], "0.0%;−0.0%" ) & "; the 10–19% band earned " & FORMAT ( CALCULATE ( [Contribution Margin %], KEEPFILTERS ( FactSales[DiscountBandSort] = 2 ), 'Scope'[Scope] = "AC" ), "0.0%;−0.0%" ) & ". Black Friday sits in this group." )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 73587954-29eb-4177-b41f-4c1294326eaf
+
+	measure 'Evidence OE' = VAR ns = [OE Net Sales AC] RETURN IF ( ISBLANK ( ns ), "No online electronics sales in this selection", "Online electronics sold " & FORMAT ( ns / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " at a " & FORMAT ( [OE Margin AC], "0.0%;−0.0%" ) & " margin; the same products earn " & FORMAT ( [IE Margin AC], "0.0%;−0.0%" ) & " in-store. Closing half that gap with bundles and accessory attach instead of price cuts." )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 3ca850b0-c754-47c5-b91e-bc0f6f44c8c6
+
+	measure 'Evidence Returns' = VAR ra = [Apparel Return Rate AC] RETURN IF ( ISBLANK ( ra ), "No apparel sales in this selection", "Apparel returns " & FORMAT ( ra, "0.0%" ) & " of units vs " & FORMAT ( CALCULATE ( [Return Rate %], 'Scope'[Scope] = "AC" ), "0.0%" ) & " across the store, costing " & FORMAT ( [Apparel Return Cost AC] / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " in refunds and handling. Bringing it to the store average (size guides, fit notes) is the move." )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 50d0d582-e7f2-4f6e-81be-14a2c7114b8a
+
+	measure 'Evidence NY' = VAR mn = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( DimCampaign[Campaign Type] = "New Year" ), 'Scope'[Scope] = "AC" ) VAR mx = CALCULATE ( [Contribution Margin %], KEEPFILTERS ( DimCampaign[Campaign Type] = "Christmas" ), 'Scope'[Scope] = "AC" ) RETURN IF ( ISBLANK ( mn ) || ISBLANK ( mx ), "New Year or Christmas not in this selection", "New Year earned a " & FORMAT ( mn, "0.0%;−0.0%" ) & " margin while Christmas kept " & FORMAT ( mx, "0.0%;−0.0%" ) & " with shallow, gift-led offers. Lifting New Year to half the Christmas margin (clearance of aged stock only)." )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 77d03587-f4f0-4f1e-9078-33439a74daac
+
+	measure 'Msg Ch1' =
+			VAR a = [Contribution AC] VAR p = [Contribution PY] VAR g = DIVIDE ( [Gross Sales AC] - [Gross Sales PY], [Gross Sales PY] )
+			VAR ma = [Margin AC] VAR mp = [Margin PY]
+			VAR why = SWITCH ( TRUE (),
+			    a >= p && g <= 0, ": a margin story, not a volume story",
+			    a >= p && ma >= mp, ": both volume and margin helped",
+			    a >= p, ": volume carried it while margin slipped",
+			    g > 0, ": more sales but thinner margins",
+			    ": less volume and thinner margins" )
+			RETURN IF ( ISBLANK ( p ),
+			    "Contribution profit was " & FORMAT ( a / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " in " & [AC Season] & " at a " & FORMAT ( ma, "0.0%" ) & " margin (no previous season to compare)",
+			    "Contribution profit " & IF ( a >= p, "rose ", "fell " ) & FORMAT ( ABS ( a - p ) / 1000, "\€#,0.0\k" ) & " (" & FORMAT ( DIVIDE ( a - p, ABS ( p ) ), "+0%;−0%" ) & ") on " & FORMAT ( g, "+0%;−0%" ) & " gross sales" & why & " (margin " & FORMAT ( mp, "0.0%;−0.0%" ) & " → " & FORMAT ( ma, "0.0%;−0.0%" ) & ")" )
+		displayFolder: 15 Redesign\Story\Messages
+		lineageTag: ca2d0467-a5df-4e5a-889f-ba6948b700f4
+
+	measure 'Msg Ch2' = VAR na = [Deep Net Sales AC] VAR np = [Deep Net Sales PY] VAR ca = [Deep Contribution AC] VAR cp = [Deep Contribution PY] RETURN IF ( ISBLANK ( np ) || ISBLANK ( na ), "Deep discounts (20%+): " & FORMAT ( na / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " of net sales earning " & FORMAT ( ca / 1000, "\€#,0.0\k;−\€#,0.0\k" ), "Fewer deep discounts did it: 20%+ discount sales went " & FORMAT ( np / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " → " & FORMAT ( na / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " and their contribution " & FORMAT ( cp / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & " → " & FORMAT ( ca / 1000, "\€#,0.0\k;−\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\Messages
+		lineageTag: 66f38759-fcba-4368-888f-0b816fca9686
+
+	measure 'Msg Ch3' = VAR ns = [OE Net Sales AC] VAR share = DIVIDE ( ns, [Net Sales AC] ) RETURN IF ( ISBLANK ( ns ), [Title Category AC], "The biggest leak left is online electronics: " & FORMAT ( share, "0%" ) & " of net sales (" & FORMAT ( ns / 1000, "\€#,0.0\k;−\€#,0.0\k" ) & ") at a " & FORMAT ( [OE Margin AC], "0.0%;−0.0%" ) & " margin" )
+		displayFolder: 15 Redesign\Story\Messages
+		lineageTag: 91660da7-cd4c-4ffc-84f4-a282451d914e
+
+	measure 'Msg Ch4' = VAR t = [Pot Total k] RETURN IF ( ISBLANK ( t ) || t = 0, "No quantified upside in this selection", "Four moves are worth up to " & FORMAT ( t, "\€#,0.0\k" ) & " of contribution a season (" & FORMAT ( DIVIDE ( t * 1000, [Contribution AC] ), "+0%" ) & " on AC) if volumes hold" )
+		displayFolder: 15 Redesign\Story\Messages
+		lineageTag: bc25cda1-82e5-4c91-a7cf-33a2f9bd4bc1
+
+	measure 'Title Bridge Var' = VAR t = ADDCOLUMNS ( FILTER ( ALL ( 'Bridge Lines' ), 'Bridge Lines'[Kind] = "Delta" ), "@i", [Bridge Impact k] ) VAR up = TOPN ( 1, t, [@i], DESC ) VAR dn = TOPN ( 1, t, [@i], ASC ) RETURN IF ( ISBLANK ( [Contribution PY] ), "No previous season to bridge from", "Biggest lift: " & LOWER ( MAXX ( up, 'Bridge Lines'[Label] ) ) & " (" & FORMAT ( MAXX ( up, [@i] ), "+\€#,0.0\k;−\€#,0.0\k" ) & ")" & IF ( MAXX ( dn, [@i] ) < 0, "; biggest drag: " & LOWER ( MAXX ( dn, 'Bridge Lines'[Label] ) ) & " (" & FORMAT ( MAXX ( dn, [@i] ), "+\€#,0.0\k;−\€#,0.0\k" ) & ")", "" ) )
+		displayFolder: 15 Redesign\Story\Messages
+		lineageTag: ad7fee52-b18f-46a4-abcd-9fc1117d755d
+
+	measure 'Colour Bridge Δ' = IF ( [Bridge Impact k] >= 0, "#4F5D75", "#EF8354" )
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: bdeaa6d9-48f4-40d9-af9d-3daa398af8bf
+
+	measure 'Spark Return' = CALCULATE ( [Return Rate %], REMOVEFILTERS ( DimDate ), TREATAS ( VALUES ( 'Spark Season'[Season] ), DimDate[Season] ) )
+		formatString: 0%;−0%
+		displayFolder: 15 Redesign\Story\Spark
+		lineageTag: e6f1a55b-9275-47b6-b012-cf0c9323a8f9
+
+	measure 'Pot by Move k' = SWITCH ( SELECTEDVALUE ( Moves[Move] ), "Discount", [Pot Discount k], "OE", [Pot OE k], "Returns", [Pot Returns k], "NY", [Pot NY k] )
+		formatString: "+"#,0.0
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 6950425c-e427-42e5-8142-0513a6f77b14
+
+	measure 'Anchor Moves' = IF ( NOT ISBLANK ( [Net Sales AC] ), 0 )
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 2804564c-ddfc-483e-9b91-0e8d18272bf8
+
+	measure 'Axis Moves End' = MAXX ( ALL ( Moves ), [Pot by Move k] ) * 1.35 + 0.1
+		displayFolder: 15 Redesign\Story\Actions
+		lineageTag: 8fedfea9-0816-4686-b680-c5058d160913
+
+	measure 'Bridge Δ Bar k' = IF ( NOT ISBLANK ( [Contribution PY k] ), IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Delta", [Bridge Impact k], 0 ) )
+		formatString: +#,0.0;−#,0.0;" "
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 333ed0e7-0eb0-4d55-8663-85c5c2436f24
+
+	measure 'Bridge Max k' = MAX ( MAX ( [Contribution AC k], [Contribution PY k] ), MAXX ( FILTER ( ALL ( 'Bridge Lines' ), 'Bridge Lines'[Kind] = "Delta" ), [Bridge Cum k] + MAX ( [Bridge Impact k], 0 ) ) )
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 7565ea2a-2505-4830-bcfa-c077cb919d07
+
+	measure 'Bridge Tail k' = IF ( NOT ISBLANK ( [Contribution PY k] ), [Bridge Max k] * 0.12 )
+		formatString: #,0.0
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: d97711ce-a5f5-4b86-9b08-fdfac6141dd8
+
+	measure 'Bridge Label k' = SWITCH ( SELECTEDVALUE ( 'Bridge Lines'[Line] ), "PY", [Contribution PY k], "AC", IF ( NOT ISBLANK ( [Contribution PY k] ), [Contribution AC k] ), [Bridge Impact k] )
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: 71d008e9-38fb-4149-85c5-abe305a51aad
+
+		formatStringDefinition = IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Total", "#,0.0;−#,0.0", "+#,0.0;−#,0.0;0.0" )
+
+	measure 'Axis Bridge End 2' = [Bridge Max k] * 1.16
+		displayFolder: 15 Redesign\Story\Bridge
+		lineageTag: d6739071-9202-4918-a42c-5b121a6e8939
+
+	measure 'Gross Sales AC k' = DIVIDE ( [Gross Sales AC], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 5478df73-bc2e-4df4-9e76-3f445b0ade76
+
+	measure 'Gross Sales PY k' = DIVIDE ( [Gross Sales PY], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 4e1bcb0d-73ee-4bcc-9a04-471f0c8a29a3
+
+	measure 'Deep Contribution AC k' = DIVIDE ( [Deep Contribution AC], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: e8f70f16-a13c-4df9-a37e-822ad499f5fb
+
+	measure 'Deep Contribution PY k' = DIVIDE ( [Deep Contribution PY], 1000 )
+		formatString: #,0.0;−#,0.0;0.0
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 84aed3d1-874b-4441-9635-6d932b35cdf5
+
+	measure 'Pot Total Text' = VAR v = [Pot Total k] RETURN IF ( ISBLANK ( v ) || v = 0, "n/a", "up to " & FORMAT ( v, "+\€#,0.0\k" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 80a02748-2162-4c7d-b6c3-9ac8c0598962
+
+	measure 'KPI Bar Margin' = VAR a = [Margin AC] VAR p = [Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 86fa4aa1-b8c9-402d-a4a4-75da645d161b
+
+	measure 'KPI Bar Net Sales' = VAR a = [Net Sales AC] VAR p = [Net Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 7f7153e3-8205-4177-8bf2-99b8baa6a2d9
+
+	measure 'KPI Bar Gross' = VAR a = [Gross Sales AC] VAR p = [Gross Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: a8a454c0-13a2-4a6f-96da-efb905e23b95
+
+	measure 'KPI Bar Deep' = VAR a = [Deep Share AC] VAR p = [Deep Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a < p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 96fe9f6b-1965-491f-9fbe-4b4ba1902b5d
+
+	measure 'KPI Bar Deep Contribution' = VAR a = [Deep Contribution AC] VAR p = [Deep Contribution PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 02039892-e390-4ef6-a681-a990736c87b6
+
+	measure 'KPI Bar Camp Margin' = VAR a = [Camp Margin AC] VAR p = [Camp Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 32bb2243-1259-442b-a676-3110e592f25b
+
+	measure 'KPI Bar Loss Share' = VAR a = [Loss Share AC] VAR p = [Loss Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a < p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 587c4274-1f8f-4497-be86-7a63a1139cd0
+
+	measure 'KPI Bar Return' = VAR a = [Return AC] VAR p = [Return PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a < p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: dbf6cc91-ff57-4aaa-89e1-aa11724a1c13
+
+	measure 'KPI Bar Apparel Return' = VAR a = [Apparel Return Rate AC] VAR p = [Apparel Return Rate PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a < p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: b8a93f9e-104c-4e5d-a22a-aff9b115f4bb
+
+	measure 'Contribution per Day AC' = CALCULATE ( [Contribution per Day], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0;-\€#,0
+		displayFolder: 15 Redesign\Story\V7
+		lineageTag: 3cadc7c5-0493-433b-86b9-4baa42f86816
+
+	measure 'Refunds AC' = CALCULATE ( [Refunds], 'Scope'[Scope] = "AC" )
+		formatString: \€#,0
+		displayFolder: 15 Redesign\Story\V7
+		lineageTag: 66ab56cb-5eaf-4cbf-9a34-ec2c70ce13e3
+
+	measure 'Trading Days AC' = CALCULATE ( [Trading Days], 'Scope'[Scope] = "AC" )
+		formatString: #,0
+		displayFolder: 15 Redesign\Story\V7
+		lineageTag: 0a5544cf-9ea2-48cd-be5f-56eecb7d32dc
+
+	measure 'Sales per Day vs Regular AC' = CALCULATE ( [Sales per Day vs Regular], 'Scope'[Scope] = "AC" )
+		formatString: 0.0x
+		displayFolder: 15 Redesign\Story\V7
+		lineageTag: a2a78c50-ddd0-40ba-864c-5f6b67629612
+
+	measure 'KPI Contribution Tag' = VAR a = [Contribution AC] VAR p = [Contribution PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( DIVIDE ( a - p, ABS ( p ) ) ), "0.0%" ) & " vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 5ecb9ebd-da30-45fc-8b60-148620e7e621
+
+	measure 'KPI Margin Tag' = VAR a = [Margin AC] VAR p = [Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: a62528c9-3358-4087-876b-12ec346fc889
+
+	measure 'KPI Net Sales Tag' = VAR a = [Net Sales AC] VAR p = [Net Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( DIVIDE ( a - p, ABS ( p ) ) ), "0.0%" ) & " vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 18f166f1-a887-4f63-bbfc-012b9a1b403d
+
+	measure 'KPI Gross Tag' = VAR a = [Gross Sales AC] VAR p = [Gross Sales PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( DIVIDE ( a - p, ABS ( p ) ) ), "0.0%" ) & " vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 7c8e83f3-fd37-46cb-9625-a3bde126c0bd
+
+	measure 'KPI Discount Tag' = VAR a = [Discount AC] VAR p = [Discount PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: d1aa3a4b-7469-4d70-9fda-bf2a85fdb563
+
+	measure 'KPI Deep Tag' = VAR a = [Deep Share AC] VAR p = [Deep Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 77994829-c78e-42c3-8313-4a10e5a67ac7
+
+	measure 'KPI Deep Contribution Tag' = VAR a = [Deep Contribution AC] VAR p = [Deep Contribution PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( DIVIDE ( a - p, ABS ( p ) ) ), "0.0%" ) & " vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 1969696c-8e1d-47eb-94db-e672e70c4bb1
+
+	measure 'KPI Camp Margin Tag' = VAR a = [Camp Margin AC] VAR p = [Camp Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 36bb2f46-a364-44d1-a08d-ca03a9444872
+
+	measure 'KPI Spend Ratio Tag' = VAR a = [Spend Ratio AC] VAR p = [Spend Ratio PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 1349c2f6-c4d7-44b6-a46e-e6cf35b3df4e
+
+	measure 'KPI Camp Daily Tag' = VAR a = [Camp Daily AC] VAR p = [Camp Daily PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( DIVIDE ( a - p, ABS ( p ) ) ), "0.0%" ) & " vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 35c6907d-b881-4472-be30-e77c04aa17aa
+
+	measure 'KPI OE Margin Tag' = VAR a = [OE Margin AC] VAR p = [OE Margin PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: b7dc6551-6dd7-4023-8322-1688fc2694ba
+
+	measure 'KPI Loss Share Tag' = VAR a = [Loss Share AC] VAR p = [Loss Share PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: db4f431f-f649-4c7a-bbbd-5bb1e60068f8
+
+	measure 'KPI Return Tag' = VAR a = [Return AC] VAR p = [Return PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: e4ce55ff-15e0-4e8c-9eec-186b245c8c4f
+
+	measure 'KPI Apparel Return Tag' = VAR a = [Apparel Return Rate AC] VAR p = [Apparel Return Rate PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( a - p ) * 100, "0.0" ) & " pp vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 7a147f3c-4250-442d-8ce0-eee0364b9096
+
+	measure 'KPI AOV Tag' = VAR a = [AOV AC] VAR p = [AOV PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || p = 0, "no PY to compare", IF ( a >= p, "▲ ", "▼ " ) & FORMAT ( ABS ( DIVIDE ( a - p, ABS ( p ) ) ), "0.0%" ) & " vs PY" )
+		displayFolder: 16 V8\KPI
+		lineageTag: 4d69ed32-6b64-445d-9e91-3e66a3f1a82b
+
+	measure 'Camp Daily AC k' = DIVIDE ( [Camp Daily AC], 1000 )
+		formatString: #,0.0
+		displayFolder: 16 V8
+		lineageTag: 1aa8585d-af8c-46b5-8542-36a5c4da9e0a
+
+	measure 'Camp Daily PY k' = DIVIDE ( [Camp Daily PY], 1000 )
+		formatString: #,0.0
+		displayFolder: 16 V8
+		lineageTag: 06bf570e-33ac-4cab-9fa5-5378e39a6d20
+
+	measure 'Heat Margin Col' = VAR m = [Margin AC] RETURN SWITCH ( TRUE (), ISBLANK ( m ), "#FFFFFF", m < 0, "#FAD3C1", m < 0.1, "#F3F5F8", m < 0.2, "#E2E6EC", m < 0.3, "#B5BECC", "#4F5D75" )
+		displayFolder: 16 V8
+		lineageTag: a51b0681-e361-448c-8768-e69f2ccbcd4a
+
+	measure 'Heat Margin Font' = VAR m = [Margin AC] RETURN SWITCH ( TRUE (), ISBLANK ( m ), "#2D3142", m < 0, "#9E3E16", m >= 0.3, "#FFFFFF", "#2D3142" )
+		displayFolder: 16 V8
+		lineageTag: c6b7cefd-f821-4ee5-b089-f1b551040781
+
+	measure 'Heat Return Col' = VAR m = [Return AC] RETURN SWITCH ( TRUE (), ISBLANK ( m ), "#FFFFFF", m < 0.06, "#F3F5F8", m < 0.1, "#E2E6EC", m < 0.15, "#B5BECC", "#FAD3C1" )
+		displayFolder: 16 V8
+		lineageTag: 2ae55702-3581-4d73-ad95-df89288204aa
+
+	measure 'Heat Return Font' = IF ( [Return AC] >= 0.15, "#9E3E16", "#2D3142" )
+		displayFolder: 16 V8
+		lineageTag: 13c40301-7c1a-4f56-8134-44f6f9b9e6e9
+
+	measure 'KPI Bar Discount' = VAR a = [Discount AC] VAR p = [Discount PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a < p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 8c998306-59c0-4647-8cb3-ec01c80591c2
+
+	measure 'KPI Bar AOV' = VAR a = [AOV AC] VAR p = [AOV PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
+		displayFolder: 15 Redesign\Story\KPI V6
+		lineageTag: 7a73a728-db28-4bdf-a74d-6e6c07aeb13f
+
+	column x
+		isHidden
+		lineageTag: 5e2cab86-b43c-43eb-a284-2a77bda8ecb8
+		isNameInferred
+		sourceColumn: [x]
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("x", BLANK())
+

@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table FactSales
+ref table DimProduct
+ref table DimCampaign
+ref table DimLocation
+ref table DimDate
+ref table _Measures
+ref table 'Profit Steps'
+ref table Scope
+ref table 'PnL Lines'
+ref table 'Spark Season'
+ref table 'Bridge Lines'
+ref table Moves
+
+ref cultureInfo en-US
+

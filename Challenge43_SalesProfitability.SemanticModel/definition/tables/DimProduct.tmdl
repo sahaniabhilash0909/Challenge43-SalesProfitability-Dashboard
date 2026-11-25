@@ -1,0 +1,64 @@
+/// 16 products across 4 categories.
+table DimProduct
+	lineageTag: 91254c70-671a-4cbf-8d43-4f8b949d3dbb
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: 35e94630-f51c-487c-ba61-3c397ee40968
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+	column Category
+		dataType: string
+		lineageTag: b6ee1c1e-dc1b-4bde-8f7e-0fe8547aa801
+		sourceColumn: Category
+
+	column Subcategory
+		dataType: string
+		lineageTag: 660908cc-8ecf-48a4-a874-aedb600977ce
+		sourceColumn: Subcategory
+
+	column Brand
+		dataType: string
+		lineageTag: 872f092b-0090-43f6-a77e-6e7c9aa36e04
+		sourceColumn: Brand
+
+	column Product
+		dataType: string
+		lineageTag: 1d45ae85-902d-4e06-9024-c155b4bb706b
+		sourceColumn: Product
+
+	column 'Reference List Price'
+		dataType: decimal
+		formatString: \€#,0
+		lineageTag: 91aa24e8-6627-43dc-93f5-d3326c986699
+		summarizeBy: none
+		sourceColumn: ReferenceListPriceEUR
+
+	column 'Reference Unit Cost'
+		dataType: decimal
+		formatString: \€#,0
+		lineageTag: 1dcaab6d-4493-41fa-a6bf-8ecc820bfd1d
+		summarizeBy: none
+		sourceColumn: ReferenceUnitCostEUR
+
+	column 'Return Cost Recovery Rate'
+		dataType: double
+		formatString: 0%
+		lineageTag: 319d606e-9a91-4745-b8ea-7c46410037a6
+		summarizeBy: none
+		sourceColumn: ReturnCostRecoveryRate
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Src = Excel.Workbook(File.Contents(DataFile), null, true),
+				    Data = Src{[Item="DimProduct",Kind="Sheet"]}[Data],
+				    Prom = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Prom, {{"ProductKey", Int64.Type}, {"Category", type text}, {"Subcategory", type text}, {"Brand", type text}, {"Product", type text}, {"ReferenceListPriceEUR", Currency.Type}, {"ReferenceUnitCostEUR", Currency.Type}, {"ReturnCostRecoveryRate", type number}})
+				in
+				    Typed
+

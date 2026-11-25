@@ -1,0 +1,107 @@
+/// 12 holiday campaigns plus regular (non-campaign) trading.
+table DimCampaign
+	lineageTag: 4cd6a340-f423-4f97-aeef-65863b92bd21
+
+	column CampaignKey
+		dataType: int64
+		isHidden
+		isKey
+		lineageTag: 60975140-2e25-4d1d-98da-4798fad0cd8b
+		summarizeBy: none
+		sourceColumn: CampaignKey
+
+	column 'Campaign Type'
+		dataType: string
+		lineageTag: db761836-e8d0-49c1-9f11-b7714e0c250c
+		sourceColumn: CampaignType
+		sortByColumn: CampaignTypeSort
+
+	column CampaignTypeSort
+		dataType: int64
+		isHidden
+		lineageTag: 3e99d008-0a5c-46e5-a5c1-5232e61e382b
+		summarizeBy: none
+		sourceColumn: CampaignTypeSort
+
+	column Campaign
+		dataType: string
+		lineageTag: 80655493-3bf6-45e8-8259-35cdbbd9b4b6
+		sourceColumn: CampaignName
+		sortByColumn: CampaignNameSort
+
+	column CampaignNameSort
+		dataType: int64
+		isHidden
+		lineageTag: c996f289-7224-4103-ba76-f20c82f5b4d4
+		summarizeBy: none
+		sourceColumn: CampaignNameSort
+
+	column 'Campaign Short'
+		dataType: string
+		lineageTag: 8014c266-49a7-4f1c-b83a-90ee93e6c2db
+		sourceColumn: Campaign Short
+		sortByColumn: CampaignNameSort
+
+	column 'Campaign Season'
+		dataType: string
+		lineageTag: 6598adb0-5cd7-4d0e-9705-2289cbb07d30
+		sourceColumn: HolidaySeason
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 1de3d8ad-0a51-412b-854c-96889efc1bde
+		sourceColumn: StartDate
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 6a1aeb32-b35b-4c4f-a8bf-66831e7e1912
+		sourceColumn: EndDate
+
+	column 'Duration Days'
+		dataType: int64
+		lineageTag: 0c0f4bd9-50e9-425f-802d-f1e4310eec3e
+		summarizeBy: none
+		sourceColumn: DurationDays
+
+	column IsCampaign
+		dataType: int64
+		isHidden
+		lineageTag: ba992d78-f024-4336-91f9-05f3fd0a5749
+		summarizeBy: none
+		sourceColumn: IsCampaign
+
+	column 'Trading Type'
+		dataType: string
+		lineageTag: 1821c205-af0e-4526-b7a3-2b7d6e0ce540
+		sourceColumn: Trading Type
+
+	column Objective
+		dataType: string
+		lineageTag: f96c7504-69fb-4daf-903a-2c3e65053b77
+		sourceColumn: Objective
+
+	column ActualCampaignSpendEUR
+		dataType: decimal
+		isHidden
+		lineageTag: 5d44060d-3cbd-460a-8af3-dc484d732657
+		summarizeBy: none
+		sourceColumn: ActualCampaignSpendEUR
+
+	partition DimCampaign = m
+		mode: import
+		source =
+				let
+				    Src = Excel.Workbook(File.Contents(DataFile), null, true),
+				    Data = Src{[Item="DimCampaign",Kind="Sheet"]}[Data],
+				    Prom = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Prom, {{"CampaignKey", Int64.Type}, {"CampaignType", type text}, {"CampaignName", type text}, {"HolidaySeason", type text}, {"StartDate", type date}, {"EndDate", type date}, {"DurationDays", Int64.Type}, {"IsCampaign", Int64.Type}, {"Objective", type text}, {"ActualCampaignSpendEUR", Currency.Type}}),
+				    Ren = Table.ReplaceValue(Table.ReplaceValue(Typed, "No campaign", "Regular trading", Replacer.ReplaceValue, {"CampaignType"}), "Non-campaign trading", "Regular trading", Replacer.ReplaceValue, {"CampaignName"}),
+				    TypeSort = Table.AddColumn(Ren, "CampaignTypeSort", each if [CampaignType] = "Black Friday" then 1 else if [CampaignType] = "Cyber Monday" then 2 else if [CampaignType] = "Christmas" then 3 else if [CampaignType] = "New Year" then 4 else 5, Int64.Type),
+				    NameSort = Table.AddColumn(TypeSort, "CampaignNameSort", each [CampaignTypeSort] * 10000 + (if [StartDate] = null then 9999 else Date.Year([StartDate])), Int64.Type),
+				    Grp = Table.AddColumn(NameSort, "Trading Type", each if [IsCampaign] = 1 then "Campaign" else "Regular trading", type text),
+				    Short = Table.AddColumn(Grp, "Campaign Short", each if [IsCampaign] = 1 then Text.Combine({Text.Replace(Text.Replace(Text.Replace(Text.Replace([CampaignType], "Black Friday", "BF"), "Cyber Monday", "CM"), "Christmas", "XMAS"), "New Year", "NY"), " ", Text.End(Text.From(Date.Year([StartDate])), 2)}) else "Regular", type text)
+				in
+				    Short
+

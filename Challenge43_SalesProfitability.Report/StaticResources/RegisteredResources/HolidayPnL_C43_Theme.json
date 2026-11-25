@@ -1,0 +1,106 @@
+{
+  "name": "Holiday PnL C43 Slate-Coral",
+  "dataColors": [
+    "#4F5D75",
+    "#8B909E",
+    "#7B89A0",
+    "#B5BECC",
+    "#2D3142",
+    "#BFC0C0",
+    "#3B465A",
+    "#CFD5DF",
+    "#EF8354",
+    "#F4A37F"
+  ],
+  "foreground": "#2D3142",
+  "foregroundNeutralSecondary": "#646B7D",
+  "foregroundNeutralTertiary": "#8B909E",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F5F6F8",
+  "backgroundNeutral": "#F2F3F5",
+  "tableAccent": "#4F5D75",
+  "good": "#4F5D75",
+  "neutral": "#8B909E",
+  "bad": "#EF8354",
+  "maximum": "#4F5D75",
+  "center": "#B5BECC",
+  "minimum": "#F3F5F8",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Consolas",
+      "color": "#2D3142"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#2D3142"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 10,
+      "color": "#2D3142"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 9,
+      "color": "#646B7D"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "visualTooltip": [
+          {
+            "titleFontColor": "#B5BECC",
+            "valueFontColor": "#FFFFFF",
+            "background": "#2D3142",
+            "fontSize": 9,
+            "transparency": 0,
+            "fontFamily": "Segoe UI"
+          }
+        ],
+        "visualHeader": [
+          {
+            "background": "#FFFFFF",
+            "border": "#FFFFFF",
+            "foreground": "#646B7D",
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F2F3F5"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
