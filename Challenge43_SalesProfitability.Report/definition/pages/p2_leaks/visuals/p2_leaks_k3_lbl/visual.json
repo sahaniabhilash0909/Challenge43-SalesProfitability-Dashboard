@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_k3_lbl",
   "position": {
     "x": 1286.8,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Return rate \u00b7 apparel",
+                    "value": "Return rate · apparel",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8pt",
@@ -173,7 +173,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

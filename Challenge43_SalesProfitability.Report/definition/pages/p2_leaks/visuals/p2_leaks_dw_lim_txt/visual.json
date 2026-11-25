@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_dw_lim_txt",
   "position": {
     "x": 1432,
     "y": 148,
-    "z": 7900,
+    "z": 8300,
     "height": 860,
     "width": 424,
-    "tabOrder": 7900
+    "tabOrder": 8300
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": " Three October\u2013January holiday windows (2023/24, 2024/25, 2025/26) across eight European city markets. 2023/24 has no PY.",
+                    "value": " Three October–January holiday windows (2023/24, 2024/25, 2025/26) across eight European city markets. 2023/24 has no PY.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9.5pt",
@@ -98,7 +98,7 @@
                     }
                   },
                   {
-                    "value": " = net sales \u2212 product cost \u2212 fulfilment \u2212 payment fees \u2212 return handling \u2212 allocated campaign spend. It excludes overhead, interest and tax.",
+                    "value": " = net sales − product cost − fulfilment − payment fees − return handling − allocated campaign spend. It excludes overhead, interest and tax.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9.5pt",
@@ -203,7 +203,7 @@
                     }
                   },
                   {
-                    "value": " = discount \u20ac \u00f7 gross sales \u20ac. Returns carry no return date; refunds count against the original sale.",
+                    "value": " = discount € ÷ gross sales €. Returns carry no return date; refunds count against the original sale.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9.5pt",
@@ -370,8 +370,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

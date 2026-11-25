@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_br_0",
   "position": {
     "x": 280,
@@ -27,7 +27,27 @@
                 }
               },
               "queryRef": "Bridge Lines.Label",
-              "nativeQueryRef": "Label"
+              "nativeQueryRef": "Label",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Anchor Bridge"
+                }
+              },
+              "queryRef": "_Measures.Anchor Bridge",
+              "nativeQueryRef": "Anchor Bridge",
+              "displayName": "row"
             }
           ]
         },
@@ -124,25 +144,6 @@
               "displayName": "Tail"
             }
           ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Anchor Bridge"
-                }
-              },
-              "queryRef": "_Measures.Anchor Bridge",
-              "nativeQueryRef": "Anchor Bridge",
-              "displayName": "row"
-            }
-          ]
         }
       },
       "sortDefinition": {
@@ -160,8 +161,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_hm_t",
   "position": {
     "x": 282,
     "y": 682,
-    "z": 5700,
+    "z": 5900,
     "height": 21,
     "width": 960,
-    "tabOrder": 5700
+    "tabOrder": 5900
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "RETURNS  \u00b7  CATEGORY \u00d7 CAMPAIGN",
+                    "value": "RETURNS  ·  CATEGORY × CAMPAIGN",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   Coral = 15%+ units returned \u00b7 right-click \u203a Profile",
+                    "value": "   ·   right-click › Profile",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
@@ -182,7 +182,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

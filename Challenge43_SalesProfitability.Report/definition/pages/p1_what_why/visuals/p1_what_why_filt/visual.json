@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_filt",
   "position": {
-    "x": 1140,
-    "y": 56,
+    "x": 1122,
+    "y": 65,
     "z": 1900,
     "height": 18,
     "width": 736,

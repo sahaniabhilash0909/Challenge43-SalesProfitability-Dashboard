@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_dw_l_cat",
   "position": {
     "x": 1432,
     "y": 384,
-    "z": 4800,
+    "z": 5100,
     "height": 21,
     "width": 424,
-    "tabOrder": 4800
+    "tabOrder": 5100
   },
   "visual": {
     "visualType": "textbox",
@@ -174,8 +174,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

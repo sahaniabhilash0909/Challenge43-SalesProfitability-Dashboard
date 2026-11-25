@@ -66,11 +66,12 @@ def sidebar(p, pid, active):
 
 
 def header(p, pid, kicker, title, msg_m, nxt=None, back=False):
-    textbox(p, f'{pid}_kicker', X0, 23, 860, 18, [[slabel(kicker, 7.5, SLATE)]])
-    textbox(p, f'{pid}_title', X0, 41, 860, 40, [[run(title, 18, INK, FONT_SB, True)]])
+    hx, hy, hw, _ = HEADER
+    textbox(p, f'{pid}_kicker', hx + 18, hy + 7, 860, 18, [[slabel(kicker, 7.5, SLATE)]])
+    textbox(p, f'{pid}_title', hx + 18, hy + 23, 860, 40, [[run(title, 18, INK, FONT_SB, True)]])
     px_, py_, pw, ph = PERIOD_PILL
     textcard(p, f'{pid}_period', px_ + 10, py_ + 3, pw - 20, ph - 6, 'Period Short', size=8, color=BODY, font=NUM, wrap=False, align='center')
-    textcard(p, f'{pid}_filt', 1140, 56, 736, 18, 'Filters Line', size=7.5, color=MUTED, wrap=False, align='right')
+    textcard(p, f'{pid}_filt', hx + hw - 18 - 736, hy + 41, 736, 18, 'Filters Line', size=7.5, color=MUTED, wrap=False, align='right')
 
     mx, my, mw, mh = MSG
     msg_w = mw - 134 if back else mw - 30
@@ -96,6 +97,21 @@ def card_head(p, name, card, take_m, kicker, note=None):
     textbox(p, f'{name}_t', x + 18, y + 12, w - 36, 18, [parts])
     if take_m:
         textcard(p, f'{name}_m', x + 18, y + 32, w - 36, 24, take_m, size=10.5, color=INK, font=FONT_SB, wrap=False)
+
+
+def card_legend(p, name, card, items, y_off=58):
+    """Consistent inline Slate-Coral color legend row.
+    Each item is (symbol, sym_color, label) or (symbol, sym_color, label, lbl_color, bold)."""
+    x, y, w, _ = card
+    runs = []
+    for i, it in enumerate(items):
+        sym, sc, lbl = it[0], it[1], it[2]
+        lc = it[3] if len(it) > 3 else MUTED
+        bld = it[4] if len(it) > 4 else False
+        sep = '   ' if i < len(items) - 1 else ''
+        runs.append(run(sym + ' ', 8.5, sc, FONT_SB, True))
+        runs.append(run(lbl + sep, 7.5, lc, FONT_SB if bld else FONT, bld))
+    return textbox(p, name, x + 18, y + y_off, w - 36, 18, [runs])
 
 
 # ---------------------------------------------------------------- KPI Cards (Icon Badge + Monospace Hero + Oct-Jan Micro-Chart)
@@ -230,10 +246,13 @@ def table(p, name, blk, cat, label_w, cols, sort, rows, anchor, tt=True, y_off=8
         cx += cw + 10
 
 
-def heatmap(p, name, card, rows, colsf, val, col_m, font_m, take_m, kicker, note, nrows=4, ncols=5, rh_w=138):
+def heatmap(p, name, card, rows, colsf, val, col_m, font_m, take_m, kicker, note, nrows=4, ncols=5, rh_w=138, legend=None):
     card_head(p, name, card, take_m, kicker, note)
     x, y, w, h = card
-    vw, vh = w - 32, h - 76
+    if legend:
+        card_legend(p, f'{name}_leg', card, legend)
+    top_y = y + (78 if legend else 64)
+    vw, vh = w - 32, h - (88 if legend else 76)
     rp = max(4, min(14, round(((vh - 14) / (nrows + 1) - 27) / 2)))
     cw = max(60, min(170, round((vw - rh_w - 12) / ncols) - 6))
     o = {'grid': props(gridVertical=L(True), gridVerticalColor=col(WHITE), gridVerticalWeight=D(4),
@@ -248,19 +267,57 @@ def heatmap(p, name, card, rows, colsf, val, col_m, font_m, take_m, kicker, note
          'columnWidth': [{'properties': {'value': D(cw)}, 'selector': {'metadata': f'_Measures.{val}'}}],
          'columnFormatting': [{'properties': {'alignment': L('Center')}, 'selector': {'metadata': f'_Measures.{val}'}}],
          'subTotals': props(rowSubtotals=L(False), columnSubtotals=L(False))}
-    p.add(f'{name}_mx', 'pivotTable', x + 16, y + 64, vw, vh,
+    p.add(f'{name}_mx', 'pivotTable', x + 16, top_y, vw, vh,
           q=query({'Rows': [rows], 'Columns': [colsf], 'Values': [(f'#{val}', 'CY')]}), objects=o,
           vco_=vco(header=True, pad=(0, 0, 0, 0), tooltip_page=TT_PAGE))
 
 
-def zc_chart(p, name, kind, card, roles, take_m, kicker, note, extra=None, sort=None):
+def scorecard_matrix(p, name, card, rows, values, take_m, kicker, note, col_widths, alignments, cond_fmt, sort=None, legend=None):
     card_head(p, name, card, take_m, kicker, note)
     x, y, w, h = card
+    if legend:
+        card_legend(p, f'{name}_leg', card, legend)
+    top_y = y + (78 if legend else 64)
+    vh = h - (88 if legend else 76)
+    vals_obj = [{'properties': {
+        'fontSize': D(9.5), 'fontFamily': L(NUM), 'fontColorPrimary': col(INK), 'backColorPrimary': col(WHITE),
+        'fontColorSecondary': col(INK), 'backColorSecondary': col(WHITE), 'outlineStyle': L(0),
+    }}]
+    for md, fmts in cond_fmt.items():
+        vals_obj.append({
+            'properties': fmts,
+            'selector': {'data': [{'dataViewWildcard': {'matchingOption': 1}}], 'metadata': md},
+        })
+    o = {
+        'grid': props(gridVertical=L(False), gridHorizontal=L(True), gridHorizontalColor=col(HAIR), gridHorizontalWeight=D(1),
+                      rowPadding=D(5.5 if legend else 7), outlineColor=col(HAIR), outlineWeight=D(1)),
+        'columnHeaders': props(fontColor=col(MUTED), fontSize=D(8.5), fontFamily=L(FONT_SB), bold=L(True),
+                               backColor=col(CALLOUT), outlineStyle=L(1), autoSizeColumnWidth=L(False)),
+        'rowHeaders': props(fontColor=col(INK), fontSize=D(9.5), fontFamily=L(FONT_SB), backColor=col(WHITE),
+                            outlineStyle=L(0), stepped=L(True), showExpandCollapseButtons=L(True)),
+        'values': vals_obj,
+        'columnWidth': [{'properties': {'value': D(cw)}, 'selector': {'metadata': md}} for md, cw in col_widths.items()],
+        'columnFormatting': [{'properties': {'alignment': L(al)}, 'selector': {'metadata': md}} for md, al in alignments.items()],
+        'subTotals': props(rowSubtotals=L(True), columnSubtotals=L(False), rowSubtotalsPosition=L('Bottom')),
+        'total': props(fontColor=col(INK), backColor=col(SLATE_50), fontSize=D(9.5), fontFamily=L(NUM), bold=L(True), outlineStyle=L(2)),
+    }
+    p.add(f'{name}_mx', 'pivotTable', x + 16, top_y, w - 32, vh,
+          q=query({'Rows': rows, 'Values': values}, sort), objects=o,
+          vco_=vco(header=True, pad=(0, 0, 0, 0), tooltip_page=TT_PAGE))
+
+
+def zc_chart(p, name, kind, card, roles, take_m, kicker, note, extra=None, sort=None, legend=None):
+    card_head(p, name, card, take_m, kicker, note)
+    x, y, w, h = card
+    if legend:
+        card_legend(p, f'{name}_leg', card, legend)
+    top_y = y + (78 if legend else 58)
+    vis_h = h - (86 if legend else 66)
     vt, _ = ZC[kind]
     o = {'advanced': [{'properties': {'shouldApplyNewDefaults': L(True)}}], 'toolbar': props(show=L(False)), 'legend': props(show=L(False))}
     if extra:
         o.update(extra)
-    return p.add(name, vt, x + 12, y + 58, w - 24, h - 66, q=query(roles, sort), objects=o, vco_=vco(header=True, pad=(0, 0, 0, 0)))
+    return p.add(name, vt, x + 12, top_y, w - 24, vis_h, q=query(roles, sort), objects=o, vco_=vco(header=True, pad=(0, 0, 0, 0)))
 
 
 def refline_acpy(c_py=INK, c_ac=SLATE_400, pad_lr=False, bar_w_pct=46, marker_w_pct=84, pad_tb=False):
@@ -302,6 +359,62 @@ def refline_acpy(c_py=INK, c_ac=SLATE_400, pad_lr=False, bar_w_pct=46, marker_w_
     return o
 
 
+def overlap_cy_py_cols(c_py=PY_BAR, c_cy=SLATE, py_w=84, cy_w=52):
+    """Overlapping columns in ZoomCharts Combo PRO: wider light PY behind narrower Blue Slate CY, zero outline/marker."""
+    o = series_colors({1: c_py, 2: c_cy})
+    o['stacks'] = props(mode=L('based'), separateNegativeValues=L(True))
+    o['seriesDefault'][0]['properties'].update({
+        'seriesSettingSelector': L('s1'),
+        'display': L('stacked'),
+        'columnLineWidth': L(0),
+        'lineColorOpacity': L(0),
+        'lineMarker': L(''),
+        'lineMarkerSize': L(0),
+        'customize1': L(True),
+        'display1': L('stacked'),
+        'stack1': L('s1'),
+        'type1': L('columns'),
+        'fillColor1': col(c_py),
+        'fillColorOpacity1': L(85),
+        'widthScale1': L(py_w),
+        'zIndex1': L(5),
+        'columnLineWidth1': L(0),
+        'lineColorOpacity1': L(0),
+        'lineMarker1': L(''),
+        'lineMarkerSize1': L(0),
+        'customize2': L(True),
+        'display2': L('stacked'),
+        'stack2': L('s1'),
+        'type2': L('columns'),
+        'fillColor2': col(c_cy),
+        'fillColorOpacity2': L(100),
+        'widthScale2': L(cy_w),
+        'zIndex2': L(20),
+        'columnLineWidth2': L(0),
+        'lineColorOpacity2': L(0),
+        'lineMarker2': L(''),
+        'lineMarkerSize2': L(0),
+    })
+    o['valueAxis1'] = props(show=L(False))
+    o['seriesValueLabelsDefault'] = [{
+        'properties': {
+            'seriesValueLabelSettingSelector': L('s2'),
+            'show1': L(False),
+            'useDefaults1': L(False),
+            'valueLabelPosition1': L('outside'),
+            'fontSize1': D(9),
+            'backgroundColorOpacity1': L(0),
+            'show2': L(True),
+            'useDefaults2': L(False),
+            'valueLabelPosition2': L('outside'),
+            'fontSize2': D(9),
+            'backgroundColorOpacity2': L(0),
+        }
+    }]
+    o['columnBarSettings'] = props(leftPadding=L(14), rightPadding=L(14))
+    return o
+
+
 # ---------------------------------------------------------------- Slide-over Drawer
 DR = DRAWER['panel']
 DX, DW = DR['x'] + 24, DR['w'] - 48
@@ -320,7 +433,7 @@ LIMITS = [
 GUIDES = {
     'ch1': [('KPI strip.', 'Top 5 cards show CY hero metrics, PY delta tags, and Oct–Jan CY lines over shaded PY baselines.'),
             ('Profit bridge.', 'Left tall card reads top-down from PY contribution to CY: Blue Slate bars added margin, Coral Glow bars eroded it.'),
-            ('Month, discount & campaign drills.', 'Monthly Contribution plots the solid CY line against a dotted light grey PY line with Max (Blue Slate) and Min (Coral) callouts; Discount Depth & Campaign Scorecard ZoomCharts cards drill down or right-click › Drill through.')],
+            ('Month, discount & campaign drills.', 'Monthly Contribution plots the solid CY line against a dotted light grey PY line with Max (Blue Slate) and Min (Coral) callouts; Discount Depth (Combo) drills into campaigns and the expandable Campaign Scorecard matrix compares Days, Net Sales, Sales/Day, Discount %, Contribution CY, ΔPY, and color-coded Margin % across Campaign Type › Event (right-click › Drill through).')],
     'ch2': [('Product hierarchy.', 'Top-left ZoomCharts Combo Bar drills Category › Subcategory › Product.'),
             ('Segments & cities.', 'Top-mid ZoomCharts Donut drills Customer Segment › Channel; top-right Scatter plots city discount % vs contribution margin %.'),
             ('Returns & channels.', 'Bottom-left heatmap flags 15%+ return cells in Coral; bottom-right Combo Bar drills Sales Channel › Category.')],
@@ -384,11 +497,12 @@ for i, (lbl, k, ac_m, py_m, sty, bar_m) in enumerate([
     kpi_card_v12(p, f'{pid}_k{i}', KPIS[i], lbl, k, ac_m, py_m, style=sty, bar_col_m=bar_m)
 
 card_head(p, f'{pid}_br', C['bridge'], 'Title Bridge Var', 'PROFIT BRIDGE', 'kEUR · PY to CY')
-textbox(p, f'{pid}_br_leg', C['bridge'][0] + 18, C['bridge'][1] + 58, 520, 18, [[
-    run('●  ', 8, CORAL), run('Took margin   ', 7.5, MUTED),
-    run('●  ', 8, SLATE), run('Added / CY   ', 7.5, MUTED),
-    run('●  ', 8, PY_BAR), run('PY', 7.5, MUTED),
-]])
+card_legend(p, f'{pid}_br_leg', C['bridge'], [
+    ('■', CORAL, 'Took margin'),
+    ('■', SLATE_400, 'Added margin'),
+    ('■', SLATE, 'CY total'),
+    ('■', PY_BAR, 'PY total'),
+])
 table(p, f'{pid}_br', C['bridge'], 'Bridge Lines.Label', 126,
       [{'kind': 'stack', 'hdr': '', 'w': 392, 'end': 'Axis Bridge End 2',
         'series': [('Bridge Base k', WHITE, None), ('Bridge PY k', PY_BAR, None), ('Bridge AC k', SLATE, None),
@@ -397,7 +511,7 @@ table(p, f'{pid}_br', C['bridge'], 'Bridge Lines.Label', 126,
       [('Bridge Lines.Label', 'Ascending')], rows=10, anchor='Anchor Bridge', tt=False, y_off=82, hdr_y_off=60)
 
 mc_x, mc_y, mc_w, mc_h = C['month']
-card_head(p, f'{pid}_month', C['month'], 'Title Month AC', 'CONTRIBUTION BY MONTH', 'CY solid vs PY dotted · click › daily')
+card_head(p, f'{pid}_month', C['month'], 'Title Month AC', 'CONTRIBUTION BY MONTH', 'kEUR · Oct–Jan · CY solid vs PY dotted')
 textbox(p, f'{pid}_month_leg', mc_x + 18, mc_y + 58, mc_w - 36, 18, [[
     run('━━ ', 7.5, SLATE, FONT_SB, True), run('CY   ', 7.5, MUTED),
     run('··· ', 9, SUBTLE, FONT_SB, True), run('PY   ', 7.5, MUTED),
@@ -447,19 +561,58 @@ zc_chart(p, f'{pid}_zc_band', 'combo', C['band'],
          {'Category': ['FactSales.Discount Band', 'DimCampaign.Campaign Type'],
           'Values1': [('#Contribution PY', 'PY')], 'Values2': [('#Contribution AC', 'CY')],
           'Tooltips': TIPS_C + [('#Deep Share AC', 'Sales at 20%+ discount CY')]},
-         'Title Discount Curve AC', 'DISCOUNT DEPTH', 'Slate column = CY · Jet Black tick = PY · click › campaigns',
-         extra=refline_acpy(INK, SLATE_400, pad_lr=True, bar_w_pct=46, marker_w_pct=84),
-         sort=[('FactSales.Discount Band', 'Ascending')])
+         'Title Discount Curve AC', 'DISCOUNT DEPTH', 'kEUR · click › campaigns',
+         extra=overlap_cy_py_cols(PY_BAR, SLATE, py_w=84, cy_w=52),
+         sort=[('FactSales.Discount Band', 'Ascending')],
+         legend=[('■', SLATE, 'CY contribution'), ('■', PY_BAR, 'PY contribution')])
 
-zc_chart(p, f'{pid}_zc_type', 'combobar', C['type'],
-         {'Category': ['DimCampaign.Campaign Type', 'DimCampaign.Campaign'],
-          'Values1': [('#Contribution PY', 'PY')], 'Values2': [('#Contribution AC', 'CY')],
-          'Tooltips': TIPS_C + [('#Net Sales per Day AC', 'Net sales / day CY'),
-                                ('#Sales per Day vs Regular AC', 'Sales / day vs Regular CY'),
-                                ('#Trading Days AC', 'Trading days CY')]},
-         'Title Scorecard Var', 'CAMPAIGN SCORECARD', 'Slate bar = CY · Jet Black tick = PY · click › events · right-click › Profile',
-         extra=refline_acpy(INK, SLATE_400, bar_w_pct=46, marker_w_pct=84, pad_tb=True),
-         sort=[('#Contribution AC', 'Descending')])
+scorecard_matrix(
+    p, f'{pid}_scorecard', C['type'],
+    rows=['DimCampaign.Campaign Type', 'DimCampaign.Campaign'],
+    values=[
+        ('#Trading Days AC', 'Days'),
+        ('#Net Sales AC', 'Net sales CY'),
+        ('#Net Sales per Day AC', 'Sales / day'),
+        ('#Discount AC', 'Discount %'),
+        ('#Contribution AC', 'Contribution CY'),
+        ('#Contribution ΔPY', 'ΔPY (€)'),
+        ('#Margin AC', 'Margin %'),
+    ],
+    take_m='Title Scorecard Var',
+    kicker='CAMPAIGN SCORECARD',
+    note='expand + for events · right-click › Profile',
+    col_widths={
+        'DimCampaign.Campaign Type': 196,
+        '_Measures.Trading Days AC': 72,
+        '_Measures.Net Sales AC': 124,
+        '_Measures.Net Sales per Day AC': 116,
+        '_Measures.Discount AC': 106,
+        '_Measures.Contribution AC': 136,
+        '_Measures.Contribution ΔPY': 124,
+        '_Measures.Margin AC': 116,
+    },
+    alignments={
+        '_Measures.Trading Days AC': 'Right',
+        '_Measures.Net Sales AC': 'Right',
+        '_Measures.Net Sales per Day AC': 'Right',
+        '_Measures.Discount AC': 'Right',
+        '_Measures.Contribution AC': 'Right',
+        '_Measures.Contribution ΔPY': 'Right',
+        '_Measures.Margin AC': 'Center',
+    },
+    cond_fmt={
+        '_Measures.Contribution ΔPY': {'fontColor': mcol('KPI Contribution Col')},
+        '_Measures.Margin AC': {'backColor': mcol('Heat Margin Col'), 'fontColor': mcol('Heat Margin Font')},
+    },
+    sort=[('#Contribution AC', 'Descending')],
+    legend=[
+        ('■', SLATE, '30%+ margin'),
+        ('■', SLATE_200, '10–30%'),
+        ('■', CORAL_200, '<0% loss'),
+        ('●', SLATE, 'ΔPY gain'),
+        ('●', CORAL_TEXT, 'ΔPY drop'),
+    ],
+)
 
 drawers['ch1'] = drawer(p, pid, GUIDES['ch1'])
 
@@ -481,13 +634,17 @@ zc_chart(p, f'{pid}_zc_cat', 'combobar', C['cat'],
           'Values1': [('#Contribution PY', 'PY')], 'Values2': [('#Contribution AC', 'CY')],
           'Tooltips': TIPS_C + [('#Return AC', 'Return rate CY')]},
          'Title Category AC', 'PRODUCTS', 'click › subcat › product',
-         extra=refline_acpy(PY, SLATE), sort=[('#Contribution AC', 'Descending')])
+         extra=overlap_cy_py_cols(PY_BAR, SLATE, py_w=84, cy_w=52), sort=[('#Contribution AC', 'Descending')],
+         legend=[('■', SLATE, 'CY contribution'), ('■', PY_BAR, 'PY contribution')])
 
 zc_chart(p, f'{pid}_zc_donut', 'donut', C['donut'],
          {'Category': ['FactSales.Customer Segment', 'FactSales.Sales Channel'],
           'Values': [('#Net Sales AC', 'Net sales CY')],
           'Tooltips': [('#Margin AC', 'Margin CY'), ('#Contribution AC', 'Contribution CY'), ('#Net Sales ΔPY%', 'Net sales ΔPY%'), ('#AOV AC', 'AOV CY')]},
-         'Title Segment AC', 'SEGMENTS › CHANNELS', 'click segment › channel split')
+         'Title Segment AC', 'SEGMENTS › CHANNELS', 'click segment › channel split',
+         extra={'legend': props(show=L(True), displayMode=L('inline'), position=L('top'), alignHorizontal=L('left'),
+                                markerShape=L('square'), markerSize=L(8), fontSize=D(8), fontFamily=L(FONT),
+                                fontColor=col(MUTED), labelMode=L('name'))})
 
 city_cat_colors = json.dumps({
     'source': 'DimLocation.City',
@@ -511,18 +668,21 @@ zc_chart(p, f'{pid}_zc_scatter', 'scatter', C['scatter'],
          'Title Map AC', 'MARKETS', 'x = discount %, y = margin %',
          extra={'colors1': props(propertyCache=L('{"source":"","props":{}}')),
                 'shapes1': props(propertyCache=L('{"source":"","props":{}}')),
-                'categoryColors1': props(propertyCache=L(city_cat_colors))})
+                'categoryColors1': props(propertyCache=L(city_cat_colors))},
+         legend=[('●', CORAL, 'Berlin (lowest margin)'), ('●', SLATE, 'Other 7 cities')])
 
 heatmap(p, f'{pid}_hm', C['heat'], 'DimProduct.Category', 'DimCampaign.Campaign Type', 'Return AC',
         'Heat Return Col', 'Heat Return Font', 'Title Returns AC', 'RETURNS  ·  CATEGORY × CAMPAIGN',
-        'Coral = 15%+ units returned · right-click › Profile', nrows=4, ncols=5, rh_w=138)
+        'right-click › Profile', nrows=4, ncols=5, rh_w=138,
+        legend=[('■', SLATE_50, '<6%'), ('■', SLATE_100, '6–10%'), ('■', SLATE_200, '10–15%'), ('■', CORAL_200, '15%+ high return')])
 
 zc_chart(p, f'{pid}_zc_chan', 'combobar', C['chan'],
          {'Category': ['FactSales.Sales Channel', 'DimProduct.Category'],
           'Values1': [('#Contribution PY', 'PY')], 'Values2': [('#Contribution AC', 'CY')],
           'Tooltips': TIPS_C},
          'Title Channel AC', 'CHANNEL › CATEGORY', 'click Online › Electronics',
-         extra=refline_acpy(PY, SLATE), sort=[('#Contribution AC', 'Descending')])
+         extra=overlap_cy_py_cols(PY_BAR, SLATE, py_w=84, cy_w=52), sort=[('#Contribution AC', 'Descending')],
+         legend=[('■', SLATE, 'CY contribution'), ('■', PY_BAR, 'PY contribution')])
 
 drawers['ch2'] = drawer(p, pid, GUIDES['ch2'])
 
@@ -538,9 +698,10 @@ textbox(p, f'{pid}_up_n', cx_ + 20, cy_ + 102, cw_ - 40, 48, [[run('Projected fr
 
 ux, uy, uw, uh = C['upside_bar']
 card_head(p, f'{pid}_up', C['upside_bar'], None, 'UPSIDE BY MOVE', 'kEUR · CY simulation')
+card_legend(p, f'{pid}_up_leg', C['upside_bar'], [('■', SLATE, 'Indicative CY contribution upside (€k)')], y_off=34)
 table(p, f'{pid}_up', (ux, uy, uw, uh), 'Moves.Label', 190,
       [{'kind': 'var', 'hdr': '', 'w': 308, 'm': 'Pot by Move k', 'label': 'Upside', 'fill': SLATE, 'end': 'Axis Moves End'}],
-      [('#Pot by Move k', 'Descending')], rows=4, anchor='Anchor Moves', tt=False, y_off=44, hdr_y_off=34)
+      [('#Pot by Move k', 'Descending')], rows=4, anchor='Anchor Moves', tt=False, y_off=56, hdr_y_off=44)
 
 lx_, ly_, lw_, lh_ = C['limits']
 card_head(p, f'{pid}_lim', C['limits'], None, 'ANALYTICAL GUARDRAILS', 'what this dataset cannot tell you')
@@ -590,25 +751,32 @@ textbox(p, f'{pid}_facts_hdr', fx_ + 18, fy_ + 12, fw_ - 36, 18, [[slabel('EVENT
 textcard(p, f'{pid}_facts_txt', fx_ + 18, fy_ + 34, fw_ - 36, 62, 'Drill Campaign Facts', size=9.5, color=BODY, font=FONT, wrap=True)
 
 card_head(p, f'{pid}_pl', C['pnl'], 'Title Bridge AC', 'PROFIT AND LOSS', 'kEUR · costs in brackets')
+card_legend(p, f'{pid}_pl_leg', C['pnl'], [
+    ('■', PY_BAR, 'PY'),
+    ('■', SLATE, 'CY / Favorable ΔPY'),
+    ('■', CORAL, 'Adverse ΔPY'),
+])
 table(p, f'{pid}_pnl', C['pnl'], 'PnL Lines.Label', 134,
       [{'kind': 'single', 'hdr': 'PY', 'w': 158, 'm': 'PL PY k', 'label': 'PY', 'colour': PY_BAR, 'start': 'Axis PL Start', 'end': 'Axis PL End'},
        {'kind': 'single', 'hdr': 'CY', 'w': 158, 'm': 'PL AC k', 'label': 'CY', 'colour': SLATE, 'start': 'Axis PL Start', 'end': 'Axis PL End'},
        {'kind': 'var', 'hdr': 'ΔPY', 'w': 134, 'm': 'PL ΔPY k', 'label': 'ΔPY', 'fill_m': 'Colour PL Δ', 'start': 'Axis PL Δ Start', 'end': 'Axis PL Δ End'},
        {'kind': 'pin', 'hdr': 'ΔPY %', 'w': 126, 'm': 'PL ΔPY%', 'label': 'ΔPY %', 'fill_m': 'Colour PL Δ', 'start': 'Axis PL Δ% Start', 'end': 'Axis PL Δ% End'}],
-      [('PnL Lines.Label', 'Ascending')], rows=10, anchor='Anchor PL', tt=False, y_off=88, hdr_y_off=64)
+      [('PnL Lines.Label', 'Ascending')], rows=10, anchor='Anchor PL', tt=False, y_off=100, hdr_y_off=78)
 
 zc_chart(p, f'{pid}_zc_daily', 'combo', C['daily'],
          {'Category': ['DimDate.Date'], 'Values1': [('#Net Sales PY', 'PY')], 'Values2': [('#Net Sales AC', 'CY')],
           'Tooltips': [('#Contribution AC', 'Contribution CY'), ('#Margin AC', 'Margin CY')]},
-         'Title Peak Day', 'NET SALES PER TRADING DAY', 'Slate column = CY · Jet Black tick = PY',
-         extra=refline_acpy(INK, SLATE_400, bar_w_pct=75, marker_w_pct=100))
+         'Title Peak Day', 'NET SALES PER TRADING DAY', 'kEUR · daily trading',
+         extra=overlap_cy_py_cols(PY_BAR, SLATE, py_w=90, cy_w=56),
+         legend=[('■', SLATE, 'CY net sales'), ('■', PY_BAR, 'PY net sales')])
 
 zc_chart(p, f'{pid}_zc_band', 'combo', C['band'],
          {'Category': ['FactSales.Discount Band'], 'Values1': [('#Contribution PY', 'PY')], 'Values2': [('#Contribution AC', 'CY')],
           'Tooltips': TIPS_C},
-         'Title Discount Curve AC', 'DISCOUNT DEPTH', 'Slate column = CY · Jet Black tick = PY',
-         extra=refline_acpy(INK, SLATE_400, pad_lr=True, bar_w_pct=46, marker_w_pct=84),
-         sort=[('FactSales.Discount Band', 'Ascending')])
+         'Title Discount Curve AC', 'DISCOUNT DEPTH', 'kEUR · by discount band',
+         extra=overlap_cy_py_cols(PY_BAR, SLATE, py_w=84, cy_w=52),
+         sort=[('FactSales.Discount Band', 'Ascending')],
+         legend=[('■', SLATE, 'CY contribution'), ('■', PY_BAR, 'PY contribution')])
 
 drawers['profile'] = drawer(p, pid, GUIDES['profile'])
 

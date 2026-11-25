@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_pnl_1",
   "position": {
     "x": 590,
-    "y": 368,
-    "z": 3000,
-    "height": 636,
+    "y": 380,
+    "z": 3100,
+    "height": 624,
     "width": 158,
-    "tabOrder": 3000
+    "tabOrder": 3100
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -27,26 +27,8 @@
                 }
               },
               "queryRef": "PnL Lines.Label",
-              "nativeQueryRef": "Label"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "PL AC k"
-                }
-              },
-              "queryRef": "_Measures.PL AC k",
-              "nativeQueryRef": "PL AC k",
-              "displayName": "CY"
+              "nativeQueryRef": "Label",
+              "active": true
             }
           ]
         },
@@ -68,6 +50,25 @@
               "displayName": "row"
             }
           ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "PL AC k"
+                }
+              },
+              "queryRef": "_Measures.PL AC k",
+              "nativeQueryRef": "PL AC k",
+              "displayName": "CY"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -85,8 +86,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

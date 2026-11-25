@@ -4,10 +4,10 @@
   "position": {
     "x": 1784,
     "y": 76,
-    "z": 6400,
+    "z": 6800,
     "height": 30,
     "width": 76,
-    "tabOrder": 6400
+    "tabOrder": 6800
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Close  \u2715'"
+                  "Value": "'Close  ✕'"
                 }
               }
             },

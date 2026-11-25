@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
-  "displayName": "ch1 \u00b7 reset all filters",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.2.0/schema.json",
+  "displayName": "ch1 · reset all filters",
   "name": "bm_p1_what_why_reset",
   "options": {
     "targetVisualNames": []
   },
   "explorationState": {
-    "version": "1.3",
+    "version": "1.0",
     "activeSection": "p1_what_why",
     "sections": {
       "p1_what_why": {
@@ -48,10 +48,6 @@
             }
           },
           "p1_what_why_chip_season": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {}
-            },
             "filters": {
               "byExpr": [
                 {
@@ -123,6 +119,10 @@
                   "howCreated": 1
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
             }
           },
           "p1_what_why_lbl_channel": {
@@ -132,14 +132,10 @@
             }
           },
           "p1_what_why_chip_channel": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {}
-            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r690083178342",
+                  "name": "r428523495595",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -154,6 +150,10 @@
                   "howCreated": 0
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
             }
           },
           "p1_what_why_btn_filters": {
@@ -444,27 +444,39 @@
               "objects": {}
             }
           },
+          "p1_what_why_zc_band_leg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p1_what_why_zc_band": {
             "singleVisual": {
               "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
               "objects": {}
             }
           },
-          "p1_what_why_zc_type_t": {
+          "p1_what_why_scorecard_t": {
             "singleVisual": {
               "visualType": "textbox",
               "objects": {}
             }
           },
-          "p1_what_why_zc_type_m": {
+          "p1_what_why_scorecard_m": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
             }
           },
-          "p1_what_why_zc_type": {
+          "p1_what_why_scorecard_leg": {
             "singleVisual": {
-              "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_scorecard_mx": {
+            "singleVisual": {
+              "visualType": "pivotTable",
               "objects": {}
             }
           },
@@ -505,17 +517,10 @@
             }
           },
           "p1_what_why_dw_s_seg": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r884145247727",
+                  "name": "r93549816559",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -530,6 +535,13 @@
                   "howCreated": 0
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "p1_what_why_dw_l_city": {
@@ -542,17 +554,10 @@
             }
           },
           "p1_what_why_dw_s_city": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r57501477428",
+                  "name": "r622257602737",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -567,6 +572,13 @@
                   "howCreated": 0
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "p1_what_why_dw_l_cat": {
@@ -579,17 +591,10 @@
             }
           },
           "p1_what_why_dw_s_cat": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r767964985888",
+                  "name": "r808475350060",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -604,6 +609,13 @@
                   "howCreated": 0
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "p1_what_why_dw_l_ctype": {
@@ -616,17 +628,10 @@
             }
           },
           "p1_what_why_dw_s_ctype": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r862189902714",
+                  "name": "r964381429901",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -641,6 +646,13 @@
                   "howCreated": 0
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "p1_what_why_dw_l_band": {
@@ -653,17 +665,10 @@
             }
           },
           "p1_what_why_dw_s_band": {
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r150451466853",
+                  "name": "r140870371127",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -678,6 +683,13 @@
                   "howCreated": 0
                 }
               ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
             }
           },
           "p1_what_why_dw_guide_hdr": {

@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_kicker",
   "position": {
-    "x": 264,
-    "y": 23,
+    "x": 282,
+    "y": 31,
     "z": 1600,
     "height": 21,
     "width": 860,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "CHAPTER 3 OF 3  \u00b7  FOUR RECOMMENDED MOVES",
+                    "value": "CHAPTER 3 OF 3  ·  FOUR RECOMMENDED MOVES",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
@@ -174,7 +174,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

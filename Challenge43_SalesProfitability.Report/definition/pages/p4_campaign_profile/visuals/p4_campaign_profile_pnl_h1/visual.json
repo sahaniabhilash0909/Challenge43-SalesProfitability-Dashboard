@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_pnl_h1",
   "position": {
     "x": 590,
-    "y": 344,
-    "z": 2900,
+    "y": 358,
+    "z": 3000,
     "height": 21,
     "width": 158,
-    "tabOrder": 2900
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "textbox",
@@ -174,7 +174,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

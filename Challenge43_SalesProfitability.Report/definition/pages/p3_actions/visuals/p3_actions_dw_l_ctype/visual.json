@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_dw_l_ctype",
   "position": {
     "x": 1432,
     "y": 502,
-    "z": 7400,
+    "z": 7500,
     "height": 21,
     "width": 424,
-    "tabOrder": 7400
+    "tabOrder": 7500
   },
   "visual": {
     "visualType": "textbox",
@@ -174,8 +174,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

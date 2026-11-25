@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_zc_donut_t",
   "position": {
     "x": 824,
     "y": 322,
-    "z": 5100,
+    "z": 5200,
     "height": 21,
     "width": 490,
-    "tabOrder": 5100
+    "tabOrder": 5200
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "SEGMENTS \u203a CHANNELS",
+                    "value": "SEGMENTS › CHANNELS",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   click segment \u203a channel split",
+                    "value": "   ·   click segment › channel split",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
@@ -182,7 +182,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

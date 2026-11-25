@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_k3_spark",
   "position": {
     "x": 1390.8,
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimDate.Season Month",
-              "nativeQueryRef": "Season Month"
+              "nativeQueryRef": "Season Month",
+              "active": true
             }
           ]
         },
@@ -81,8 +82,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

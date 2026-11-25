@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_zc_scatter",
   "position": {
     "x": 1360,
-    "y": 368,
-    "z": 5600,
-    "height": 278,
+    "y": 388,
+    "z": 5800,
+    "height": 258,
     "width": 504,
-    "tabOrder": 5600
+    "tabOrder": 5800
   },
   "visual": {
     "visualType": "ZoomChartsScatterChartPaidA2C55E4B59078FDD51C4CD1C4D4E6623V9N8",
@@ -136,15 +136,7 @@
       ],
       "toolbar": [
         {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ],
       "legend": [
@@ -192,7 +184,40 @@
             "propertyCache": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\"source\":\"DimLocation.City\",\"props\":{\"Amsterdam\":{\"color\":\"#4F5D75\"},\"Berlin\":{\"color\":\"#EF8354\"},\"Lisbon\":{\"color\":\"#7B89A0\"},\"Madrid\":{\"color\":\"#3B465A\"},\"Paris\":{\"color\":\"#2D3142\"},\"Riga\":{\"color\":\"#B5BECC\"},\"Stockholm\":{\"color\":\"#646B7D\"},\"Warsaw\":{\"color\":\"#8B909E\"}}}'"
+                  "Value": "'{\"source\":\"DimLocation.City\",\"props\":{\"Amsterdam\":{\"color\":\"#4F5D75\"},\"Berlin\":{\"color\":\"#8B909E\"},\"Lisbon\":{\"color\":\"#7B89A0\"},\"Madrid\":{\"color\":\"#B5BECC\"},\"Paris\":{\"color\":\"#2D3142\"},\"Riga\":{\"color\":\"#BFC0C0\"},\"Stockholm\":{\"color\":\"#3B465A\"},\"Warsaw\":{\"color\":\"#CFD5DF\"}}}'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "license": [
+        {
+          "properties": {
+            "lastVersionUsed": {
+              "expr": {
+                "Literal": {
+                  "Value": "'v1.8.312.0'"
+                }
+              }
+            },
+            "lastVersionUpdated": {
+              "expr": {
+                "Literal": {
+                  "Value": "1795614960000D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "trialLicense": [
+        {
+          "properties": {
+            "validLicenseProvided": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p1_what_why_zc_type_t",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "p1_what_why_scorecard_t",
   "position": {
     "x": 858,
     "y": 682,
-    "z": 5900,
+    "z": 6000,
     "height": 21,
     "width": 1000,
-    "tabOrder": 5900
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   Slate bar = CY \u00b7 Jet Black tick = PY \u00b7 click \u203a events \u00b7 right-click \u203a Profile",
+                    "value": "   ·   expand + for events · right-click › Profile",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
@@ -182,7 +182,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

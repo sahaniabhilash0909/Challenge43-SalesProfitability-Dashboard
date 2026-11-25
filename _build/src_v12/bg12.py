@@ -93,12 +93,12 @@ def page(key, active, kpis=True):
     # Outer mat
     s.append(rect(0, 0, W, H, OUTER))
 
-    # Clipped App Frame: Dark #2D3142 Sidebar + #F5F6F8 Workspace + Pure #FFFFFF Top Header
+    # Clipped App Frame: Dark #2D3142 Sidebar + #F5F6F8 Workspace + Floating #FFFFFF Header Card
     s.append('<g clip-path="url(#appClip)">')
     s.append(rect(ax, ay, SB_W, ah, INK))
     s.append(rect(WS_X, ay, WS_W, ah, WS_BG))
-    s.append(rect(WS_X, ay, WS_W, TOP_H, WHITE))
-    s.append(rect(WS_X, ay + TOP_H, WS_W, 1, HAIR))
+    hx, hy, hw, hh = HEADER
+    s.append(rect(hx, hy, hw, hh, WHITE, rx=10, stroke=HAIR, sw=1))
 
     # Sidebar brand tile + subtle dividers
     s.append(rect(SB_X, 34, 34, 34, SLATE_DARK, rx=8))

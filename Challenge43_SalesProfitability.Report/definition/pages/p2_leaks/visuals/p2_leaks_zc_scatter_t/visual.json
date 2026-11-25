@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_zc_scatter_t",
   "position": {
     "x": 1366,
     "y": 322,
-    "z": 5400,
+    "z": 5500,
     "height": 21,
     "width": 492,
-    "tabOrder": 5400
+    "tabOrder": 5500
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   x = discount %, y = margin %",
+                    "value": "   ·   x = discount %, y = margin %",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
@@ -182,7 +182,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

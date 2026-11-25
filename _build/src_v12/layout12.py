@@ -18,11 +18,11 @@ FILTERS_BTN = (30, 580, 188, 38)
 RESET_BTN = (30, 628, 188, 38)
 INFO_Y = [724, 770]
 
-# Workspace Header + Takeaway Banner
-TOP_H = 74                        # y=14..88
+# Workspace Floating Header Card + Takeaway Banner
+HEADER = (X0, 24, MW, 68)          # Floating header aligned to X0..X1 (y=24..92)
 MSG = (X0, 102, MW, 42)
 BACK_BTN = (1768, 107, 96, 32)
-PERIOD_PILL = (1556, 24, 320, 26)
+PERIOD_PILL = (X1 - 18 - 320, 33, 320, 26)
 
 # Horizontal 5-KPI Executive Strip (y=158..294)
 KPI_Y, KPI_H, KPI_GAP = 158, 136, 16

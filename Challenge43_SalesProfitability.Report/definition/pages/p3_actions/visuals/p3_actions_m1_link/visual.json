@@ -4,10 +4,10 @@
   "position": {
     "x": 912,
     "y": 534,
-    "z": 4400,
+    "z": 4500,
     "height": 36,
     "width": 300,
-    "tabOrder": 4400
+    "tabOrder": 4500
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'See evidence in Chapter 2  \u2192'"
+                  "Value": "'See evidence in Chapter 2  →'"
                 }
               }
             },

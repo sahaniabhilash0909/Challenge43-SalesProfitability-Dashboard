@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Back to start  \u00b7  What happened & why  \u21ba'"
+                  "Value": "'Back to start  ·  What happened & why  ↺'"
                 }
               }
             },

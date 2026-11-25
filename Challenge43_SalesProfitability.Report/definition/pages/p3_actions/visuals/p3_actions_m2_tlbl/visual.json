@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_m2_tlbl",
   "position": {
     "x": 1578,
     "y": 682,
-    "z": 5500,
+    "z": 5600,
     "height": 20,
     "width": 280,
-    "tabOrder": 5500
+    "tabOrder": 5600
   },
   "visual": {
     "visualType": "textbox",
@@ -174,7 +174,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

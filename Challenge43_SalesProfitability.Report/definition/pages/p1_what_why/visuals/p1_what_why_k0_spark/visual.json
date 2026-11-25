@@ -1,8 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_k0_spark",
   "position": {
-    "x": 414.0,
+    "x": 414,
     "y": 196,
     "z": 2700,
     "height": 90,
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimDate.Season Month",
-              "nativeQueryRef": "Season Month"
+              "nativeQueryRef": "Season Month",
+              "active": true
             }
           ]
         },
@@ -81,8 +82,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

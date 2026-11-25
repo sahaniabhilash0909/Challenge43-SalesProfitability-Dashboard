@@ -2471,6 +2471,10 @@ table _Measures
 		displayFolder: 16 V8\Monthly
 		lineageTag: 6760aa54-4293-4ae1-8821-ea2be322ca9b
 
+	measure 'Title Campaign Scorecard AC' = CALCULATE ( [Title Campaign Scorecard], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 5b4c8e2a-91d4-4a7f-8f3c-2d1e6b9a4c72
+
 	column x
 		isHidden
 		lineageTag: 5e2cab86-b43c-43eb-a284-2a77bda8ecb8

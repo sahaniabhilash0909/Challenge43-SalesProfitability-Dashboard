@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_foot",
   "position": {
     "x": 264,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Source: FP20 Analytics Challenge 43 (synthetic data)  \u00b7  CY = selected season  \u00b7  PY = same dates one season earlier  \u00b7  Blue Slate = CY/favorable, Coral = adverse/leak  \u00b7  contribution excludes overhead, interest & tax",
+                    "value": "Source: FP20 Analytics Challenge 43 (synthetic data)  ·  CY = selected season  ·  PY = same dates one season earlier  ·  Blue Slate = CY/favorable, Coral = adverse/leak  ·  contribution excludes overhead, interest & tax",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7pt",
@@ -173,7 +173,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

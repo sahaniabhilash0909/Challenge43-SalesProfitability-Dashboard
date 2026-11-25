@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_br_leg",
   "position": {
     "x": 282,
     "y": 368,
     "z": 5000,
-    "height": 22,
-    "width": 520,
+    "height": 23,
+    "width": 524,
     "tabOrder": 5000
   },
   "visual": {
@@ -19,49 +19,69 @@
               {
                 "textRuns": [
                   {
-                    "value": "\u25cf  ",
+                    "value": "■ ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "8pt",
-                      "color": "#EF8354"
+                      "fontFamily": "'Segoe UI Semibold'",
+                      "fontSize": "8.5pt",
+                      "color": "#EF8354",
+                      "fontWeight": "bold"
                     }
                   },
                   {
                     "value": "Took margin   ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
+                      "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
                       "color": "#646B7D"
                     }
                   },
                   {
-                    "value": "\u25cf  ",
+                    "value": "■ ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "8pt",
-                      "color": "#4F5D75"
+                      "fontFamily": "'Segoe UI Semibold'",
+                      "fontSize": "8.5pt",
+                      "color": "#7B89A0",
+                      "fontWeight": "bold"
                     }
                   },
                   {
-                    "value": "Added / CY   ",
+                    "value": "Added margin   ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
+                      "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
                       "color": "#646B7D"
                     }
                   },
                   {
-                    "value": "\u25cf  ",
+                    "value": "■ ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "8pt",
-                      "color": "#B5BECC"
+                      "fontFamily": "'Segoe UI Semibold'",
+                      "fontSize": "8.5pt",
+                      "color": "#4F5D75",
+                      "fontWeight": "bold"
                     }
                   },
                   {
-                    "value": "PY",
+                    "value": "CY total   ",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
+                      "fontFamily": "'Segoe UI'",
+                      "fontSize": "7.5pt",
+                      "color": "#646B7D"
+                    }
+                  },
+                  {
+                    "value": "■ ",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI Semibold'",
+                      "fontSize": "8.5pt",
+                      "color": "#B5BECC",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "PY total",
+                    "textStyle": {
+                      "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
                       "color": "#646B7D"
                     }
@@ -213,7 +233,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

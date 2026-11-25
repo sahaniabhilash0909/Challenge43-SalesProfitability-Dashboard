@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'\u2039  Back'"
+                  "Value": "'‹  Back'"
                 }
               }
             },

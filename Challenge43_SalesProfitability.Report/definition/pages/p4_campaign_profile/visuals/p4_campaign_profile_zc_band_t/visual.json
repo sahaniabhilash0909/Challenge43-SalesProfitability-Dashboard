@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_zc_band_t",
   "position": {
     "x": 1094,
     "y": 606,
-    "z": 3800,
+    "z": 4000,
     "height": 21,
     "width": 764,
-    "tabOrder": 3800
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   Slate column = CY \u00b7 Jet Black tick = PY",
+                    "value": "   ·   kEUR · by discount band",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
@@ -182,7 +182,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

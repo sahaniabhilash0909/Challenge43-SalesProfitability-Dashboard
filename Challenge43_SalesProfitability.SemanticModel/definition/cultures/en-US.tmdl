@@ -171,7 +171,17 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "Contribution CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -213,7 +223,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Net sales AC": {
+			          "Net sales CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -223,7 +233,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -244,7 +254,27 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Margin CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Margin %": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -296,7 +326,17 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Return rate CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -314,7 +354,19 @@ cultureInfo en-US
 			          "ConceptualProperty": "Net Sales ΔPY%"
 			        }
 			      },
-			      "State": "Generated"
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Net sales ΔPY%": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    },
 			    "table_measures.margin_ac_heat": {
 			      "Definition": {
@@ -356,7 +408,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -494,7 +546,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -536,7 +588,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -620,7 +672,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -953,7 +1005,17 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Discount %": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -984,7 +1046,17 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Sales at 20%+ discount CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1083,7 +1155,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1104,7 +1176,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1146,7 +1218,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1245,7 +1317,17 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "AC": {
+			          "CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "AOV CY": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -1272,7 +1354,29 @@ cultureInfo en-US
 			          "ConceptualProperty": "Net Sales per Day AC"
 			        }
 			      },
-			      "State": "Generated"
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Net sales / day CY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Sales / day": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    },
 			    "table_measures.month_contrib_max_ac_k": {
 			      "Definition": {
@@ -1306,6 +1410,58 @@ cultureInfo en-US
 			      "Terms": [
 			        {
 			          "Min": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.contribution_δpy1": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Contribution ΔPY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Contribution ΔPY": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "ΔPY (€)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_measures.trading_days_ac": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_Measures",
+			          "ConceptualProperty": "Trading Days AC"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Days": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

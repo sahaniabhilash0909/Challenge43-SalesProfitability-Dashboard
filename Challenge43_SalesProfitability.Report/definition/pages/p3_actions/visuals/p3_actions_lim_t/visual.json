@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_lim_t",
   "position": {
     "x": 282,
     "y": 704,
-    "z": 2800,
+    "z": 2900,
     "height": 21,
     "width": 504,
-    "tabOrder": 2800
+    "tabOrder": 2900
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   what this dataset cannot tell you",
+                    "value": "   ·   what this dataset cannot tell you",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
@@ -182,7 +182,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   }
 }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_dw_g_txt",
   "position": {
     "x": 1432,
     "y": 148,
-    "z": 7600,
+    "z": 7800,
     "height": 860,
     "width": 424,
-    "tabOrder": 7600
+    "tabOrder": 7800
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct\u2013Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
+                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct–Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -73,7 +73,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Top 5 cards show CY hero metrics, PY delta tags, and Oct\u2013Jan CY lines over shaded PY baselines.",
+                    "value": "Top 5 cards show CY hero metrics, PY delta tags, and Oct–Jan CY lines over shaded PY baselines.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -153,7 +153,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Monthly Contribution plots the solid CY line against a dotted light grey PY line with Max (Blue Slate) and Min (Coral) callouts; Discount Depth & Campaign Scorecard ZoomCharts cards drill down or right-click \u203a Drill through.",
+                    "value": "Monthly Contribution plots the solid CY line against a dotted light grey PY line with Max (Blue Slate) and Min (Coral) callouts; Discount Depth (Combo) drills into campaigns and the expandable Campaign Scorecard matrix compares Days, Net Sales, Sales/Day, Discount %, Contribution CY, ΔPY, and color-coded Margin % across Campaign Type › Event (right-click › Drill through).",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -320,8 +320,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

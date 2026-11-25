@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Next chapter  \u00b7  What to do  \u2192'"
+                  "Value": "'Next chapter  ·  What to do  →'"
                 }
               }
             },
