@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_month",
   "position": {
     "x": 852,
-    "y": 388,
+    "y": 403,
     "z": 5500,
-    "height": 256,
+    "height": 243,
     "width": 484,
     "tabOrder": 5500
   },
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "DimDate.Season Month",
-              "nativeQueryRef": "Season Month",
-              "active": true
+              "nativeQueryRef": "Season Month"
             },
             {
               "field": {
@@ -42,72 +41,7 @@
                 }
               },
               "queryRef": "DimDate.Date",
-              "nativeQueryRef": "Date",
-              "active": false
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Margin AC"
-                }
-              },
-              "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC",
-              "displayName": "Margin CY"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Net Sales AC"
-                }
-              },
-              "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC",
-              "displayName": "Net sales CY"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Contribution ΔPY"
-                }
-              },
-              "queryRef": "_Measures.Contribution ΔPY",
-              "nativeQueryRef": "Contribution ΔPY",
-              "displayName": "Contribution ΔPY"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Net Sales per Day AC"
-                }
-              },
-              "queryRef": "_Measures.Net Sales per Day AC",
-              "nativeQueryRef": "Net Sales per Day AC",
-              "displayName": "Net sales / day CY"
+              "nativeQueryRef": "Date"
             }
           ]
         },
@@ -174,6 +108,70 @@
               "displayName": "Min"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Margin AC"
+                }
+              },
+              "queryRef": "_Measures.Margin AC",
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Net Sales AC"
+                }
+              },
+              "queryRef": "_Measures.Net Sales AC",
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Contribution \u0394PY"
+                }
+              },
+              "queryRef": "_Measures.Contribution \u0394PY",
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "Contribution \u0394PY"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Net Sales per Day AC"
+                }
+              },
+              "queryRef": "_Measures.Net Sales per Day AC",
+              "nativeQueryRef": "Net Sales per Day AC",
+              "displayName": "Net sales / day CY"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -191,7 +189,8 @@
             },
             "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {

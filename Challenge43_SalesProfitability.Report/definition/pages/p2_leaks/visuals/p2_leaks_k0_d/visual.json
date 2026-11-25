@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_k0_d",
   "position": {
-    "x": 278,
+    "x": 278.0,
     "y": 240,
     "z": 2500,
     "height": 18,

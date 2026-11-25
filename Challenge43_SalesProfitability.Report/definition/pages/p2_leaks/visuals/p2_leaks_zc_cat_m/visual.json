@@ -3,9 +3,9 @@
   "name": "p2_leaks_zc_cat_m",
   "position": {
     "x": 282,
-    "y": 342,
+    "y": 341,
     "z": 4900,
-    "height": 24,
+    "height": 38,
     "width": 490,
     "tabOrder": 4900
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

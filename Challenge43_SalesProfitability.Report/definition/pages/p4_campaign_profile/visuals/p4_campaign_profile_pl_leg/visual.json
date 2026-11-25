@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_pl_leg",
   "position": {
     "x": 282,
-    "y": 338,
+    "y": 349,
     "z": 2700,
     "height": 23,
     "width": 760,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -36,7 +36,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -45,7 +45,7 @@
                     }
                   },
                   {
-                    "value": "CY / Favorable ΔPY   ",
+                    "value": "CY / Favorable \u0394PY   ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -53,7 +53,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -62,7 +62,7 @@
                     }
                   },
                   {
-                    "value": "Adverse ΔPY",
+                    "value": "Adverse \u0394PY",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -216,6 +216,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

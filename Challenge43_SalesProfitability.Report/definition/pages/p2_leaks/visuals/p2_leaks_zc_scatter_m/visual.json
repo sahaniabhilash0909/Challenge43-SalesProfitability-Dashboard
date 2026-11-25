@@ -3,9 +3,9 @@
   "name": "p2_leaks_zc_scatter_m",
   "position": {
     "x": 1366,
-    "y": 342,
+    "y": 341,
     "z": 5600,
-    "height": 24,
+    "height": 38,
     "width": 492,
     "tabOrder": 5600
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

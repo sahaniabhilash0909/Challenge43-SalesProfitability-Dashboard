@@ -3,9 +3,9 @@
   "name": "p2_leaks_zc_chan_m",
   "position": {
     "x": 1294,
-    "y": 702,
+    "y": 701,
     "z": 6400,
-    "height": 24,
+    "height": 38,
     "width": 564,
     "tabOrder": 6400
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

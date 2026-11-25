@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_br_0",
   "position": {
     "x": 280,
-    "y": 392,
+    "y": 403,
     "z": 5100,
-    "height": 612,
+    "height": 601,
     "width": 526,
     "tabOrder": 5100
   },
@@ -27,27 +27,7 @@
                 }
               },
               "queryRef": "Bridge Lines.Label",
-              "nativeQueryRef": "Label",
-              "active": true
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Anchor Bridge"
-                }
-              },
-              "queryRef": "_Measures.Anchor Bridge",
-              "nativeQueryRef": "Anchor Bridge",
-              "displayName": "row"
+              "nativeQueryRef": "Label"
             }
           ]
         },
@@ -144,6 +124,25 @@
               "displayName": "Tail"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Anchor Bridge"
+                }
+              },
+              "queryRef": "_Measures.Anchor Bridge",
+              "nativeQueryRef": "Anchor Bridge",
+              "displayName": "row"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -161,7 +160,8 @@
             },
             "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -255,7 +255,7 @@
             "innerPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "64D"
+                  "Value": "63D"
                 }
               }
             },

@@ -3,9 +3,9 @@
   "name": "p4_campaign_profile_zc_daily_m",
   "position": {
     "x": 1094,
-    "y": 190,
+    "y": 189,
     "z": 3700,
-    "height": 24,
+    "height": 38,
     "width": 764,
     "tabOrder": 3700
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

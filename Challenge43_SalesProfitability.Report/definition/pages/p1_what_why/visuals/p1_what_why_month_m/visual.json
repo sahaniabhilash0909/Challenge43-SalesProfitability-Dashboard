@@ -3,9 +3,9 @@
   "name": "p1_what_why_month_m",
   "position": {
     "x": 858,
-    "y": 342,
+    "y": 341,
     "z": 5300,
-    "height": 24,
+    "height": 38,
     "width": 472,
     "tabOrder": 5300
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_hm_mx",
   "position": {
     "x": 280,
@@ -13,25 +13,6 @@
     "visualType": "pivotTable",
     "query": {
       "queryState": {
-        "Columns": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "DimCampaign"
-                    }
-                  },
-                  "Property": "Campaign Type"
-                }
-              },
-              "queryRef": "DimCampaign.Campaign Type",
-              "nativeQueryRef": "Campaign Type",
-              "active": true
-            }
-          ]
-        },
         "Rows": {
           "projections": [
             {
@@ -46,8 +27,25 @@
                 }
               },
               "queryRef": "DimProduct.Category",
-              "nativeQueryRef": "Category",
-              "active": true
+              "nativeQueryRef": "Category"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCampaign"
+                    }
+                  },
+                  "Property": "Campaign Type"
+                }
+              },
+              "queryRef": "DimCampaign.Campaign Type",
+              "nativeQueryRef": "Campaign Type"
             }
           ]
         },
@@ -210,7 +208,7 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }

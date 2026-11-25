@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_scorecard_mx",
   "position": {
     "x": 856,
@@ -27,8 +27,7 @@
                 }
               },
               "queryRef": "DimCampaign.Campaign Type",
-              "nativeQueryRef": "Campaign Type",
-              "active": true
+              "nativeQueryRef": "Campaign Type"
             },
             {
               "field": {
@@ -42,8 +41,7 @@
                 }
               },
               "queryRef": "DimCampaign.Campaign",
-              "nativeQueryRef": "Campaign",
-              "active": false
+              "nativeQueryRef": "Campaign"
             }
           ]
         },
@@ -132,12 +130,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Contribution ΔPY"
+                  "Property": "Contribution \u0394PY"
                 }
               },
-              "queryRef": "_Measures.Contribution ΔPY",
-              "nativeQueryRef": "Contribution ΔPY",
-              "displayName": "ΔPY (€)"
+              "queryRef": "_Measures.Contribution \u0394PY",
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "\u0394PY (\u20ac)"
             },
             {
               "field": {
@@ -172,7 +170,8 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -295,7 +294,7 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -462,7 +461,7 @@
                 }
               }
             ],
-            "metadata": "_Measures.Contribution ΔPY"
+            "metadata": "_Measures.Contribution \u0394PY"
           }
         },
         {
@@ -608,7 +607,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Contribution ΔPY"
+            "metadata": "_Measures.Contribution \u0394PY"
           }
         },
         {
@@ -708,7 +707,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Contribution ΔPY"
+            "metadata": "_Measures.Contribution \u0394PY"
           }
         },
         {
@@ -796,6 +795,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "outlineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
                 }
               }
             }

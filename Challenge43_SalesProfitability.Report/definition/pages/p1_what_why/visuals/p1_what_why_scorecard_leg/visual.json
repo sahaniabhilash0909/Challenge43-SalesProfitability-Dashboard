@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_scorecard_leg",
   "position": {
     "x": 858,
-    "y": 728,
+    "y": 725,
     "z": 6200,
     "height": 23,
     "width": 1000,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -36,7 +36,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -45,7 +45,7 @@
                     }
                   },
                   {
-                    "value": "10–30%   ",
+                    "value": "10\u201330%   ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -53,7 +53,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -70,7 +70,7 @@
                     }
                   },
                   {
-                    "value": "● ",
+                    "value": "\u25cf ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -79,7 +79,7 @@
                     }
                   },
                   {
-                    "value": "ΔPY gain   ",
+                    "value": "\u0394PY gain   ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -87,7 +87,7 @@
                     }
                   },
                   {
-                    "value": "● ",
+                    "value": "\u25cf ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -96,7 +96,7 @@
                     }
                   },
                   {
-                    "value": "ΔPY drop",
+                    "value": "\u0394PY drop",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -250,6 +250,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

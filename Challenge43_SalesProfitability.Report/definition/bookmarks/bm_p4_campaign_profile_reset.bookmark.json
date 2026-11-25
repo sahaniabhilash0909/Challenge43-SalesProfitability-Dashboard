@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.2.0/schema.json",
-  "displayName": "profile · reset all filters",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "profile \u00b7 reset all filters",
   "name": "bm_p4_campaign_profile_reset",
   "options": {
     "targetVisualNames": []
   },
   "explorationState": {
-    "version": "1.0",
+    "version": "1.3",
     "activeSection": "p4_campaign_profile",
     "sections": {
       "p4_campaign_profile": {
@@ -48,6 +48,10 @@
             }
           },
           "p4_campaign_profile_chip_season": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            },
             "filters": {
               "byExpr": [
                 {
@@ -119,10 +123,6 @@
                   "howCreated": 1
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {}
             }
           },
           "p4_campaign_profile_lbl_channel": {
@@ -132,10 +132,14 @@
             }
           },
           "p4_campaign_profile_chip_channel": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r839701784933",
+                  "name": "r789348906284",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -150,10 +154,6 @@
                   "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {}
             }
           },
           "p4_campaign_profile_btn_filters": {
@@ -397,10 +397,17 @@
             }
           },
           "p4_campaign_profile_dw_s_seg": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r85655160158",
+                  "name": "r620303935628",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -415,13 +422,6 @@
                   "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "p4_campaign_profile_dw_l_city": {
@@ -434,10 +434,17 @@
             }
           },
           "p4_campaign_profile_dw_s_city": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r721551182689",
+                  "name": "r769914411212",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -452,13 +459,6 @@
                   "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "p4_campaign_profile_dw_l_cat": {
@@ -471,10 +471,17 @@
             }
           },
           "p4_campaign_profile_dw_s_cat": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r912524215466",
+                  "name": "r652123996402",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -489,13 +496,6 @@
                   "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "p4_campaign_profile_dw_l_ctype": {
@@ -508,10 +508,17 @@
             }
           },
           "p4_campaign_profile_dw_s_ctype": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r732580866124",
+                  "name": "r463684594702",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -526,13 +533,6 @@
                   "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "p4_campaign_profile_dw_l_band": {
@@ -545,10 +545,17 @@
             }
           },
           "p4_campaign_profile_dw_s_band": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            },
             "filters": {
               "byExpr": [
                 {
-                  "name": "r530174133823",
+                  "name": "r343435302769",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -563,13 +570,6 @@
                   "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "advancedSlicerVisual",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
             }
           },
           "p4_campaign_profile_dw_guide_hdr": {

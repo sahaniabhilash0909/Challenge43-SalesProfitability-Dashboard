@@ -3,9 +3,9 @@
   "name": "p1_what_why_zc_band_m",
   "position": {
     "x": 1382,
-    "y": 342,
+    "y": 341,
     "z": 5700,
-    "height": 24,
+    "height": 38,
     "width": 476,
     "tabOrder": 5700
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

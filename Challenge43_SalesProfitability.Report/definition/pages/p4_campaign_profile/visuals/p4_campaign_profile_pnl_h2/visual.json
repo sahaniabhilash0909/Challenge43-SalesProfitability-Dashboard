@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_pnl_h2",
   "position": {
     "x": 758,
-    "y": 358,
+    "y": 373,
     "z": 3200,
     "height": 21,
     "width": 134,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "ΔPY",
+                    "value": "\u0394PY",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
@@ -174,6 +174,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

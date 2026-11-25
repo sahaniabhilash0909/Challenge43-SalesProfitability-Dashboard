@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_zc_daily_leg",
   "position": {
     "x": 1094,
-    "y": 216,
+    "y": 227,
     "z": 3800,
     "height": 23,
     "width": 764,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -36,7 +36,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -199,6 +199,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

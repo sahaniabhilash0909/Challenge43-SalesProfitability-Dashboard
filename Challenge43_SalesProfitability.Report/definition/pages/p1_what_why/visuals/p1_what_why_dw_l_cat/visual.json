@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_dw_l_cat",
   "position": {
     "x": 1432,
@@ -174,7 +174,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   },
   "isHidden": true
 }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_credit",
   "position": {
     "x": 30,
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Abhilash Sahani · 2026",
+                    "value": "Abhilash Sahani \u00b7 2026",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8pt",
@@ -187,6 +187,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

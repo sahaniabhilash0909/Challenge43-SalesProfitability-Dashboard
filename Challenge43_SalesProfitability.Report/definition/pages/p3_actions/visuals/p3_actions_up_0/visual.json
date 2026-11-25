@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_up_0",
   "position": {
     "x": 280,
-    "y": 396,
+    "y": 398,
     "z": 2800,
-    "height": 268,
+    "height": 266,
     "width": 506,
     "tabOrder": 2800
   },
@@ -27,27 +27,7 @@
                 }
               },
               "queryRef": "Moves.Label",
-              "nativeQueryRef": "Label",
-              "active": true
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Anchor Moves"
-                }
-              },
-              "queryRef": "_Measures.Anchor Moves",
-              "nativeQueryRef": "Anchor Moves",
-              "displayName": "row"
+              "nativeQueryRef": "Label"
             }
           ]
         },
@@ -69,6 +49,25 @@
               "displayName": "Upside"
             }
           ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Anchor Moves"
+                }
+              },
+              "queryRef": "_Measures.Anchor Moves",
+              "nativeQueryRef": "Anchor Moves",
+              "displayName": "row"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -86,7 +85,8 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {

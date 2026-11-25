@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_hm_leg",
   "position": {
     "x": 282,
-    "y": 728,
+    "y": 725,
     "z": 6100,
     "height": 23,
     "width": 960,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -36,7 +36,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -45,7 +45,7 @@
                     }
                   },
                   {
-                    "value": "6–10%   ",
+                    "value": "6\u201310%   ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -53,7 +53,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -62,7 +62,7 @@
                     }
                   },
                   {
-                    "value": "10–15%   ",
+                    "value": "10\u201315%   ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI'",
                       "fontSize": "7.5pt",
@@ -70,7 +70,7 @@
                     }
                   },
                   {
-                    "value": "■ ",
+                    "value": "\u25a0 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -233,6 +233,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

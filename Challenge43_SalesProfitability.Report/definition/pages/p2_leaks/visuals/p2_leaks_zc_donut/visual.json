@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_donut",
   "position": {
     "x": 818,
-    "y": 368,
+    "y": 379,
     "z": 5400,
-    "height": 278,
+    "height": 267,
     "width": 502,
     "tabOrder": 5400
   },
@@ -104,12 +104,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Net Sales ΔPY%"
+                  "Property": "Net Sales \u0394PY%"
                 }
               },
-              "queryRef": "_Measures.Net Sales ΔPY%",
-              "nativeQueryRef": "Net Sales ΔPY%",
-              "displayName": "Net sales ΔPY%"
+              "queryRef": "_Measures.Net Sales \u0394PY%",
+              "nativeQueryRef": "Net Sales \u0394PY%",
+              "displayName": "Net sales \u0394PY%"
             },
             {
               "field": {
@@ -231,39 +231,6 @@
               "expr": {
                 "Literal": {
                   "Value": "'name'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "license": [
-        {
-          "properties": {
-            "lastVersionUsed": {
-              "expr": {
-                "Literal": {
-                  "Value": "'v1.12.103.0'"
-                }
-              }
-            },
-            "lastVersionUpdated": {
-              "expr": {
-                "Literal": {
-                  "Value": "1795614960000D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "trialLicense": [
-        {
-          "properties": {
-            "validLicenseProvided": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
                 }
               }
             }

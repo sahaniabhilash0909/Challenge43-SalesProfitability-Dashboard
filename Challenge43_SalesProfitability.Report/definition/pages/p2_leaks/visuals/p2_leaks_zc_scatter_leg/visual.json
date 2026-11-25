@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_scatter_leg",
   "position": {
     "x": 1366,
-    "y": 368,
+    "y": 379,
     "z": 5700,
     "height": 23,
     "width": 492,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "● ",
+                    "value": "\u25cf ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -36,7 +36,7 @@
                     }
                   },
                   {
-                    "value": "● ",
+                    "value": "\u25cf ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "8.5pt",
@@ -199,6 +199,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

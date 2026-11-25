@@ -75,7 +75,7 @@ def header(p, pid, kicker, title, msg_m, nxt=None, back=False):
 
     mx, my, mw, mh = MSG
     msg_w = mw - 134 if back else mw - 30
-    textcard(p, f'{pid}_msg', mx + 16, my + 7, msg_w, mh - 14, msg_m, size=11.5, color=INK, font=FONT_SB, wrap=False)
+    textcard(p, f'{pid}_msg', mx + 16, my + 3, msg_w, mh - 6, msg_m, size=10.5, color=INK, font=FONT_SB, wrap=True)
     if back:
         bx, by, bw, bh = BACK_BTN
         tbutton(p, f'{pid}_btn_back', bx, by, bw, bh, '‹  Back', lback(), BODY, INK, size=9,
@@ -94,9 +94,12 @@ def card_head(p, name, card, take_m, kicker, note=None):
     parts = [slabel(kicker, 7.5, MUTED)]
     if note:
         parts.append(run('   ·   ' + note, 7.5, SUBTLE))
-    textbox(p, f'{name}_t', x + 18, y + 12, w - 36, 18, [parts])
+    textbox(p, f'{name}_t', x + 18, y + 10, w - 36, 18, [parts])
     if take_m:
-        textcard(p, f'{name}_m', x + 18, y + 32, w - 36, 24, take_m, size=10.5, color=INK, font=FONT_SB, wrap=False)
+        mh = 24 if w >= 850 else 38
+        textcard(p, f'{name}_m', x + 18, y + 31, w - 36, mh, take_m, size=9.5, color=INK, font=FONT_SB, wrap=True)
+        return 31 + mh  # 55 on wide cards, 69 on narrow/medium cards
+    return 33
 
 
 def card_legend(p, name, card, items, y_off=58):
@@ -247,12 +250,12 @@ def table(p, name, blk, cat, label_w, cols, sort, rows, anchor, tt=True, y_off=8
 
 
 def heatmap(p, name, card, rows, colsf, val, col_m, font_m, take_m, kicker, note, nrows=4, ncols=5, rh_w=138, legend=None):
-    card_head(p, name, card, take_m, kicker, note)
+    leg_y = card_head(p, name, card, take_m, kicker, note)
     x, y, w, h = card
     if legend:
-        card_legend(p, f'{name}_leg', card, legend)
-    top_y = y + (78 if legend else 64)
-    vw, vh = w - 32, h - (88 if legend else 76)
+        card_legend(p, f'{name}_leg', card, legend, y_off=leg_y)
+    top_y = y + (leg_y + 23 if legend else leg_y + 4)
+    vw, vh = w - 32, h - ((leg_y + 33) if legend else (leg_y + 14))
     rp = max(4, min(14, round(((vh - 14) / (nrows + 1) - 27) / 2)))
     cw = max(60, min(170, round((vw - rh_w - 12) / ncols) - 6))
     o = {'grid': props(gridVertical=L(True), gridVerticalColor=col(WHITE), gridVerticalWeight=D(4),
@@ -273,12 +276,12 @@ def heatmap(p, name, card, rows, colsf, val, col_m, font_m, take_m, kicker, note
 
 
 def scorecard_matrix(p, name, card, rows, values, take_m, kicker, note, col_widths, alignments, cond_fmt, sort=None, legend=None):
-    card_head(p, name, card, take_m, kicker, note)
+    leg_y = card_head(p, name, card, take_m, kicker, note)
     x, y, w, h = card
     if legend:
-        card_legend(p, f'{name}_leg', card, legend)
-    top_y = y + (78 if legend else 64)
-    vh = h - (88 if legend else 76)
+        card_legend(p, f'{name}_leg', card, legend, y_off=leg_y)
+    top_y = y + (leg_y + 23 if legend else leg_y + 4)
+    vh = h - ((leg_y + 33) if legend else (leg_y + 14))
     vals_obj = [{'properties': {
         'fontSize': D(9.5), 'fontFamily': L(NUM), 'fontColorPrimary': col(INK), 'backColorPrimary': col(WHITE),
         'fontColorSecondary': col(INK), 'backColorSecondary': col(WHITE), 'outlineStyle': L(0),
@@ -307,12 +310,12 @@ def scorecard_matrix(p, name, card, rows, values, take_m, kicker, note, col_widt
 
 
 def zc_chart(p, name, kind, card, roles, take_m, kicker, note, extra=None, sort=None, legend=None):
-    card_head(p, name, card, take_m, kicker, note)
+    leg_y = card_head(p, name, card, take_m, kicker, note)
     x, y, w, h = card
     if legend:
-        card_legend(p, f'{name}_leg', card, legend)
-    top_y = y + (78 if legend else 58)
-    vis_h = h - (86 if legend else 66)
+        card_legend(p, f'{name}_leg', card, legend, y_off=leg_y)
+    top_y = y + (leg_y + 23 if legend else leg_y)
+    vis_h = h - ((leg_y + 31) if legend else (leg_y + 8))
     vt, _ = ZC[kind]
     o = {'advanced': [{'properties': {'shouldApplyNewDefaults': L(True)}}], 'toolbar': props(show=L(False)), 'legend': props(show=L(False))}
     if extra:
@@ -496,23 +499,23 @@ for i, (lbl, k, ac_m, py_m, sty, bar_m) in enumerate([
 ]):
     kpi_card_v12(p, f'{pid}_k{i}', KPIS[i], lbl, k, ac_m, py_m, style=sty, bar_col_m=bar_m)
 
-card_head(p, f'{pid}_br', C['bridge'], 'Title Bridge Var', 'PROFIT BRIDGE', 'kEUR · PY to CY')
+br_leg_y = card_head(p, f'{pid}_br', C['bridge'], 'Title Bridge Var', 'PROFIT BRIDGE', 'kEUR · PY to CY')
 card_legend(p, f'{pid}_br_leg', C['bridge'], [
     ('■', CORAL, 'Took margin'),
     ('■', SLATE_400, 'Added margin'),
     ('■', SLATE, 'CY total'),
     ('■', PY_BAR, 'PY total'),
-])
+], y_off=br_leg_y)
 table(p, f'{pid}_br', C['bridge'], 'Bridge Lines.Label', 126,
       [{'kind': 'stack', 'hdr': '', 'w': 392, 'end': 'Axis Bridge End 2',
         'series': [('Bridge Base k', WHITE, None), ('Bridge PY k', PY_BAR, None), ('Bridge AC k', SLATE, None),
                    ('Bridge Up k', SLATE_400, None), ('Bridge Down k', CORAL, None),
                    ('Bridge Tail k', WHITE, {'pos': 'InsideBase', 'value': 'Bridge Label k', 'color': INK})]}],
-      [('Bridge Lines.Label', 'Ascending')], rows=10, anchor='Anchor Bridge', tt=False, y_off=82, hdr_y_off=60)
+      [('Bridge Lines.Label', 'Ascending')], rows=10, anchor='Anchor Bridge', tt=False, y_off=br_leg_y + 24, hdr_y_off=br_leg_y)
 
 mc_x, mc_y, mc_w, mc_h = C['month']
-card_head(p, f'{pid}_month', C['month'], 'Title Month AC', 'CONTRIBUTION BY MONTH', 'kEUR · Oct–Jan · CY solid vs PY dotted')
-textbox(p, f'{pid}_month_leg', mc_x + 18, mc_y + 58, mc_w - 36, 18, [[
+m_leg_y = card_head(p, f'{pid}_month', C['month'], 'Title Month AC', 'CONTRIBUTION BY MONTH', 'kEUR · Oct–Jan · CY solid vs PY dotted')
+textbox(p, f'{pid}_month_leg', mc_x + 18, mc_y + m_leg_y, mc_w - 36, 18, [[
     run('━━ ', 7.5, SLATE, FONT_SB, True), run('CY   ', 7.5, MUTED),
     run('··· ', 9, SUBTLE, FONT_SB, True), run('PY   ', 7.5, MUTED),
     run('● ', 8.5, SLATE), run('Max   ', 7.5, SLATE, FONT_SB, True),
@@ -549,7 +552,7 @@ month_objs = {
          'selector': {'metadata': '_Measures.Month Contrib Min AC k'}},
     ],
 }
-p.add(f'{pid}_month', 'areaChart', mc_x + 12, mc_y + 78, mc_w - 24, mc_h - 88,
+p.add(f'{pid}_month', 'areaChart', mc_x + 12, mc_y + m_leg_y + 24, mc_w - 24, mc_h - (m_leg_y + 32),
       q=query({'Category': ['DimDate.Season Month', 'DimDate.Date'],
                'Y': [('#Contribution PY k', 'PY'), ('#Contribution AC k', 'CY'),
                      ('#Month Contrib Max AC k', 'Max'), ('#Month Contrib Min AC k', 'Min')],
@@ -701,7 +704,7 @@ card_head(p, f'{pid}_up', C['upside_bar'], None, 'UPSIDE BY MOVE', 'kEUR · CY s
 card_legend(p, f'{pid}_up_leg', C['upside_bar'], [('■', SLATE, 'Indicative CY contribution upside (€k)')], y_off=34)
 table(p, f'{pid}_up', (ux, uy, uw, uh), 'Moves.Label', 190,
       [{'kind': 'var', 'hdr': '', 'w': 308, 'm': 'Pot by Move k', 'label': 'Upside', 'fill': SLATE, 'end': 'Axis Moves End'}],
-      [('#Pot by Move k', 'Descending')], rows=4, anchor='Anchor Moves', tt=False, y_off=56, hdr_y_off=44)
+      [('#Pot by Move k', 'Descending')], rows=4, anchor='Anchor Moves', tt=False, y_off=58, hdr_y_off=44)
 
 lx_, ly_, lw_, lh_ = C['limits']
 card_head(p, f'{pid}_lim', C['limits'], None, 'ANALYTICAL GUARDRAILS', 'what this dataset cannot tell you')
@@ -750,18 +753,18 @@ fx_, fy_, fw_, fh_ = C['facts']
 textbox(p, f'{pid}_facts_hdr', fx_ + 18, fy_ + 12, fw_ - 36, 18, [[slabel('EVENT FACTS', 7.5, MUTED), run('   ·   for the campaign or type you drilled into', 7.5, SUBTLE)]])
 textcard(p, f'{pid}_facts_txt', fx_ + 18, fy_ + 34, fw_ - 36, 62, 'Drill Campaign Facts', size=9.5, color=BODY, font=FONT, wrap=True)
 
-card_head(p, f'{pid}_pl', C['pnl'], 'Title Bridge AC', 'PROFIT AND LOSS', 'kEUR · costs in brackets')
+pl_leg_y = card_head(p, f'{pid}_pl', C['pnl'], 'Title Bridge AC', 'PROFIT AND LOSS', 'kEUR · costs in brackets')
 card_legend(p, f'{pid}_pl_leg', C['pnl'], [
     ('■', PY_BAR, 'PY'),
     ('■', SLATE, 'CY / Favorable ΔPY'),
     ('■', CORAL, 'Adverse ΔPY'),
-])
+], y_off=pl_leg_y)
 table(p, f'{pid}_pnl', C['pnl'], 'PnL Lines.Label', 134,
       [{'kind': 'single', 'hdr': 'PY', 'w': 158, 'm': 'PL PY k', 'label': 'PY', 'colour': PY_BAR, 'start': 'Axis PL Start', 'end': 'Axis PL End'},
        {'kind': 'single', 'hdr': 'CY', 'w': 158, 'm': 'PL AC k', 'label': 'CY', 'colour': SLATE, 'start': 'Axis PL Start', 'end': 'Axis PL End'},
        {'kind': 'var', 'hdr': 'ΔPY', 'w': 134, 'm': 'PL ΔPY k', 'label': 'ΔPY', 'fill_m': 'Colour PL Δ', 'start': 'Axis PL Δ Start', 'end': 'Axis PL Δ End'},
        {'kind': 'pin', 'hdr': 'ΔPY %', 'w': 126, 'm': 'PL ΔPY%', 'label': 'ΔPY %', 'fill_m': 'Colour PL Δ', 'start': 'Axis PL Δ% Start', 'end': 'Axis PL Δ% End'}],
-      [('PnL Lines.Label', 'Ascending')], rows=10, anchor='Anchor PL', tt=False, y_off=100, hdr_y_off=78)
+      [('PnL Lines.Label', 'Ascending')], rows=10, anchor='Anchor PL', tt=False, y_off=pl_leg_y + 46, hdr_y_off=pl_leg_y + 24)
 
 zc_chart(p, f'{pid}_zc_daily', 'combo', C['daily'],
          {'Category': ['DimDate.Date'], 'Values1': [('#Net Sales PY', 'PY')], 'Values2': [('#Net Sales AC', 'CY')],
@@ -782,8 +785,8 @@ drawers['profile'] = drawer(p, pid, GUIDES['profile'])
 
 # ================================================================== Tooltip page
 p = Page(TT_PAGE, 'Snapshot tooltip', 'bg_tooltip_c43.png', tooltip=True, w=TT['w'], h=TT['h']); pages['tooltip'] = p
-textcard(p, 'tt_header', 20, 10, 328, 24, 'TT Header', size=11.5, color=INK, font=FONT_SB, wrap=False, bold=True)
-textcard(p, 'tt_sel', 20, 36, 328, 18, 'Period Short', size=7, color=MUTED, font=NUM, wrap=False)
+textcard(p, 'tt_header', 20, 8, 328, 28, 'TT Header', size=10.5, color=INK, font=FONT_SB, wrap=True, bold=True)
+textcard(p, 'tt_sel', 20, 38, 328, 16, 'Period Short', size=7, color=MUTED, font=NUM, wrap=False)
 for i, (lbl, k, x, y) in enumerate([
     ('NET SALES · CY', 'Net Sales', 20, 70),
     ('CONTRIBUTION · CY', 'Contribution', 198, 70),

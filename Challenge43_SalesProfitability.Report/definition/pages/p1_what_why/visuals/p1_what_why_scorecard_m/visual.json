@@ -3,7 +3,7 @@
   "name": "p1_what_why_scorecard_m",
   "position": {
     "x": 858,
-    "y": 702,
+    "y": 701,
     "z": 6100,
     "height": 24,
     "width": 1000,
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

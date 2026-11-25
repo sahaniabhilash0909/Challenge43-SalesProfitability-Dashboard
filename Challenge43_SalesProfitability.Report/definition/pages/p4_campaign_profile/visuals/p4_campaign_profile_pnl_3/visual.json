@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_pnl_3",
   "position": {
     "x": 902,
-    "y": 380,
+    "y": 395,
     "z": 3500,
-    "height": 624,
+    "height": 609,
     "width": 126,
     "tabOrder": 3500
   },
@@ -27,8 +27,26 @@
                 }
               },
               "queryRef": "PnL Lines.Label",
-              "nativeQueryRef": "Label",
-              "active": true
+              "nativeQueryRef": "Label"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "PL \u0394PY%"
+                }
+              },
+              "queryRef": "_Measures.PL \u0394PY%",
+              "nativeQueryRef": "PL \u0394PY%",
+              "displayName": "\u0394PY %"
             }
           ]
         },
@@ -50,25 +68,6 @@
               "displayName": "row"
             }
           ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "PL ΔPY%"
-                }
-              },
-              "queryRef": "_Measures.PL ΔPY%",
-              "nativeQueryRef": "PL ΔPY%",
-              "displayName": "ΔPY %"
-            }
-          ]
         }
       },
       "sortDefinition": {
@@ -86,7 +85,8 @@
             },
             "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -128,7 +128,7 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Axis PL Δ% Start"
+                  "Property": "Axis PL \u0394% Start"
                 }
               }
             },
@@ -140,7 +140,7 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Axis PL Δ% End"
+                  "Property": "Axis PL \u0394% End"
                 }
               }
             }
@@ -192,7 +192,7 @@
             "innerPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "65D"
+                  "Value": "64D"
                 }
               }
             },
@@ -264,7 +264,7 @@
                           "Entity": "_Measures"
                         }
                       },
-                      "Property": "Colour PL Δ"
+                      "Property": "Colour PL \u0394"
                     }
                   }
                 }

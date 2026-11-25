@@ -3,9 +3,9 @@
   "name": "p4_campaign_profile_zc_band_m",
   "position": {
     "x": 1094,
-    "y": 626,
+    "y": 625,
     "z": 4100,
-    "height": 24,
+    "height": 38,
     "width": 764,
     "tabOrder": 4100
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_dw_g_txt",
   "position": {
     "x": 1432,
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct–Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
+                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct\u2013Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -113,7 +113,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Each move pairs live DAX evidence, a deep-link back to Chapter 1 or 2, indicative €k upside, and a pilot test protocol.",
+                    "value": "Each move pairs live DAX evidence, a deep-link back to Chapter 1 or 2, indicative \u20ack upside, and a pilot test protocol.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -280,7 +280,8 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   },
   "isHidden": true
 }

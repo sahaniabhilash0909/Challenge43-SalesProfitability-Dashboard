@@ -3,7 +3,7 @@
   "name": "p2_leaks_hm_m",
   "position": {
     "x": 282,
-    "y": 702,
+    "y": 701,
     "z": 6000,
     "height": 24,
     "width": 960,
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.5D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

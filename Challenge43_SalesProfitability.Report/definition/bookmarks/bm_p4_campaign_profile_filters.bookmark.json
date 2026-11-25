@@ -1,9 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.2.0/schema.json",
-  "displayName": "profile · filters",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "profile \u00b7 filters",
   "name": "bm_p4_campaign_profile_filters",
   "options": {
-    "applyOnlyToTargetVisuals": true,
     "targetVisualNames": [
       "p4_campaign_profile_dw_img",
       "p4_campaign_profile_dw_close",
@@ -23,10 +22,11 @@
       "p4_campaign_profile_dw_limits_hdr",
       "p4_campaign_profile_dw_lim_txt"
     ],
+    "applyOnlyToTargetVisuals": true,
     "suppressData": true
   },
   "explorationState": {
-    "version": "1.0",
+    "version": "1.3",
     "activeSection": "p4_campaign_profile",
     "sections": {
       "p4_campaign_profile": {

@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_month_leg",
   "position": {
     "x": 858,
-    "y": 368,
+    "y": 379,
     "z": 5400,
     "height": 24,
     "width": 472,
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "━━ ",
+                    "value": "\u2501\u2501 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
@@ -36,7 +36,7 @@
                     }
                   },
                   {
-                    "value": "··· ",
+                    "value": "\u00b7\u00b7\u00b7 ",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "9pt",
@@ -53,7 +53,7 @@
                     }
                   },
                   {
-                    "value": "● ",
+                    "value": "\u25cf ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8.5pt",
@@ -70,7 +70,7 @@
                     }
                   },
                   {
-                    "value": "● ",
+                    "value": "\u25cf ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8.5pt",
@@ -233,6 +233,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": false
   }
 }

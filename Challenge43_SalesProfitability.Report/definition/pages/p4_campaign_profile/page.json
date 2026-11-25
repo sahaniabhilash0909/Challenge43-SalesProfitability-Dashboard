@@ -5,74 +5,6 @@
   "displayOption": "FitToPage",
   "height": 1080,
   "width": 1920,
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "dt_campaign_type",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCampaign"
-              }
-            },
-            "Property": "Campaign Type"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
-      },
-      {
-        "name": "dt_campaign",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCampaign"
-              }
-            },
-            "Property": "Campaign"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "Drillthrough"
-      }
-    ]
-  },
-  "pageBinding": {
-    "name": "dt_binding",
-    "type": "Drillthrough",
-    "parameters": [
-      {
-        "name": "dt_param_dt_campaign_type",
-        "boundFilter": "dt_campaign_type",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCampaign"
-              }
-            },
-            "Property": "Campaign Type"
-          }
-        }
-      },
-      {
-        "name": "dt_param_dt_campaign",
-        "boundFilter": "dt_campaign",
-        "fieldExpr": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCampaign"
-              }
-            },
-            "Property": "Campaign"
-          }
-        }
-      }
-    ]
-  },
   "objects": {
     "background": [
       {
@@ -139,6 +71,75 @@
       }
     ]
   },
-  "visibility": "HiddenInViewMode",
-  "type": "Drillthrough"
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dt_campaign_type",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCampaign"
+              }
+            },
+            "Property": "Campaign Type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      },
+      {
+        "name": "dt_campaign",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCampaign"
+              }
+            },
+            "Property": "Campaign"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "type": "Drillthrough",
+  "pageBinding": {
+    "name": "dt_binding",
+    "type": "Drillthrough",
+    "referenceScope": "Default",
+    "parameters": [
+      {
+        "name": "dt_param_dt_campaign_type",
+        "boundFilter": "dt_campaign_type",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCampaign"
+              }
+            },
+            "Property": "Campaign Type"
+          }
+        }
+      },
+      {
+        "name": "dt_param_dt_campaign",
+        "boundFilter": "dt_campaign",
+        "fieldExpr": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCampaign"
+              }
+            },
+            "Property": "Campaign"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode"
 }
