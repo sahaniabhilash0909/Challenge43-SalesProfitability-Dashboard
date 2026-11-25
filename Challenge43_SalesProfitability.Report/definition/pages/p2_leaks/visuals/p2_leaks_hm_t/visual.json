@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_hm_t",
   "position": {
-    "x": 724,
-    "y": 568,
-    "z": 5300,
+    "x": 282,
+    "y": 682,
+    "z": 5700,
     "height": 21,
-    "width": 674,
-    "tabOrder": 5300
+    "width": 960,
+    "tabOrder": 5700
   },
   "visual": {
     "visualType": "textbox",

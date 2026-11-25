@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_facts_txt",
   "position": {
-    "x": 60,
-    "y": 228,
-    "z": 1500,
-    "height": 54,
-    "width": 756,
-    "tabOrder": 1500
+    "x": 282,
+    "y": 192,
+    "z": 2400,
+    "height": 62,
+    "width": 760,
+    "tabOrder": 2400
   },
   "visual": {
     "visualType": "shape",

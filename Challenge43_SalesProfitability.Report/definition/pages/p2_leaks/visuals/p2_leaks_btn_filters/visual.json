@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_btn_filters",
   "position": {
-    "x": 1758,
-    "y": 30,
-    "z": 800,
-    "height": 34,
-    "width": 118,
-    "tabOrder": 800
+    "x": 64,
+    "y": 580,
+    "z": 1000,
+    "height": 38,
+    "width": 150,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'\u2630  Filters'"
+                  "Value": "'More filters'"
                 }
               }
             },
@@ -88,7 +88,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },

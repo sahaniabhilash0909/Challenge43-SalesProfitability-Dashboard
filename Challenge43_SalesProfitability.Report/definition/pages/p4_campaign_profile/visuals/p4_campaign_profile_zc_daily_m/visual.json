@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_zc_daily_m",
   "position": {
-    "x": 888,
-    "y": 112,
-    "z": 2700,
-    "height": 26,
-    "width": 988,
-    "tabOrder": 2700
+    "x": 1094,
+    "y": 190,
+    "z": 3600,
+    "height": 24,
+    "width": 764,
+    "tabOrder": 3600
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "10.5D"
                 }
               }
             },

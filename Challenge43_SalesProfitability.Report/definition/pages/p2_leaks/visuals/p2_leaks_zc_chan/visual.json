@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_chan",
   "position": {
-    "x": 1430,
-    "y": 618,
-    "z": 5800,
-    "height": 394,
-    "width": 446,
-    "tabOrder": 5800
+    "x": 1288,
+    "y": 728,
+    "z": 6200,
+    "height": 280,
+    "width": 576,
+    "tabOrder": 6200
   },
   "visual": {
     "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
@@ -79,7 +79,7 @@
               },
               "queryRef": "_Measures.Contribution AC",
               "nativeQueryRef": "Contribution AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         },
@@ -97,7 +97,8 @@
                 }
               },
               "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC"
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
             },
             {
               "field": {
@@ -111,7 +112,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC"
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
             },
             {
               "field": {
@@ -125,7 +127,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY"
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "Contribution \u0394PY"
             }
           ]
         }
@@ -267,10 +270,31 @@
                 }
               }
             },
+            "widthPercent1": {
+              "expr": {
+                "Literal": {
+                  "Value": "84L"
+                }
+              }
+            },
             "zIndex1": {
               "expr": {
                 "Literal": {
                   "Value": "25L"
+                }
+              }
+            },
+            "customize2": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "widthPercent2": {
+              "expr": {
+                "Literal": {
+                  "Value": "46L"
                 }
               }
             }

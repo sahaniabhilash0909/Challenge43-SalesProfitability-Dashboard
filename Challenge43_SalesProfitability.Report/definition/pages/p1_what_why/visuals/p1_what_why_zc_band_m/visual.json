@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_zc_band_m",
   "position": {
-    "x": 724,
-    "y": 588,
-    "z": 5200,
-    "height": 26,
-    "width": 520,
-    "tabOrder": 5200
+    "x": 1382,
+    "y": 342,
+    "z": 5700,
+    "height": 24,
+    "width": 476,
+    "tabOrder": 5700
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "10.5D"
                 }
               }
             },

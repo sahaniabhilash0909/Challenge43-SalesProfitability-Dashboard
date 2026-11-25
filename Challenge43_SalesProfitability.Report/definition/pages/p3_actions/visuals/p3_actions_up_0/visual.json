@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_up_0",
   "position": {
-    "x": 44,
-    "y": 480,
-    "z": 2300,
-    "height": 244,
-    "width": 614,
-    "tabOrder": 2300
+    "x": 280,
+    "y": 384,
+    "z": 2700,
+    "height": 280,
+    "width": 506,
+    "tabOrder": 2700
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -180,14 +180,14 @@
             "innerPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "70D"
+                  "Value": "69D"
                 }
               }
             },
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "34D"
+                  "Value": "38D"
                 }
               }
             },

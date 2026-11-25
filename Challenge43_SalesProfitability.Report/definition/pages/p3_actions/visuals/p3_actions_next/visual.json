@@ -3,11 +3,11 @@
   "name": "p3_actions_next",
   "position": {
     "x": 1520,
-    "y": 1031,
-    "z": 1800,
+    "y": 1027,
+    "z": 2200,
     "height": 26,
     "width": 356,
-    "tabOrder": 1800
+    "tabOrder": 2200
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Back to start  \u00b7  1 \u00b7 What happened & why  \u21ba'"
+                  "Value": "'Back to start  \u00b7  What happened & why  \u21ba'"
                 }
               }
             },
@@ -342,7 +342,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Go to 1 \u00b7 What happened & why'"
+                  "Value": "'Open What happened & why'"
                 }
               }
             }

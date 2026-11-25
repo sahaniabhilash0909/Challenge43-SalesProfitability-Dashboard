@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_m0_pot",
   "position": {
-    "x": 1564,
-    "y": 208,
-    "z": 3900,
+    "x": 1576,
+    "y": 198,
+    "z": 3800,
     "height": 38,
-    "width": 310,
-    "tabOrder": 3900
+    "width": 280,
+    "tabOrder": 3800
   },
   "visual": {
     "visualType": "shape",

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_kicker",
   "position": {
-    "x": 44,
-    "y": 94,
-    "z": 900,
+    "x": 264,
+    "y": 23,
+    "z": 1600,
     "height": 21,
-    "width": 340,
-    "tabOrder": 900
+    "width": 860,
+    "tabOrder": 1600
   },
   "visual": {
     "visualType": "textbox",
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
-                      "color": "#646B7D",
+                      "color": "#4F5D75",
                       "fontWeight": "bold"
                     }
                   }

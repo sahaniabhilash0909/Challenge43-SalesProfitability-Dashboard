@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_k0_spark",
   "position": {
-    "x": 342,
-    "y": 300,
-    "z": 2300,
-    "height": 124,
-    "width": 322,
-    "tabOrder": 2300
+    "x": 414.0,
+    "y": 196,
+    "z": 2700,
+    "height": 90,
+    "width": 149.6,
+    "tabOrder": 2700
   },
   "visual": {
     "visualType": "areaChart",
@@ -61,7 +61,7 @@
               },
               "queryRef": "_Measures.OE Margin AC",
               "nativeQueryRef": "OE Margin AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         }
@@ -139,7 +139,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "7.5D"
+                  "Value": "7D"
                 }
               }
             },

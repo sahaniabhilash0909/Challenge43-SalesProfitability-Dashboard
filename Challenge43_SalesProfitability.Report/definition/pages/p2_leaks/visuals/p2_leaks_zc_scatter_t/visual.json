@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_scatter_t",
   "position": {
-    "x": 1500,
-    "y": 92,
-    "z": 5000,
+    "x": 1366,
+    "y": 322,
+    "z": 5400,
     "height": 21,
-    "width": 376,
-    "tabOrder": 5000
+    "width": 492,
+    "tabOrder": 5400
   },
   "visual": {
     "visualType": "textbox",

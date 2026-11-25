@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_cat",
   "position": {
-    "x": 724,
-    "y": 142,
-    "z": 4600,
-    "height": 394,
-    "width": 364,
-    "tabOrder": 4600
+    "x": 276,
+    "y": 368,
+    "z": 5000,
+    "height": 278,
+    "width": 502,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
@@ -93,7 +93,7 @@
               },
               "queryRef": "_Measures.Contribution AC",
               "nativeQueryRef": "Contribution AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         },
@@ -111,7 +111,8 @@
                 }
               },
               "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC"
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
             },
             {
               "field": {
@@ -125,7 +126,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC"
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
             },
             {
               "field": {
@@ -139,7 +141,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY"
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "Contribution \u0394PY"
             },
             {
               "field": {
@@ -153,7 +156,8 @@
                 }
               },
               "queryRef": "_Measures.Return AC",
-              "nativeQueryRef": "Return AC"
+              "nativeQueryRef": "Return AC",
+              "displayName": "Return rate CY"
             }
           ]
         }
@@ -295,10 +299,31 @@
                 }
               }
             },
+            "widthPercent1": {
+              "expr": {
+                "Literal": {
+                  "Value": "84L"
+                }
+              }
+            },
             "zIndex1": {
               "expr": {
                 "Literal": {
                   "Value": "25L"
+                }
+              }
+            },
+            "customize2": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "widthPercent2": {
+              "expr": {
+                "Literal": {
+                  "Value": "46L"
                 }
               }
             }

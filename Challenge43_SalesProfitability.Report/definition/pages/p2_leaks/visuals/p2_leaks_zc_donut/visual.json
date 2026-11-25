@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_donut",
   "position": {
-    "x": 1112,
-    "y": 142,
-    "z": 4900,
-    "height": 394,
-    "width": 364,
-    "tabOrder": 4900
+    "x": 818,
+    "y": 368,
+    "z": 5300,
+    "height": 278,
+    "width": 502,
+    "tabOrder": 5300
   },
   "visual": {
     "visualType": "ZoomChartsPieChartPaidE77E4ED357DC402ABA005987437CF500",
@@ -60,7 +60,7 @@
               },
               "queryRef": "_Measures.Net Sales AC",
               "nativeQueryRef": "Net Sales AC",
-              "displayName": "Net sales AC"
+              "displayName": "Net sales CY"
             }
           ]
         },
@@ -78,7 +78,8 @@
                 }
               },
               "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC"
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
             },
             {
               "field": {
@@ -92,7 +93,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution AC",
-              "nativeQueryRef": "Contribution AC"
+              "nativeQueryRef": "Contribution AC",
+              "displayName": "Contribution CY"
             },
             {
               "field": {
@@ -106,7 +108,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales \u0394PY%",
-              "nativeQueryRef": "Net Sales \u0394PY%"
+              "nativeQueryRef": "Net Sales \u0394PY%",
+              "displayName": "Net sales \u0394PY%"
             },
             {
               "field": {
@@ -120,7 +123,8 @@
                 }
               },
               "queryRef": "_Measures.AOV AC",
-              "nativeQueryRef": "AOV AC"
+              "nativeQueryRef": "AOV AC",
+              "displayName": "AOV CY"
             }
           ]
         }

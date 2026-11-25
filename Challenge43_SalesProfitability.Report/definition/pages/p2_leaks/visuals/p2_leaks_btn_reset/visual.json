@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_btn_reset",
   "position": {
-    "x": 1642,
-    "y": 31,
-    "z": 700,
-    "height": 32,
-    "width": 104,
-    "tabOrder": 700
+    "x": 64,
+    "y": 628,
+    "z": 1100,
+    "height": 38,
+    "width": 150,
+    "tabOrder": 1100
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'\u21ba  Reset'"
+                  "Value": "'Reset all'"
                 }
               }
             },
@@ -65,7 +65,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#454A5E'"
+                      "Value": "'#E2E6EC'"
                     }
                   }
                 }
@@ -74,7 +74,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8.5D"
+                  "Value": "9D"
                 }
               }
             },
@@ -88,7 +88,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -111,7 +111,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2D3142'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -342,7 +342,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Reset all filters: AC returns to latest season'"
+                  "Value": "'Clear every filter: CY returns to latest season'"
                 }
               }
             }

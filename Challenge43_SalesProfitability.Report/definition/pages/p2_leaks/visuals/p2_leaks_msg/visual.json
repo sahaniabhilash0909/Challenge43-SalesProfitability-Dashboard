@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_msg",
   "position": {
-    "x": 44,
-    "y": 118,
-    "z": 1100,
-    "height": 86,
-    "width": 624,
-    "tabOrder": 1100
+    "x": 280,
+    "y": 109,
+    "z": 2000,
+    "height": 28,
+    "width": 1582,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14.5D"
+                  "Value": "11.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },

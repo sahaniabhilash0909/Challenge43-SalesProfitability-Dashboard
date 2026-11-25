@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_br_leg",
   "position": {
-    "x": 724,
-    "y": 138,
-    "z": 4600,
+    "x": 282,
+    "y": 368,
+    "z": 5000,
     "height": 22,
-    "width": 580,
-    "tabOrder": 4600
+    "width": 520,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "textbox",
@@ -43,7 +43,7 @@
                     }
                   },
                   {
-                    "value": "Added / AC   ",
+                    "value": "Added / CY   ",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",

@@ -39,5 +39,5 @@ table 'Bridge Lines'
 				    { "Payment Fees", "Payment fees", 6, "Delta" },
 				    { "Return Handling", "Return handling", 7, "Delta" },
 				    { "Campaign Spend", "Campaign spend", 8, "Delta" },
-				    { "AC", "AC contribution", 9, "Total" } } )
+				    { "AC", "CY contribution", 9, "Total" } } )
 

@@ -4,10 +4,10 @@
   "position": {
     "x": 1432,
     "y": 70,
-    "z": 5900,
+    "z": 6400,
     "height": 50,
     "width": 340,
-    "tabOrder": 5900
+    "tabOrder": 6400
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Apply across all chapters  \u00b7  Season & Channel are on-page",
+                    "value": "Apply across all chapters  \u00b7  Season & Channel are in the left rail",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8pt",

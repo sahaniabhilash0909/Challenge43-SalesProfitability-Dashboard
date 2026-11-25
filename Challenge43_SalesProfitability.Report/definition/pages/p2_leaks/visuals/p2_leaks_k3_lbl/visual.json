@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_k3_lbl",
   "position": {
-    "x": 44,
-    "y": 734,
-    "z": 3400,
-    "height": 23,
-    "width": 286,
-    "tabOrder": 3400
+    "x": 1286.8,
+    "y": 173,
+    "z": 3800,
+    "height": 22,
+    "width": 251.6,
+    "tabOrder": 3800
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "Return rate \u00b7 apparel",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
-                      "fontSize": "8.5pt",
+                      "fontSize": "8pt",
                       "color": "#646B7D"
                     }
                   }

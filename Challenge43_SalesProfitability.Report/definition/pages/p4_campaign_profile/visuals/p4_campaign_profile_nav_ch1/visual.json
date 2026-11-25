@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_nav_ch1",
   "position": {
-    "x": 946,
-    "y": 22,
-    "z": 200,
-    "height": 50,
-    "width": 192,
-    "tabOrder": 200
+    "x": 66,
+    "y": 124,
+    "z": 300,
+    "height": 42,
+    "width": 148,
+    "tabOrder": 300
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'1 \u00b7 What happened & why'"
+                  "Value": "'What & why'"
                 }
               }
             },
@@ -65,7 +65,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2D3142'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -88,7 +88,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -111,7 +111,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2D3142'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -342,7 +342,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Open 1 \u00b7 What happened & why'"
+                  "Value": "'Open What & why'"
                 }
               }
             }

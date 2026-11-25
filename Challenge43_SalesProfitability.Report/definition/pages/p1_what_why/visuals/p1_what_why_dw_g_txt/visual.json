@@ -4,10 +4,10 @@
   "position": {
     "x": 1432,
     "y": 148,
-    "z": 7100,
+    "z": 7600,
     "height": 860,
     "width": 424,
-    "tabOrder": 7100
+    "tabOrder": 7600
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Blue Slate (#4F5D75) = AC & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI rows, Oct\u2013Jan columns show AC colored vs PY with horizontal target ticks.",
+                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct\u2013Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -59,7 +59,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "1  Executive KPI stack.",
+                    "value": "1  KPI strip.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "10pt",
@@ -73,7 +73,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Left rail pairs the thesis headline with five KPIs and Oct\u2013Jan trends (area/line on top, variance bars with PY target ticks below).",
+                    "value": "Top 5 cards show CY hero metrics, PY delta tags, and Oct\u2013Jan CY lines over shaded PY baselines.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -113,7 +113,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Reads top-down from PY contribution to AC: Blue Slate bars added margin, Coral Glow bars eroded it.",
+                    "value": "Left tall card reads top-down from PY contribution to CY: Blue Slate bars added margin, Coral Glow bars eroded it.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -153,7 +153,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Right ZoomCharts visuals compare AC bars against the Silver PY reference line; click any bar/month to drill down or right-click a campaign \u203a Drill through \u203a Campaign profile.",
+                    "value": "Monthly Contribution plots the solid CY line against a dotted light grey PY line with Max (Blue Slate) and Min (Coral) callouts; Discount Depth & Campaign Scorecard ZoomCharts cards drill down or right-click \u203a Drill through.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",

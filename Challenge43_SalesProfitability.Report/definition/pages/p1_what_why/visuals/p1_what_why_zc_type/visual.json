@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_zc_type",
   "position": {
-    "x": 1276,
-    "y": 618,
-    "z": 5600,
-    "height": 394,
-    "width": 600,
-    "tabOrder": 5600
+    "x": 852,
+    "y": 728,
+    "z": 6100,
+    "height": 280,
+    "width": 1012,
+    "tabOrder": 6100
   },
   "visual": {
     "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
@@ -79,7 +79,7 @@
               },
               "queryRef": "_Measures.Contribution AC",
               "nativeQueryRef": "Contribution AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         },
@@ -97,7 +97,8 @@
                 }
               },
               "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC"
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
             },
             {
               "field": {
@@ -111,7 +112,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC"
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
             },
             {
               "field": {
@@ -125,7 +127,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY"
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "Contribution \u0394PY"
             },
             {
               "field": {
@@ -139,7 +142,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales per Day AC",
-              "nativeQueryRef": "Net Sales per Day AC"
+              "nativeQueryRef": "Net Sales per Day AC",
+              "displayName": "Net sales / day CY"
             },
             {
               "field": {
@@ -153,7 +157,8 @@
                 }
               },
               "queryRef": "_Measures.Sales per Day vs Regular AC",
-              "nativeQueryRef": "Sales per Day vs Regular AC"
+              "nativeQueryRef": "Sales per Day vs Regular AC",
+              "displayName": "Sales / day vs Regular CY"
             },
             {
               "field": {
@@ -167,7 +172,8 @@
                 }
               },
               "queryRef": "_Measures.Trading Days AC",
-              "nativeQueryRef": "Trading Days AC"
+              "nativeQueryRef": "Trading Days AC",
+              "displayName": "Trading days CY"
             }
           ]
         }
@@ -246,7 +252,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8B909E'"
+                      "Value": "'#2D3142'"
                     }
                   }
                 }
@@ -264,7 +270,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#4F5D75'"
+                      "Value": "'#7B89A0'"
                     }
                   }
                 }
@@ -303,9 +309,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8B909E'"
+                      "Value": "'#2D3142'"
                     }
                   }
+                }
+              }
+            },
+            "widthPercent1": {
+              "expr": {
+                "Literal": {
+                  "Value": "84L"
                 }
               }
             },
@@ -313,6 +326,20 @@
               "expr": {
                 "Literal": {
                   "Value": "25L"
+                }
+              }
+            },
+            "customize2": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "widthPercent2": {
+              "expr": {
+                "Literal": {
+                  "Value": "46L"
                 }
               }
             }
@@ -409,6 +436,26 @@
               "expr": {
                 "Literal": {
                   "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnBarSettings": [
+        {
+          "properties": {
+            "topPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "bottomPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
                 }
               }
             }

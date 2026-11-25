@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_m2_plbl",
   "position": {
-    "x": 1566,
-    "y": 612,
-    "z": 5400,
+    "x": 1578,
+    "y": 614,
+    "z": 5300,
     "height": 20,
-    "width": 310,
-    "tabOrder": 5400
+    "width": 280,
+    "tabOrder": 5300
   },
   "visual": {
     "visualType": "textbox",

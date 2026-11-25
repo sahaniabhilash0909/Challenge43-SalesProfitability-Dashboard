@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_scatter",
   "position": {
-    "x": 1500,
-    "y": 142,
-    "z": 5200,
-    "height": 394,
-    "width": 376,
-    "tabOrder": 5200
+    "x": 1360,
+    "y": 368,
+    "z": 5600,
+    "height": 278,
+    "width": 504,
+    "tabOrder": 5600
   },
   "visual": {
     "visualType": "ZoomChartsScatterChartPaidA2C55E4B59078FDD51C4CD1C4D4E6623V9N8",
@@ -83,7 +83,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC"
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
             },
             {
               "field": {
@@ -97,7 +98,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution AC",
-              "nativeQueryRef": "Contribution AC"
+              "nativeQueryRef": "Contribution AC",
+              "displayName": "Contribution CY"
             },
             {
               "field": {
@@ -111,7 +113,8 @@
                 }
               },
               "queryRef": "_Measures.Return AC",
-              "nativeQueryRef": "Return AC"
+              "nativeQueryRef": "Return AC",
+              "displayName": "Return rate CY"
             }
           ]
         }

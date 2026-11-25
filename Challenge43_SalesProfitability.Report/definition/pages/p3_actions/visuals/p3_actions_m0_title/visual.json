@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_m0_title",
   "position": {
-    "x": 824,
-    "y": 186,
-    "z": 3500,
+    "x": 922,
+    "y": 174,
+    "z": 3400,
     "height": 29,
-    "width": 696,
-    "tabOrder": 3500
+    "width": 610,
+    "tabOrder": 3400
   },
   "visual": {
     "visualType": "textbox",

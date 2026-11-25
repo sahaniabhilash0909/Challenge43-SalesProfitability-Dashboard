@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_pnl_h1",
   "position": {
-    "x": 358,
-    "y": 358,
-    "z": 2000,
+    "x": 590,
+    "y": 344,
+    "z": 2900,
     "height": 21,
-    "width": 160,
-    "tabOrder": 2000
+    "width": 158,
+    "tabOrder": 2900
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "AC",
+                    "value": "CY",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",

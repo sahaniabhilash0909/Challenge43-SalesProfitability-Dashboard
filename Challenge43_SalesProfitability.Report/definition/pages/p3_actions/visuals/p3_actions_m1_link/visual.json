@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_m1_link",
   "position": {
-    "x": 814,
-    "y": 540,
-    "z": 4500,
-    "height": 38,
-    "width": 320,
-    "tabOrder": 4500
+    "x": 912,
+    "y": 534,
+    "z": 4400,
+    "height": 36,
+    "width": 300,
+    "tabOrder": 4400
   },
   "visual": {
     "visualType": "actionButton",

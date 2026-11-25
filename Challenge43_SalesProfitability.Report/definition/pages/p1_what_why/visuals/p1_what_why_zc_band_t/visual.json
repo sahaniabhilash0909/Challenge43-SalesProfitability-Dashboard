@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_zc_band_t",
   "position": {
-    "x": 724,
-    "y": 568,
-    "z": 5100,
+    "x": 1382,
+    "y": 322,
+    "z": 5600,
     "height": 21,
-    "width": 520,
-    "tabOrder": 5100
+    "width": 476,
+    "tabOrder": 5600
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   PY line vs AC bars \u00b7 click band \u203a campaigns",
+                    "value": "   \u00b7   Slate column = CY \u00b7 Jet Black tick = PY \u00b7 click \u203a campaigns",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",

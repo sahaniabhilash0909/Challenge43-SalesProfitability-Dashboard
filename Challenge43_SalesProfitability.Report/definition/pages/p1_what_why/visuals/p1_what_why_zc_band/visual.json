@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_zc_band",
   "position": {
-    "x": 724,
-    "y": 618,
-    "z": 5300,
-    "height": 394,
-    "width": 520,
-    "tabOrder": 5300
+    "x": 1376,
+    "y": 368,
+    "z": 5800,
+    "height": 278,
+    "width": 488,
+    "tabOrder": 5800
   },
   "visual": {
     "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
@@ -79,7 +79,7 @@
               },
               "queryRef": "_Measures.Contribution AC",
               "nativeQueryRef": "Contribution AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         },
@@ -97,7 +97,8 @@
                 }
               },
               "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC"
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
             },
             {
               "field": {
@@ -111,7 +112,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC"
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
             },
             {
               "field": {
@@ -125,7 +127,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY"
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "Contribution \u0394PY"
             },
             {
               "field": {
@@ -139,7 +142,8 @@
                 }
               },
               "queryRef": "_Measures.Deep Share AC",
-              "nativeQueryRef": "Deep Share AC"
+              "nativeQueryRef": "Deep Share AC",
+              "displayName": "Sales at 20%+ discount CY"
             }
           ]
         }
@@ -218,7 +222,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8B909E'"
+                      "Value": "'#2D3142'"
                     }
                   }
                 }
@@ -236,7 +240,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#4F5D75'"
+                      "Value": "'#7B89A0'"
                     }
                   }
                 }
@@ -275,9 +279,16 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8B909E'"
+                      "Value": "'#2D3142'"
                     }
                   }
+                }
+              }
+            },
+            "widthPercent1": {
+              "expr": {
+                "Literal": {
+                  "Value": "84L"
                 }
               }
             },
@@ -285,6 +296,20 @@
               "expr": {
                 "Literal": {
                   "Value": "25L"
+                }
+              }
+            },
+            "customize2": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "widthPercent2": {
+              "expr": {
+                "Literal": {
+                  "Value": "46L"
                 }
               }
             }

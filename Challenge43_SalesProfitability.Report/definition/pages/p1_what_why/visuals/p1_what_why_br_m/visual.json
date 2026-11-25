@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_br_m",
   "position": {
-    "x": 724,
-    "y": 112,
-    "z": 4500,
-    "height": 26,
-    "width": 580,
-    "tabOrder": 4500
+    "x": 282,
+    "y": 342,
+    "z": 4900,
+    "height": 24,
+    "width": 524,
+    "tabOrder": 4900
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "10.5D"
                 }
               }
             },

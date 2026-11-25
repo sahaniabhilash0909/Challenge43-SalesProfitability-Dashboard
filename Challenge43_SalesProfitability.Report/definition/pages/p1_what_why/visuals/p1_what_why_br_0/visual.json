@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_br_0",
   "position": {
-    "x": 724,
-    "y": 164,
-    "z": 4700,
-    "height": 372,
-    "width": 578,
-    "tabOrder": 4700
+    "x": 280,
+    "y": 392,
+    "z": 5100,
+    "height": 612,
+    "width": 526,
+    "tabOrder": 5100
   },
   "visual": {
     "visualType": "barChart",
@@ -76,7 +76,7 @@
               },
               "queryRef": "_Measures.Bridge AC k",
               "nativeQueryRef": "Bridge AC k",
-              "displayName": "AC"
+              "displayName": "CY"
             },
             {
               "field": {
@@ -255,14 +255,14 @@
             "innerPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "52D"
+                  "Value": "64D"
                 }
               }
             },
             "maxMarginFactor": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "25D"
                 }
               }
             },

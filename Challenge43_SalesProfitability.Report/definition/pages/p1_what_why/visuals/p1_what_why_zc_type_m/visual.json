@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_zc_type_m",
   "position": {
-    "x": 1276,
-    "y": 588,
-    "z": 5500,
-    "height": 26,
-    "width": 600,
-    "tabOrder": 5500
+    "x": 858,
+    "y": 702,
+    "z": 6000,
+    "height": 24,
+    "width": 1000,
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "10.5D"
                 }
               }
             },

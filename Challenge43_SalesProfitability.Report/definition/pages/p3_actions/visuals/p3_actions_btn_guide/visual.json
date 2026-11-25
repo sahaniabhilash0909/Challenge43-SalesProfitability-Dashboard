@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_btn_guide",
   "position": {
-    "x": 1474,
-    "y": 31,
-    "z": 500,
-    "height": 32,
-    "width": 78,
-    "tabOrder": 500
+    "x": 68,
+    "y": 724,
+    "z": 1300,
+    "height": 38,
+    "width": 148,
+    "tabOrder": 1300
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'?  Guide'"
+                  "Value": "'How to read'"
                 }
               }
             },
@@ -65,7 +65,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#646B7D'"
+                      "Value": "'#B5BECC'"
                     }
                   }
                 }
@@ -74,7 +74,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8.5D"
+                  "Value": "9D"
                 }
               }
             },
@@ -88,7 +88,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -111,7 +111,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2D3142'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -342,7 +342,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'How to read this page'"
+                  "Value": "'How to read charts & Slate-Coral notation'"
                 }
               }
             }

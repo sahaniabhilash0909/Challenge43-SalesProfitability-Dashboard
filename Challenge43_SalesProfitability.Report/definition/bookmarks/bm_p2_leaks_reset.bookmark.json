@@ -17,6 +17,12 @@
               "objects": {}
             }
           },
+          "p2_leaks_lbl_nav": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p2_leaks_nav_ch1": {
             "singleVisual": {
               "visualType": "actionButton",
@@ -32,48 +38,6 @@
           "p2_leaks_nav_ch3": {
             "singleVisual": {
               "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p2_leaks_btn_guide": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p2_leaks_btn_limits": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p2_leaks_btn_reset": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p2_leaks_btn_filters": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p2_leaks_kicker": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "p2_leaks_period": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "p2_leaks_msg": {
-            "singleVisual": {
-              "visualType": "shape",
               "objects": {}
             }
           },
@@ -175,7 +139,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r454680297318",
+                  "name": "r499981402942",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -192,7 +156,67 @@
               ]
             }
           },
+          "p2_leaks_btn_filters": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p2_leaks_btn_reset": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p2_leaks_lbl_info": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p2_leaks_btn_guide": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p2_leaks_btn_limits": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p2_leaks_credit": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p2_leaks_kicker": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p2_leaks_title": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p2_leaks_period": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
           "p2_leaks_filt": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p2_leaks_msg": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
@@ -266,7 +290,7 @@
           },
           "p2_leaks_k1_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -296,7 +320,7 @@
           },
           "p2_leaks_k2_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -326,7 +350,7 @@
           },
           "p2_leaks_k3_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -356,7 +380,7 @@
           },
           "p2_leaks_k4_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -497,7 +521,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r369299915920",
+                  "name": "r268065313386",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -534,7 +558,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r42145633456",
+                  "name": "r794457519710",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -571,7 +595,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r200496856831",
+                  "name": "r36704058305",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -608,7 +632,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r248813505102",
+                  "name": "r551661341387",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -645,7 +669,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r619111618663",
+                  "name": "r898255743972",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
