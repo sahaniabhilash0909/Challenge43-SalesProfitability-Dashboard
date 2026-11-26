@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_donut_t",
   "position": {
-    "x": 1112,
-    "y": 92,
-    "z": 4700,
+    "x": 824,
+    "y": 320,
+    "z": 5200,
     "height": 21,
-    "width": 364,
-    "tabOrder": 4700
+    "width": 490,
+    "tabOrder": 5200
   },
   "visual": {
     "visualType": "textbox",

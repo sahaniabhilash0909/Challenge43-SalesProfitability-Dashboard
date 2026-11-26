@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_nav_ch3",
   "position": {
-    "x": 1316,
-    "y": 22,
-    "z": 400,
-    "height": 50,
-    "width": 120,
-    "tabOrder": 400
+    "x": 66,
+    "y": 224,
+    "z": 500,
+    "height": 42,
+    "width": 148,
+    "tabOrder": 500
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'3 \u00b7 What to do'"
+                  "Value": "'What to do'"
                 }
               }
             },
@@ -65,7 +65,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#646B7D'"
+                      "Value": "'#E2E6EC'"
                     }
                   }
                 }
@@ -88,7 +88,7 @@
             "horizontalAlignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             },
@@ -111,7 +111,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2D3142'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -342,7 +342,7 @@
             "tooltip": {
               "expr": {
                 "Literal": {
-                  "Value": "'Open 3 \u00b7 What to do'"
+                  "Value": "'Open What to do'"
                 }
               }
             }

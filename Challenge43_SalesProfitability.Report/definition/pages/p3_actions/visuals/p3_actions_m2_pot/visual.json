@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_m2_pot",
   "position": {
-    "x": 1564,
-    "y": 632,
+    "x": 1576,
+    "y": 634,
     "z": 5500,
     "height": 38,
-    "width": 310,
+    "width": 280,
     "tabOrder": 5500
   },
   "visual": {

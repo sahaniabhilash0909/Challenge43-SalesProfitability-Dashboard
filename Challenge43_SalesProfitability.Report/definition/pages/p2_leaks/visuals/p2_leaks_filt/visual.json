@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_filt",
   "position": {
-    "x": 44,
-    "y": 253,
-    "z": 1600,
+    "x": 1122,
+    "y": 65,
+    "z": 1900,
     "height": 18,
-    "width": 624,
-    "tabOrder": 1600
+    "width": 736,
+    "tabOrder": 1900
   },
   "visual": {
     "visualType": "shape",
@@ -80,7 +80,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8B909E'"
+                      "Value": "'#646B7D'"
                     }
                   }
                 }
@@ -117,7 +117,7 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "'right'"
                 }
               }
             }

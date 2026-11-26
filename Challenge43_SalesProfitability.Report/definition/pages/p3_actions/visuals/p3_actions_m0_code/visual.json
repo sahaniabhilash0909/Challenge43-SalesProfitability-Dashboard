@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_m0_code",
   "position": {
-    "x": 740,
-    "y": 190,
+    "x": 840,
+    "y": 176,
     "z": 3400,
     "height": 24,
     "width": 68,

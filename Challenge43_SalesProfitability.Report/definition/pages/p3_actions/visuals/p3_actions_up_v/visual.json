@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_up_v",
   "position": {
-    "x": 61,
-    "y": 322,
-    "z": 2000,
-    "height": 52,
-    "width": 590,
-    "tabOrder": 2000
+    "x": 282,
+    "y": 198,
+    "z": 2400,
+    "height": 54,
+    "width": 504,
+    "tabOrder": 2400
   },
   "visual": {
     "visualType": "shape",

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_k3_py",
   "position": {
-    "x": 44,
-    "y": 818,
-    "z": 3700,
+    "x": 1254.8,
+    "y": 262,
+    "z": 4100,
     "height": 18,
-    "width": 288,
-    "tabOrder": 3700
+    "width": 138,
+    "tabOrder": 4100
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "7.5D"
+                  "Value": "7D"
                 }
               }
             },

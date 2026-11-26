@@ -4,10 +4,10 @@
   "position": {
     "x": 1432,
     "y": 148,
-    "z": 7300,
+    "z": 8100,
     "height": 860,
     "width": 424,
-    "tabOrder": 7300
+    "tabOrder": 8100
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Blue Slate (#4F5D75) = AC & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI rows, Oct\u2013Jan columns show AC colored vs PY with horizontal target ticks.",
+                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct\u2013Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -73,7 +73,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Top-left ZoomCharts Combo Bar drills Category \u203a Subcategory \u203a Product (PY ref line vs AC Blue Slate bars).",
+                    "value": "Top-left ZoomCharts Combo Bar drills Category \u203a Subcategory \u203a Product.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -113,7 +113,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Top-mid ZoomCharts Donut drills Customer Segment \u203a Channel; top-right ZoomCharts Scatter plots city discount % vs contribution margin %.",
+                    "value": "Top-mid ZoomCharts Donut drills Customer Segment \u203a Channel; top-right Scatter plots city discount % vs contribution margin %.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_pnl_h2",
   "position": {
-    "x": 528,
-    "y": 358,
-    "z": 2200,
+    "x": 758,
+    "y": 373,
+    "z": 3200,
     "height": 21,
-    "width": 136,
-    "tabOrder": 2200
+    "width": 134,
+    "tabOrder": 3200
   },
   "visual": {
     "visualType": "textbox",

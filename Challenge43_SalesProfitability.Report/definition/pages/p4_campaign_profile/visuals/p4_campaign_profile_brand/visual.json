@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_brand",
   "position": {
-    "x": 86,
-    "y": 27,
+    "x": 72,
+    "y": 30,
     "z": 100,
-    "height": 40,
-    "width": 360,
+    "height": 42,
+    "width": 146,
     "tabOrder": 100
   },
   "visual": {
@@ -21,9 +21,9 @@
                   {
                     "value": "HOLIDAY P&L",
                     "textStyle": {
-                      "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "10pt",
-                      "color": "#2D3142",
+                      "fontFamily": "'Segoe UI Semibold'",
+                      "fontSize": "10.5pt",
+                      "color": "#FFFFFF",
                       "fontWeight": "bold"
                     }
                   }
@@ -33,11 +33,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "The Holiday Audit  \u00b7  Challenge 43",
+                    "value": "CHALLENGE 43",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "7.5pt",
-                      "color": "#646B7D"
+                      "fontFamily": "'Consolas'",
+                      "fontSize": "7pt",
+                      "color": "#B5BECC"
                     }
                   }
                 ],

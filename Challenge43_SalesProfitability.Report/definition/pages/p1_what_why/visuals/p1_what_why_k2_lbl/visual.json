@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_k2_lbl",
   "position": {
-    "x": 44,
-    "y": 588,
-    "z": 2900,
-    "height": 23,
-    "width": 286,
-    "tabOrder": 2900
+    "x": 961.2,
+    "y": 173,
+    "z": 3300,
+    "height": 22,
+    "width": 251.6,
+    "tabOrder": 3300
   },
   "visual": {
     "visualType": "textbox",
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Net sales, AC",
+                    "value": "Net sales",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
-                      "fontSize": "8.5pt",
+                      "fontSize": "8pt",
                       "color": "#646B7D"
                     }
                   }

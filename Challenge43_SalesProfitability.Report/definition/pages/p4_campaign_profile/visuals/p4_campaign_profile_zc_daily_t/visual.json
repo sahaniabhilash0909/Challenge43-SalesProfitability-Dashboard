@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_zc_daily_t",
   "position": {
-    "x": 888,
-    "y": 92,
-    "z": 2600,
+    "x": 1094,
+    "y": 168,
+    "z": 3600,
     "height": 21,
-    "width": 988,
-    "tabOrder": 2600
+    "width": 764,
+    "tabOrder": 3600
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   PY Silver line vs AC Blue Slate bars",
+                    "value": "   \u00b7   kEUR \u00b7 daily trading",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",

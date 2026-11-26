@@ -4,10 +4,10 @@
   "position": {
     "x": 1428,
     "y": 404,
-    "z": 4000,
+    "z": 5200,
     "height": 76,
     "width": 432,
-    "tabOrder": 4000
+    "tabOrder": 5200
   },
   "visual": {
     "visualType": "advancedSlicerVisual",
@@ -320,14 +320,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "3L"
+                  "Value": "4L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "3L"
+                  "Value": "4L"
                 }
               }
             }

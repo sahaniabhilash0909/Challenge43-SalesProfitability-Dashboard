@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_up_n",
   "position": {
-    "x": 62,
-    "y": 380,
-    "z": 2100,
-    "height": 44,
-    "width": 588,
-    "tabOrder": 2100
+    "x": 284,
+    "y": 260,
+    "z": 2500,
+    "height": 48,
+    "width": 500,
+    "tabOrder": 2500
   },
   "visual": {
     "visualType": "textbox",
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Projected from AC volumes & margins assuming volumes hold; order of magnitude, not a forecast.",
+                    "value": "Projected from CY volumes & margins assuming volumes hold; order of magnitude, not a forecast.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8.5pt",

@@ -17,6 +17,12 @@
               "objects": {}
             }
           },
+          "p1_what_why_lbl_nav": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p1_what_why_nav_ch1": {
             "singleVisual": {
               "visualType": "actionButton",
@@ -32,48 +38,6 @@
           "p1_what_why_nav_ch3": {
             "singleVisual": {
               "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p1_what_why_btn_guide": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p1_what_why_btn_limits": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p1_what_why_btn_reset": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p1_what_why_btn_filters": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p1_what_why_kicker": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "p1_what_why_period": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "p1_what_why_msg": {
-            "singleVisual": {
-              "visualType": "shape",
               "objects": {}
             }
           },
@@ -175,7 +139,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r166861871760",
+                  "name": "r407862441600",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -192,7 +156,67 @@
               ]
             }
           },
+          "p1_what_why_btn_filters": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_reset": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_lbl_info": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_guide": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_btn_limits": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p1_what_why_credit": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_kicker": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_title": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_period": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
           "p1_what_why_filt": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p1_what_why_msg": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
@@ -266,7 +290,7 @@
           },
           "p1_what_why_k1_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -296,7 +320,7 @@
           },
           "p1_what_why_k2_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -326,7 +350,7 @@
           },
           "p1_what_why_k3_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -356,7 +380,7 @@
           },
           "p1_what_why_k4_spark": {
             "singleVisual": {
-              "visualType": "clusteredColumnChart",
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -384,21 +408,27 @@
               "objects": {}
             }
           },
-          "p1_what_why_zc_month_t": {
+          "p1_what_why_month_t": {
             "singleVisual": {
               "visualType": "textbox",
               "objects": {}
             }
           },
-          "p1_what_why_zc_month_m": {
+          "p1_what_why_month_m": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
             }
           },
-          "p1_what_why_zc_month": {
+          "p1_what_why_month_leg": {
             "singleVisual": {
-              "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_month": {
+            "singleVisual": {
+              "visualType": "areaChart",
               "objects": {}
             }
           },
@@ -414,27 +444,39 @@
               "objects": {}
             }
           },
+          "p1_what_why_zc_band_leg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p1_what_why_zc_band": {
             "singleVisual": {
               "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
               "objects": {}
             }
           },
-          "p1_what_why_zc_type_t": {
+          "p1_what_why_scorecard_t": {
             "singleVisual": {
               "visualType": "textbox",
               "objects": {}
             }
           },
-          "p1_what_why_zc_type_m": {
+          "p1_what_why_scorecard_m": {
             "singleVisual": {
               "visualType": "shape",
               "objects": {}
             }
           },
-          "p1_what_why_zc_type": {
+          "p1_what_why_scorecard_leg": {
             "singleVisual": {
-              "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p1_what_why_scorecard_mx": {
+            "singleVisual": {
+              "visualType": "pivotTable",
               "objects": {}
             }
           },
@@ -485,7 +527,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r48254498954",
+                  "name": "r199655755047",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -522,7 +564,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r597930099439",
+                  "name": "r470629197947",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -559,7 +601,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r794875479411",
+                  "name": "r253755662016",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -596,7 +638,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r66733108916",
+                  "name": "r358921320137",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -633,7 +675,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r117330351999",
+                  "name": "r102539171501",
                   "type": "Categorical",
                   "expression": {
                     "Column": {

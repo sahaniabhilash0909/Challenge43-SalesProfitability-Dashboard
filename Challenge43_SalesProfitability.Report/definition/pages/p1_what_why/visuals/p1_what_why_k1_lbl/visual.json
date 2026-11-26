@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_k1_lbl",
   "position": {
-    "x": 44,
-    "y": 442,
-    "z": 2400,
-    "height": 23,
-    "width": 286,
-    "tabOrder": 2400
+    "x": 635.6,
+    "y": 173,
+    "z": 2800,
+    "height": 22,
+    "width": 251.6,
+    "tabOrder": 2800
   },
   "visual": {
     "visualType": "textbox",
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Contribution margin, AC",
+                    "value": "Contribution margin",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
-                      "fontSize": "8.5pt",
+                      "fontSize": "8pt",
                       "color": "#646B7D"
                     }
                   }

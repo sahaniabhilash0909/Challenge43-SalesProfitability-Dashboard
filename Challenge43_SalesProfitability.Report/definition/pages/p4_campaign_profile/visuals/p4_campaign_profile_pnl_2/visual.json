@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_pnl_2",
   "position": {
-    "x": 528,
-    "y": 382,
-    "z": 2300,
-    "height": 630,
-    "width": 136,
-    "tabOrder": 2300
+    "x": 758,
+    "y": 395,
+    "z": 3300,
+    "height": 609,
+    "width": 134,
+    "tabOrder": 3300
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -192,7 +192,7 @@
             "innerPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "71D"
+                  "Value": "64D"
                 }
               }
             },

@@ -17,6 +17,12 @@
               "objects": {}
             }
           },
+          "p4_campaign_profile_lbl_nav": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p4_campaign_profile_nav_ch1": {
             "singleVisual": {
               "visualType": "actionButton",
@@ -35,6 +41,139 @@
               "objects": {}
             }
           },
+          "p4_campaign_profile_lbl_season": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_chip_season": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f__profile_chip_season",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DimDate",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "d"
+                                    }
+                                  },
+                                  "Property": "Season"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2023/24'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2024/25'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'2025/26'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimDate"
+                        }
+                      },
+                      "Property": "Season"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            }
+          },
+          "p4_campaign_profile_lbl_channel": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_chip_channel": {
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {}
+            },
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "r789348906284",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactSales"
+                        }
+                      },
+                      "Property": "Sales Channel"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            }
+          },
+          "p4_campaign_profile_btn_filters": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_btn_reset": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_lbl_info": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p4_campaign_profile_btn_guide": {
             "singleVisual": {
               "visualType": "actionButton",
@@ -47,15 +186,9 @@
               "objects": {}
             }
           },
-          "p4_campaign_profile_btn_reset": {
+          "p4_campaign_profile_credit": {
             "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "p4_campaign_profile_btn_filters": {
-            "singleVisual": {
-              "visualType": "actionButton",
+              "visualType": "textbox",
               "objects": {}
             }
           },
@@ -65,9 +198,9 @@
               "objects": {}
             }
           },
-          "p4_campaign_profile_btn_back": {
+          "p4_campaign_profile_title": {
             "singleVisual": {
-              "visualType": "actionButton",
+              "visualType": "textbox",
               "objects": {}
             }
           },
@@ -77,9 +210,21 @@
               "objects": {}
             }
           },
+          "p4_campaign_profile_filt": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
           "p4_campaign_profile_msg": {
             "singleVisual": {
               "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_btn_back": {
+            "singleVisual": {
+              "visualType": "actionButton",
               "objects": {}
             }
           },
@@ -110,6 +255,12 @@
           "p4_campaign_profile_pl_m": {
             "singleVisual": {
               "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_pl_leg": {
+            "singleVisual": {
+              "visualType": "textbox",
               "objects": {}
             }
           },
@@ -173,6 +324,12 @@
               "objects": {}
             }
           },
+          "p4_campaign_profile_zc_daily_leg": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
           "p4_campaign_profile_zc_daily": {
             "singleVisual": {
               "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
@@ -188,6 +345,12 @@
           "p4_campaign_profile_zc_band_m": {
             "singleVisual": {
               "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "p4_campaign_profile_zc_band_leg": {
+            "singleVisual": {
+              "visualType": "textbox",
               "objects": {}
             }
           },
@@ -244,7 +407,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r99418045908",
+                  "name": "r620303935628",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -281,7 +444,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r65890168030",
+                  "name": "r769914411212",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -318,7 +481,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r609392601431",
+                  "name": "r652123996402",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -355,7 +518,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r567665475408",
+                  "name": "r463684594702",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -392,7 +555,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "r92304694234",
+                  "name": "r343435302769",
                   "type": "Categorical",
                   "expression": {
                     "Column": {

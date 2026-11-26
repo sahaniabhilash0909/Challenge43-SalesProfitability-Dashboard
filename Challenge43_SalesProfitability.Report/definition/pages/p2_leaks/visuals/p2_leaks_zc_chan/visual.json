@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_zc_chan",
   "position": {
-    "x": 1430,
-    "y": 618,
-    "z": 5800,
-    "height": 394,
-    "width": 446,
-    "tabOrder": 5800
+    "x": 1288,
+    "y": 762,
+    "z": 6600,
+    "height": 246,
+    "width": 576,
+    "tabOrder": 6600
   },
   "visual": {
     "visualType": "ZoomChartsDrillDownComboBarProE77E4ED357DC402ABA005987437CF800",
@@ -79,7 +79,7 @@
               },
               "queryRef": "_Measures.Contribution AC",
               "nativeQueryRef": "Contribution AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         },
@@ -97,7 +97,8 @@
                 }
               },
               "queryRef": "_Measures.Margin AC",
-              "nativeQueryRef": "Margin AC"
+              "nativeQueryRef": "Margin AC",
+              "displayName": "Margin CY"
             },
             {
               "field": {
@@ -111,7 +112,8 @@
                 }
               },
               "queryRef": "_Measures.Net Sales AC",
-              "nativeQueryRef": "Net Sales AC"
+              "nativeQueryRef": "Net Sales AC",
+              "displayName": "Net sales CY"
             },
             {
               "field": {
@@ -125,7 +127,8 @@
                 }
               },
               "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY"
+              "nativeQueryRef": "Contribution \u0394PY",
+              "displayName": "Contribution \u0394PY"
             }
           ]
         }
@@ -204,7 +207,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#8B909E'"
+                      "Value": "'#B5BECC'"
                     }
                   }
                 }
@@ -235,10 +238,38 @@
                 }
               }
             },
-            "type1": {
+            "display": {
               "expr": {
                 "Literal": {
-                  "Value": "'referenceLine'"
+                  "Value": "'stacked'"
+                }
+              }
+            },
+            "columnLineWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "lineColorOpacity": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "lineMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "lineMarkerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
                 }
               }
             },
@@ -249,28 +280,170 @@
                 }
               }
             },
-            "lineWidth1": {
+            "display1": {
               "expr": {
                 "Literal": {
-                  "Value": "3L"
+                  "Value": "'stacked'"
                 }
               }
             },
-            "lineColor1": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#8B909E'"
-                    }
-                  }
+            "stack1": {
+              "expr": {
+                "Literal": {
+                  "Value": "'s1'"
+                }
+              }
+            },
+            "type1": {
+              "expr": {
+                "Literal": {
+                  "Value": "'columns'"
+                }
+              }
+            },
+            "fillColorOpacity1": {
+              "expr": {
+                "Literal": {
+                  "Value": "85L"
+                }
+              }
+            },
+            "widthScale1": {
+              "expr": {
+                "Literal": {
+                  "Value": "84L"
                 }
               }
             },
             "zIndex1": {
               "expr": {
                 "Literal": {
-                  "Value": "25L"
+                  "Value": "5L"
+                }
+              }
+            },
+            "columnLineWidth1": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "lineColorOpacity1": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "lineMarker1": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "lineMarkerSize1": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "customize2": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "display2": {
+              "expr": {
+                "Literal": {
+                  "Value": "'stacked'"
+                }
+              }
+            },
+            "stack2": {
+              "expr": {
+                "Literal": {
+                  "Value": "'s1'"
+                }
+              }
+            },
+            "type2": {
+              "expr": {
+                "Literal": {
+                  "Value": "'columns'"
+                }
+              }
+            },
+            "fillColorOpacity2": {
+              "expr": {
+                "Literal": {
+                  "Value": "100L"
+                }
+              }
+            },
+            "widthScale2": {
+              "expr": {
+                "Literal": {
+                  "Value": "52L"
+                }
+              }
+            },
+            "zIndex2": {
+              "expr": {
+                "Literal": {
+                  "Value": "20L"
+                }
+              }
+            },
+            "columnLineWidth2": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "lineColorOpacity2": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            },
+            "lineMarker2": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "lineMarkerSize2": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stacks": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'based'"
+                }
+              }
+            },
+            "separateNegativeValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -367,6 +540,26 @@
               "expr": {
                 "Literal": {
                   "Value": "0L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnBarSettings": [
+        {
+          "properties": {
+            "leftPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "14L"
+                }
+              }
+            },
+            "rightPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "14L"
                 }
               }
             }

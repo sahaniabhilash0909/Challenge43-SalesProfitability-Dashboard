@@ -832,7 +832,7 @@ table _Measures
 		displayFolder: 13 IBCS
 		lineageTag: 91dc4c26-c334-4d1b-a733-622e6c1b7057
 
-	measure 'Period Line' = "Holiday retail · EUR · AC " & [AC Season] & IF ( ISBLANK ( [Net Sales PY] ), " (no PY)", " vs PY " & [PY Season] )
+	measure 'Period Line' = "Holiday retail · EUR · CY " & [AC Season] & IF ( ISBLANK ( [Net Sales PY] ), " (no PY)", " vs PY " & [PY Season] )
 		displayFolder: 13 IBCS
 		lineageTag: 0890377c-7a49-4a84-a40c-1c916a92aa90
 
@@ -1404,15 +1404,15 @@ table _Measures
 		displayFolder: 14 IBCS text
 		lineageTag: 2bb1a08f-938d-4c5b-ae61-859272221f22
 
-	measure 'Hero Label' = "CONTRIBUTION PROFIT · AC " & [AC Season]
+	measure 'Hero Label' = "CONTRIBUTION PROFIT · CY " & [AC Season]
 		displayFolder: 14 IBCS text
 		lineageTag: 715e084d-e472-4750-a4f1-89ad29e10d17
 
-	measure 'Hero Label P2' = "CAMPAIGN CONTRIBUTION MARGIN · AC " & [AC Season]
+	measure 'Hero Label P2' = "CAMPAIGN CONTRIBUTION MARGIN · CY " & [AC Season]
 		displayFolder: 14 IBCS text
 		lineageTag: 39939bb7-d159-49fb-97ba-e9c75a6a1510
 
-	measure 'Hero Label P3' = "NET SALES ON LOSS-MAKING LINES · AC " & [AC Season]
+	measure 'Hero Label P3' = "NET SALES ON LOSS-MAKING LINES · CY " & [AC Season]
 		displayFolder: 14 IBCS text
 		lineageTag: e97d7c29-4fc6-4862-b4e5-a35bdb8bd635
 
@@ -1707,7 +1707,7 @@ table _Measures
 		displayFolder: 15 Redesign
 		lineageTag: c3636cd9-b25f-43c3-9953-b0949feea5b1
 
-	measure 'Period Short' = "AC " & [AC Season] & IF ( ISBLANK ( [Net Sales PY] ), " (no PY available)", " vs PY " & [PY Season] )
+	measure 'Period Short' = "CY " & [AC Season] & IF ( ISBLANK ( [Net Sales PY] ), " (no PY available)", " vs PY " & [PY Season] )
 		displayFolder: 15 Redesign
 		lineageTag: 3395ed5e-71a5-44d3-ab69-ffef43d4cfea
 
@@ -2217,7 +2217,7 @@ table _Measures
 		displayFolder: 15 Redesign\Story\Messages
 		lineageTag: 91660da7-cd4c-4ffc-84f4-a282451d914e
 
-	measure 'Msg Ch4' = VAR t = [Pot Total k] RETURN IF ( ISBLANK ( t ) || t = 0, "No quantified upside in this selection", "Four moves are worth up to " & FORMAT ( t, "\€#,0.0\k" ) & " of contribution a season (" & FORMAT ( DIVIDE ( t * 1000, [Contribution AC] ), "+0%" ) & " on AC) if volumes hold" )
+	measure 'Msg Ch4' = VAR t = [Pot Total k] RETURN IF ( ISBLANK ( t ) || t = 0, "No quantified upside in this selection", "Four moves are worth up to " & FORMAT ( t, "\€#,0.0\k" ) & " of contribution a season (" & FORMAT ( DIVIDE ( t * 1000, [Contribution AC] ), "+0%" ) & " on CY) if volumes hold" )
 		displayFolder: 15 Redesign\Story\Messages
 		lineageTag: bc25cda1-82e5-4c91-a7cf-33a2f9bd4bc1
 
@@ -2444,6 +2444,36 @@ table _Measures
 	measure 'KPI Bar AOV' = VAR a = [AOV AC] VAR p = [AOV PY] RETURN IF ( ISBLANK ( a ) || ISBLANK ( p ) || a = p, "#7B89A0", IF ( a > p, "#4F5D75", "#EF8354" ) )
 		displayFolder: 15 Redesign\Story\KPI V6
 		lineageTag: 7a73a728-db28-4bdf-a74d-6e6c07aeb13f
+
+	measure 'Month Contrib Max AC k' =
+			VAR v = [Contribution AC k]
+			VAR mx =
+			    IF (
+			        ISINSCOPE ( DimDate[Date] ),
+			        MAXX ( ALLSELECTED ( DimDate[Date] ), [Contribution AC k] ),
+			        MAXX ( ALLSELECTED ( DimDate[Season Month], DimDate[SeasonMonthSort] ), [Contribution AC k] )
+			    )
+			RETURN IF ( NOT ISBLANK ( v ) && v = mx, v )
+		formatString: \€#,0.0\k;−\€#,0.0\k;\€0.0\k
+		displayFolder: 16 V8\Monthly
+		lineageTag: b0817bec-be01-4af7-98dd-1b75cbb622e1
+
+	measure 'Month Contrib Min AC k' =
+			VAR v = [Contribution AC k]
+			VAR mn =
+			    IF (
+			        ISINSCOPE ( DimDate[Date] ),
+			        MINX ( ALLSELECTED ( DimDate[Date] ), [Contribution AC k] ),
+			        MINX ( ALLSELECTED ( DimDate[Season Month], DimDate[SeasonMonthSort] ), [Contribution AC k] )
+			    )
+			RETURN IF ( NOT ISBLANK ( v ) && v = mn, v )
+		formatString: \€#,0.0\k;−\€#,0.0\k;\€0.0\k
+		displayFolder: 16 V8\Monthly
+		lineageTag: 6760aa54-4293-4ae1-8821-ea2be322ca9b
+
+	measure 'Title Campaign Scorecard AC' = CALCULATE ( [Title Campaign Scorecard], 'Scope'[Scope] = "AC" )
+		displayFolder: 14 IBCS text
+		lineageTag: 5b4c8e2a-91d4-4a7f-8f3c-2d1e6b9a4c72
 
 	column x
 		isHidden

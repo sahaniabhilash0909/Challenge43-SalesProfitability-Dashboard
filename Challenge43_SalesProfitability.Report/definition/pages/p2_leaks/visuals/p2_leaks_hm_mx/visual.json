@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_hm_mx",
   "position": {
-    "x": 724,
-    "y": 634,
-    "z": 5500,
-    "height": 376,
-    "width": 674,
-    "tabOrder": 5500
+    "x": 280,
+    "y": 748,
+    "z": 6200,
+    "height": 258,
+    "width": 964,
+    "tabOrder": 6200
   },
   "visual": {
     "visualType": "pivotTable",
@@ -64,7 +64,7 @@
               },
               "queryRef": "_Measures.Return AC",
               "nativeQueryRef": "Return AC",
-              "displayName": "AC"
+              "displayName": "CY"
             }
           ]
         }
@@ -127,7 +127,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "11D"
                 }
               }
             },
@@ -343,7 +343,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "157D"
                 }
               }
             }

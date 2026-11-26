@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_k1_py",
   "position": {
-    "x": 44,
-    "y": 526,
-    "z": 2700,
+    "x": 603.6,
+    "y": 262,
+    "z": 3100,
     "height": 18,
-    "width": 288,
-    "tabOrder": 2700
+    "width": 138,
+    "tabOrder": 3100
   },
   "visual": {
     "visualType": "shape",
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "7.5D"
+                  "Value": "7D"
                 }
               }
             },

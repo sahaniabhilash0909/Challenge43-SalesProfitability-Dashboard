@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_leaks_k4_spark",
   "position": {
-    "x": 342,
-    "y": 884,
-    "z": 4300,
-    "height": 124,
-    "width": 322,
-    "tabOrder": 4300
+    "x": 1716.4,
+    "y": 196,
+    "z": 4700,
+    "height": 90,
+    "width": 149.6,
+    "tabOrder": 4700
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -41,17 +41,13 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "AOV AC"
+                  "Property": "AOV PY"
                 }
               },
-              "queryRef": "_Measures.AOV AC",
-              "nativeQueryRef": "AOV AC",
-              "displayName": "AC"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
+              "queryRef": "_Measures.AOV PY",
+              "nativeQueryRef": "AOV PY",
+              "displayName": "PY"
+            },
             {
               "field": {
                 "Measure": {
@@ -60,12 +56,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "AOV PY"
+                  "Property": "AOV AC"
                 }
               },
-              "queryRef": "_Measures.AOV PY",
-              "nativeQueryRef": "AOV PY",
-              "displayName": "PY"
+              "queryRef": "_Measures.AOV AC",
+              "nativeQueryRef": "AOV AC",
+              "displayName": "CY"
             }
           ]
         }
@@ -90,26 +86,6 @@
       }
     },
     "objects": {
-      "layout": [
-        {
-          "properties": {
-            "clusteredGapOverlaps": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "clusteredGapSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "100D"
-                }
-              }
-            }
-          }
-        }
-      ],
       "legend": [
         {
           "properties": {
@@ -163,7 +139,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "7.5D"
+                  "Value": "7D"
                 }
               }
             },
@@ -191,13 +167,6 @@
                   "Value": "false"
                 }
               }
-            },
-            "innerPadding": {
-              "expr": {
-                "Literal": {
-                  "Value": "38D"
-                }
-              }
             }
           }
         }
@@ -215,87 +184,27 @@
           }
         }
       ],
-      "dataPoint": [
+      "lineStyles": [
         {
           "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "KPI Bar AOV"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "error": [
-        {
-          "properties": {
-            "enabled": {
+            "strokeWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "2D"
                 }
               }
             },
-            "barColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2D3142'"
-                    }
-                  }
-                }
-              }
-            },
-            "barWidth": {
+            "areaShow": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "false"
                 }
               }
             },
-            "barBorderSize": {
+            "strokeTransparency": {
               "expr": {
                 "Literal": {
-                  "Value": "2L"
-                }
-              }
-            },
-            "barBorderColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#2D3142'"
-                    }
-                  }
-                }
-              }
-            },
-            "markerSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
+                  "Value": "0D"
                 }
               }
             }
@@ -306,37 +215,42 @@
         },
         {
           "properties": {
-            "errorRange": {
-              "kind": "ErrorRange",
-              "explicit": {
-                "isRelative": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "strokeTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "areaMatchStrokeColor": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.AOV PY"
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "false"
-                    }
-                  }
-                },
-                "lowerBound": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "AOV PY"
-                    }
-                  }
-                },
-                "upperBound": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures"
-                        }
-                      },
-                      "Property": "AOV PY"
+                      "Value": "'#4F5D75'"
                     }
                   }
                 }
@@ -344,15 +258,25 @@
             }
           },
           "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
+            "metadata": "_Measures.AOV AC"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2E6EC'"
+                    }
+                  }
                 }
               }
-            ],
-            "metadata": "_Measures.AOV AC",
-            "highlightMatching": 1
+            }
+          },
+          "selector": {
+            "metadata": "_Measures.AOV PY"
           }
         }
       ]

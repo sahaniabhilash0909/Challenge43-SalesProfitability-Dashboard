@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_btn_back",
   "position": {
-    "x": 736,
-    "y": 94,
-    "z": 1000,
+    "x": 1768,
+    "y": 107,
+    "z": 2100,
     "height": 32,
     "width": 96,
-    "tabOrder": 1000
+    "tabOrder": 2100
   },
   "visual": {
     "visualType": "actionButton",

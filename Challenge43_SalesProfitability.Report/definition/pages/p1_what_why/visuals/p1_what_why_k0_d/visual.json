@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1_what_why_k0_d",
   "position": {
-    "x": 44,
-    "y": 358,
-    "z": 2100,
+    "x": 278.0,
+    "y": 240,
+    "z": 2500,
     "height": 18,
-    "width": 288,
-    "tabOrder": 2100
+    "width": 138,
+    "tabOrder": 2500
   },
   "visual": {
     "visualType": "shape",
@@ -94,7 +94,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "8.5D"
+                  "Value": "8D"
                 }
               }
             },

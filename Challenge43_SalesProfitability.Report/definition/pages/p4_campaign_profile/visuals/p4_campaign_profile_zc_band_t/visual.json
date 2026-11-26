@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_zc_band_t",
   "position": {
-    "x": 888,
-    "y": 568,
-    "z": 2900,
+    "x": 1094,
+    "y": 604,
+    "z": 4000,
     "height": 21,
-    "width": 988,
-    "tabOrder": 2900
+    "width": 764,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   PY Silver line vs AC Blue Slate bars",
+                    "value": "   \u00b7   kEUR \u00b7 by discount band",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",

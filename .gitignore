@@ -13,4 +13,7 @@ _build/*
 !_build/src_v11/
 !_build/src_v11/**
 _build/src_v11/__pycache__/
+!_build/src_v12/
+!_build/src_v12/**
+_build/src_v12/__pycache__/
 !_build/merge_zc_license.py

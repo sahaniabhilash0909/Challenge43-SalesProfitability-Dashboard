@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3_actions_lim_t",
   "position": {
-    "x": 44,
-    "y": 746,
-    "z": 2400,
+    "x": 282,
+    "y": 702,
+    "z": 2900,
     "height": 21,
-    "width": 624,
-    "tabOrder": 2400
+    "width": 504,
+    "tabOrder": 2900
   },
   "visual": {
     "visualType": "textbox",
@@ -19,12 +19,20 @@
               {
                 "textRuns": [
                   {
-                    "value": "WHAT THIS DATA CANNOT TELL YOU",
+                    "value": "ANALYTICAL GUARDRAILS",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold'",
                       "fontSize": "7.5pt",
                       "color": "#646B7D",
                       "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "   \u00b7   what this dataset cannot tell you",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "7.5pt",
+                      "color": "#8B909E"
                     }
                   }
                 ],

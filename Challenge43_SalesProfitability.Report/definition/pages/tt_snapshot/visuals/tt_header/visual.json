@@ -3,9 +3,9 @@
   "name": "tt_header",
   "position": {
     "x": 20,
-    "y": 10,
+    "y": 8,
     "z": 100,
-    "height": 24,
+    "height": 28,
     "width": 328,
     "tabOrder": 100
   },
@@ -89,7 +89,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11.5D"
+                  "Value": "10.5D"
                 }
               }
             },
@@ -110,7 +110,7 @@
             "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },

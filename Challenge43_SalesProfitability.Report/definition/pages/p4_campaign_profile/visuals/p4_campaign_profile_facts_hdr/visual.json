@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p4_campaign_profile_facts_hdr",
   "position": {
-    "x": 60,
-    "y": 208,
-    "z": 1400,
+    "x": 282,
+    "y": 170,
+    "z": 2300,
     "height": 21,
-    "width": 756,
-    "tabOrder": 1400
+    "width": 760,
+    "tabOrder": 2300
   },
   "visual": {
     "visualType": "textbox",
@@ -28,7 +28,7 @@
                     }
                   },
                   {
-                    "value": "   \u00b7   for the campaign or type you picked",
+                    "value": "   \u00b7   for the campaign or type you drilled into",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "7.5pt",
