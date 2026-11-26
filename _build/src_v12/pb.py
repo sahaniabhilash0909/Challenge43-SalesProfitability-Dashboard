@@ -1,7 +1,8 @@
 """PBIR helpers for the Challenge 43 V12 Modern UX Slate-Coral edition."""
-import json, os
+import json, os, shutil
 
 SCH_V = 'https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json'
+SCH_V_210 = 'https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json'
 SCH_P = 'https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json'
 
 FONT = "'Segoe UI'"
@@ -118,16 +119,24 @@ def props(**kw):
     return [{'properties': kw}]
 
 
-def vco(title=None, tmeasure=None, sub=None, header=True, pad=(12, 8, 16, 16), wrap=False, tsize=12, tcolor=INK,
-        link=None, alt=None, tooltip=True, tooltip_page=None, align='left'):
+def vco(title=None, tmeasure=None, sub=None, sub_measure=None, header=True, pad=(12, 8, 16, 16), wrap=False,
+        tsize=12, tcolor=INK, sub_size=9, sub_color=MUTED, sub_font=FONT, sub_color_measure=None,
+        sub_bold=False, sub_wrap=False, link=None, alt=None, tooltip=True, tooltip_page=None, align='left'):
     o = {}
     if title or tmeasure:
         o['title'] = props(show=L(True), text=(M(tmeasure) if tmeasure else L(title)), fontColor=col(tcolor), fontSize=D(tsize),
                            fontFamily=L(FONT_SB), bold=L(False), titleWrap=L(wrap), alignment=L(align))
     else:
         o['title'] = props(show=L(False))
-    if sub:
-        o['subTitle'] = props(show=L(True), text=L(sub), fontColor=col(MUTED), fontSize=D(9), fontFamily=L(FONT), alignment=L(align))
+    if sub or sub_measure:
+        sp = dict(show=L(True), text=(M(sub_measure) if sub_measure else L(sub)),
+                  fontColor=(mcol(sub_color_measure) if sub_color_measure else col(sub_color)),
+                  fontSize=D(sub_size), fontFamily=L(sub_font), alignment=L(align))
+        if sub_bold:
+            sp['bold'] = L(True)
+        if sub_wrap:
+            sp['titleWrap'] = L(True)
+        o['subTitle'] = props(**sp)
     else:
         o['subTitle'] = props(show=L(False))
     o['background'] = props(show=L(False))
@@ -153,10 +162,10 @@ class Page:
         s.visuals = []
         s.z = 0
 
-    def add(s, name, vtype, x, y, w, h, q=None, objects=None, vco_=None, hidden=False, extra=None):
+    def add(s, name, vtype, x, y, w, h, q=None, objects=None, vco_=None, hidden=False, extra=None, schema=None):
         assert len(name) <= 50, name
         s.z += 1
-        v = {'$schema': SCH_V, 'name': name,
+        v = {'$schema': schema or SCH_V, 'name': name,
              'position': {'x': round(x, 2), 'y': round(y, 2), 'z': s.z * 100, 'height': round(h, 2), 'width': round(w, 2), 'tabOrder': s.z * 100}}
         vis = {'visualType': vtype}
         if q:
@@ -164,7 +173,7 @@ class Page:
         if objects:
             vis['objects'] = objects
         vis['visualContainerObjects'] = vco_ if vco_ is not None else vco(header=False)
-        vis['drillFilterOtherVisuals'] = True
+        vis['drillFilterOtherVisuals'] = (vtype not in ('shape', 'image', 'actionButton', 'textbox'))
         if extra:
             vis.update(extra)
         v['visual'] = vis
@@ -196,8 +205,15 @@ class Page:
             page['pageBinding'] = {'name': 'tt_binding', 'type': 'Tooltip', 'referenceScope': 'Default'}
             page['visibility'] = 'HiddenInViewMode'
         json.dump(page, open(os.path.join(pd, 'page.json'), 'w', encoding='utf-8'), indent=2)
+        vis_root = os.path.join(pd, 'visuals')
+        keep_vis = {v['name'] for v in s.visuals}
+        if os.path.isdir(vis_root):
+            for d in os.listdir(vis_root):
+                dp = os.path.join(vis_root, d)
+                if os.path.isdir(dp) and d not in keep_vis:
+                    shutil.rmtree(dp)
         for v in s.visuals:
-            vd = os.path.join(pd, 'visuals', v['name'])
+            vd = os.path.join(vis_root, v['name'])
             os.makedirs(vd, exist_ok=True)
             json.dump(v, open(os.path.join(vd, 'visual.json'), 'w', encoding='utf-8'), indent=2)
 
@@ -220,9 +236,13 @@ def textbox(p, name, x, y, w, h, paras, hidden=False, align='left'):
     return v
 
 
-def textcard(p, name, x, y, w, h, measure, size=10.5, color=INK, font=FONT, hidden=False, wrap=True, color_measure=None, align='left', bold=False):
+def textcard(p, name, x, y, w, h, measure, size=10.5, color=INK, font=FONT, hidden=False, wrap=True,
+             color_measure=None, align='left', bold=False, sub_measure=None, sub_size=9, sub_color=MUTED,
+             sub_font=FONT, sub_color_measure=None, sub_bold=False, sub_wrap=False):
     objs = {'shape': props(tileShape=L('rectangle')), 'fill': [{'properties': {'show': L(False)}}], 'outline': props(show=L(False))}
-    c = vco(tmeasure=measure, header=False, pad=(0, 0, 0, 0), wrap=wrap, tsize=size, tcolor=color, tooltip=False, align=align)
+    c = vco(tmeasure=measure, sub_measure=sub_measure, header=False, pad=(0, 0, 0, 0), wrap=wrap,
+            tsize=size, tcolor=color, sub_size=sub_size, sub_color=sub_color, sub_font=sub_font,
+            sub_color_measure=sub_color_measure, sub_bold=sub_bold, sub_wrap=sub_wrap, tooltip=False, align=align)
     c['title'][0]['properties']['fontFamily'] = L(font)
     c['title'][0]['properties']['bold'] = L(bool(bold))
     if color_measure:

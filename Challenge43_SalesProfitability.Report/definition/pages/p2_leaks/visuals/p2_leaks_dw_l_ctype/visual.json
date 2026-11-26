@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_dw_l_ctype",
   "position": {
     "x": 1432,
     "y": 502,
-    "z": 7600,
+    "z": 3400,
     "height": 21,
     "width": 424,
-    "tabOrder": 7600
+    "tabOrder": 3400
   },
   "visual": {
     "visualType": "textbox",
@@ -174,8 +174,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

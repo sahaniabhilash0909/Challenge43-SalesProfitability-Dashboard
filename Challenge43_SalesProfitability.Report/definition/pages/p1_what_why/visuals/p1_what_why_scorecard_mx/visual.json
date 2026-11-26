@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_scorecard_mx",
   "position": {
     "x": 856,
     "y": 748,
-    "z": 6300,
+    "z": 2200,
     "height": 258,
     "width": 1004,
-    "tabOrder": 6300
+    "tabOrder": 2200
   },
   "visual": {
     "visualType": "pivotTable",
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "DimCampaign.Campaign Type",
-              "nativeQueryRef": "Campaign Type"
+              "nativeQueryRef": "Campaign Type",
+              "active": true
             },
             {
               "field": {
@@ -41,7 +42,8 @@
                 }
               },
               "queryRef": "DimCampaign.Campaign",
-              "nativeQueryRef": "Campaign"
+              "nativeQueryRef": "Campaign",
+              "active": false
             }
           ]
         },
@@ -130,12 +132,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Contribution \u0394PY"
+                  "Property": "Contribution ΔPY"
                 }
               },
-              "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY",
-              "displayName": "\u0394PY (\u20ac)"
+              "queryRef": "_Measures.Contribution ΔPY",
+              "nativeQueryRef": "Contribution ΔPY",
+              "displayName": "ΔPY (€)"
             },
             {
               "field": {
@@ -170,8 +172,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
@@ -294,7 +295,7 @@
             "autoSizeColumnWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -461,7 +462,7 @@
                 }
               }
             ],
-            "metadata": "_Measures.Contribution \u0394PY"
+            "metadata": "_Measures.Contribution ΔPY"
           }
         },
         {
@@ -607,7 +608,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Contribution \u0394PY"
+            "metadata": "_Measures.Contribution ΔPY"
           }
         },
         {
@@ -707,7 +708,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Contribution \u0394PY"
+            "metadata": "_Measures.Contribution ΔPY"
           }
         },
         {
@@ -795,13 +796,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "outlineStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "2L"
                 }
               }
             }
@@ -941,7 +935,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },

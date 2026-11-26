@@ -13,6 +13,12 @@ for src, dst in [('bg_ch1', 'bg_ch1_c43'), ('bg_ch2', 'bg_ch2_c43'), ('bg_ch3', 
     shutil.copy(os.path.join(ASSETS, src + '.png'), os.path.join(rr, dst + '.png'))
     imgs.append(dst + '.png')
 
+for stale in ('bg_campaigns_c43.png', 'bg_overview_c43.png', 'bg_products_c43.png'):
+    sp = os.path.join(rr, stale)
+    if os.path.exists(sp):
+        os.remove(sp)
+        print('removed stale image', stale)
+
 theme = {
     "name": "Holiday PnL C43 Slate-Coral",
     "dataColors": [

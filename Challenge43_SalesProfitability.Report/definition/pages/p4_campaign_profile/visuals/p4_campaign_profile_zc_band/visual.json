@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_zc_band",
   "position": {
     "x": 1088,
     "y": 686,
-    "z": 4300,
+    "z": 2300,
     "height": 322,
     "width": 776,
-    "tabOrder": 4300
+    "tabOrder": 2300
   },
   "visual": {
     "visualType": "ZoomChartsFacetChartPaidE77E4ED357DC402ABA005987437CF500",
@@ -109,12 +109,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Contribution \u0394PY"
+                  "Property": "Contribution ΔPY"
                 }
               },
-              "queryRef": "_Measures.Contribution \u0394PY",
-              "nativeQueryRef": "Contribution \u0394PY",
-              "displayName": "Contribution \u0394PY"
+              "queryRef": "_Measures.Contribution ΔPY",
+              "nativeQueryRef": "Contribution ΔPY",
+              "displayName": "Contribution ΔPY"
             }
           ]
         }
@@ -134,8 +134,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

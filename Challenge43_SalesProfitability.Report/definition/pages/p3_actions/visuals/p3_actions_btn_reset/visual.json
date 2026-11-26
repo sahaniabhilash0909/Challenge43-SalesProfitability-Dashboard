@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_btn_reset",
   "position": {
     "x": 64,
     "y": 628,
-    "z": 1100,
+    "z": 700,
     "height": 38,
     "width": 150,
-    "tabOrder": 1100
+    "tabOrder": 700
   },
   "visual": {
     "visualType": "actionButton",
@@ -349,7 +349,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

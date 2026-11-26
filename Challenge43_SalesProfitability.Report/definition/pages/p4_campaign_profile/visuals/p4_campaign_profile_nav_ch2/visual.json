@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_nav_ch2",
   "position": {
     "x": 66,
     "y": 174,
-    "z": 400,
+    "z": 200,
     "height": 42,
     "width": 148,
-    "tabOrder": 400
+    "tabOrder": 200
   },
   "visual": {
     "visualType": "actionButton",
@@ -349,7 +349,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

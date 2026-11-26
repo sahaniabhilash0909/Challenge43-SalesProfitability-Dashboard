@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_dw_filters_hdr",
   "position": {
     "x": 1432,
     "y": 70,
-    "z": 6600,
+    "z": 2500,
     "height": 50,
     "width": 340,
-    "tabOrder": 6600
+    "tabOrder": 2500
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Apply across all chapters  \u00b7  Season & Channel are in the left rail",
+                    "value": "Apply across all chapters  ·  Season & Channel are in the left rail",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8pt",
@@ -187,8 +187,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

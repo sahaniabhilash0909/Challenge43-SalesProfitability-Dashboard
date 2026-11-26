@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_dw_limits_hdr",
   "position": {
     "x": 1432,
     "y": 70,
-    "z": 8100,
+    "z": 4300,
     "height": 50,
     "width": 340,
-    "tabOrder": 8100
+    "tabOrder": 4300
   },
   "visual": {
     "visualType": "textbox",
@@ -187,8 +187,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

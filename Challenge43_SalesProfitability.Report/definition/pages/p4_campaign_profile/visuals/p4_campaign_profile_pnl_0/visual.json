@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_pnl_0",
   "position": {
     "x": 280,
     "y": 395,
-    "z": 2900,
+    "z": 1600,
     "height": 609,
     "width": 300,
-    "tabOrder": 2900
+    "tabOrder": 1600
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -27,26 +27,8 @@
                 }
               },
               "queryRef": "PnL Lines.Label",
-              "nativeQueryRef": "Label"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "PL PY k"
-                }
-              },
-              "queryRef": "_Measures.PL PY k",
-              "nativeQueryRef": "PL PY k",
-              "displayName": "PY"
+              "nativeQueryRef": "Label",
+              "active": true
             }
           ]
         },
@@ -68,6 +50,25 @@
               "displayName": "row"
             }
           ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "PL PY k"
+                }
+              },
+              "queryRef": "_Measures.PL PY k",
+              "nativeQueryRef": "PL PY k",
+              "displayName": "PY"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -85,8 +86,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

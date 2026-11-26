@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_dw_g_txt",
   "position": {
     "x": 1432,
     "y": 148,
-    "z": 5800,
+    "z": 3800,
     "height": 860,
     "width": 424,
-    "tabOrder": 5800
+    "tabOrder": 3800
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. In KPI cards, Oct\u2013Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.",
+                    "value": "Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. KPI cards combine the CY headline metric, PY delta & baseline labels, and a built-in Oct–Jan CY trend sparkline.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -113,7 +113,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Left P&L card compares PY, CY, \u0394PY and \u0394PY%; right ZoomCharts cards track daily net sales and discount bands.",
+                    "value": "Left P&L card compares PY, CY, ΔPY and ΔPY%; right ZoomCharts cards track daily net sales and discount bands.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
@@ -280,8 +280,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

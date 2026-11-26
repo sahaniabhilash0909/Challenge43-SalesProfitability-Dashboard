@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_dw_guide_hdr",
   "position": {
     "x": 1432,
     "y": 70,
-    "z": 5700,
+    "z": 3700,
     "height": 50,
     "width": 340,
-    "tabOrder": 5700
+    "tabOrder": 3700
   },
   "visual": {
     "visualType": "textbox",
@@ -33,7 +33,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Blue Slate = CY/favorable  \u00b7  Silver = PY  \u00b7  Coral = adverse",
+                    "value": "Blue Slate = CY/favorable  ·  Silver = PY  ·  Coral = adverse",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "8pt",
@@ -187,8 +187,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

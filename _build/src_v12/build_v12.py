@@ -25,24 +25,17 @@ def slabel(txt, size=7.5, color=MUTED):
     return run(txt.upper(), size, color, FONT_SB, True)
 
 
-# ---------------------------------------------------------------- Dark Sidebar + Workspace Header + Takeaway Bar
+# ---------------------------------------------------------------- Dark Sidebar + Workspace Header + Takeaway Bar (static labels baked into bg12.py)
 def sidebar(p, pid, active):
-    textbox(p, f'{pid}_brand', 72, 30, 146, 42, [
-        [run('HOLIDAY P&L', 10.5, WHITE, FONT_SB, True)],
-        [run('CHALLENGE 43', 7, SLATE_200, NUM)],
-    ])
-    textbox(p, f'{pid}_lbl_nav', SB_X, 98, SB_IW, 18, [[slabel('Navigation', 7, SUBTLE)]])
     for k, ny in zip(('ch1', 'ch2', 'ch3'), NAV_Y):
         on = (active == k)
         tbutton(p, f'{pid}_nav_{k}', SB_X + 36, ny, SB_IW - 40, NAV_H, NAVL[k], lpage(PID[k]),
                 WHITE if on else SLATE_100, WHITE, size=9.5, font=(FONT_SB if on else FONT),
                 tip=f'Open {NAVL[k]}', align='left')
 
-    textbox(p, f'{pid}_lbl_season', SB_X, 294, SB_IW, 18, [[slabel('Season', 7, SUBTLE), run('  none = latest', 6.8, SLATE_200)]])
     sx, sy, sw, sh = SEASON_BOX
     sidebar_chips(p, f'{pid}_chip_season', sx, sy, sw, sh, 'DimDate.Season', 'sync_season', 1, rows=3, size=8.5, filt=SEASONS)
 
-    textbox(p, f'{pid}_lbl_channel', SB_X, 444, SB_IW, 18, [[slabel('Channel', 7, SUBTLE)]])
     cx, cy, cw, ch = CHANNEL_BOX
     sidebar_chips(p, f'{pid}_chip_channel', cx, cy, cw, ch, 'FactSales.Sales Channel', 'sync_channel', 1, rows=2, size=8.5)
 
@@ -53,22 +46,14 @@ def sidebar(p, pid, active):
     tbutton(p, f'{pid}_btn_reset', rx_ + 34, ry_, rw - 38, rh, 'Reset all', lbm(f'bm_{pid}_reset'),
             SLATE_100, WHITE, size=9, tip='Clear every filter: CY returns to latest season', align='left')
 
-    textbox(p, f'{pid}_lbl_info', SB_X, 698, SB_IW, 18, [[slabel('Guide & notes', 7, SUBTLE)]])
     tbutton(p, f'{pid}_btn_guide', SB_X + 38, INFO_Y[0], SB_IW - 40, 38, 'How to read', lbm(f'bm_{pid}_guide'),
             SLATE_200, WHITE, size=9, tip='How to read charts & Slate-Coral notation', align='left')
     tbutton(p, f'{pid}_btn_limits', SB_X + 38, INFO_Y[1], SB_IW - 40, 38, 'Data notes', lbm(f'bm_{pid}_limits'),
             SLATE_200, WHITE, size=9, tip='Definitions and limits of the dataset', align='left')
 
-    textbox(p, f'{pid}_credit', SB_X, 996, SB_IW, 44, [
-        [run('CREATED BY', 6.5, SUBTLE, FONT_SB, True)],
-        [run('Abhilash Sahani · 2026', 8, SLATE_100, FONT_SB)],
-    ])
-
 
 def header(p, pid, kicker, title, msg_m, nxt=None, back=False):
     hx, hy, hw, _ = HEADER
-    textbox(p, f'{pid}_kicker', hx + 18, hy + 7, 860, 18, [[slabel(kicker, 7.5, SLATE)]])
-    textbox(p, f'{pid}_title', hx + 18, hy + 23, 860, 40, [[run(title, 18, INK, FONT_SB, True)]])
     px_, py_, pw, ph = PERIOD_PILL
     textcard(p, f'{pid}_period', px_ + 10, py_ + 3, pw - 20, ph - 6, 'Period Short', size=8, color=BODY, font=NUM, wrap=False, align='center')
     textcard(p, f'{pid}_filt', hx + hw - 18 - 736, hy + 41, 736, 18, 'Filters Line', size=7.5, color=MUTED, wrap=False, align='right')
@@ -81,7 +66,6 @@ def header(p, pid, kicker, title, msg_m, nxt=None, back=False):
         tbutton(p, f'{pid}_btn_back', bx, by, bw, bh, '‹  Back', lback(), BODY, INK, size=9,
                 tip='Back to the page you came from', align='center')
 
-    textbox(p, f'{pid}_foot', X0, FOOT_Y, 1260, 20, [[run(FOOT, 7, MUTED)]])
     if nxt:
         k, t = nxt
         lbl = 'Back to start  ·  What happened & why  ↺' if k == 'ch1' else f'Next chapter  ·  {t}  →'
@@ -90,11 +74,8 @@ def header(p, pid, kicker, title, msg_m, nxt=None, back=False):
 
 
 def card_head(p, name, card, take_m, kicker, note=None):
+    """Kickers & notes are baked into bg12.py; only emit dynamic headline textcards."""
     x, y, w, _ = card
-    parts = [slabel(kicker, 7.5, MUTED)]
-    if note:
-        parts.append(run('   ·   ' + note, 7.5, SUBTLE))
-    textbox(p, f'{name}_t', x + 18, y + 10, w - 36, 18, [parts])
     if take_m:
         mh = 24 if w >= 850 else 38
         textcard(p, f'{name}_m', x + 18, y + 31, w - 36, mh, take_m, size=9.5, color=INK, font=FONT_SB, wrap=True)
@@ -103,58 +84,239 @@ def card_head(p, name, card, take_m, kicker, note=None):
 
 
 def card_legend(p, name, card, items, y_off=58):
-    """Consistent inline Slate-Coral color legend row.
-    Each item is (symbol, sym_color, label) or (symbol, sym_color, label, lbl_color, bold)."""
-    x, y, w, _ = card
-    runs = []
-    for i, it in enumerate(items):
-        sym, sc, lbl = it[0], it[1], it[2]
-        lc = it[3] if len(it) > 3 else MUTED
-        bld = it[4] if len(it) > 4 else False
-        sep = '   ' if i < len(items) - 1 else ''
-        runs.append(run(sym + ' ', 8.5, sc, FONT_SB, True))
-        runs.append(run(lbl + sep, 7.5, lc, FONT_SB if bld else FONT, bld))
-    return textbox(p, name, x + 18, y + y_off, w - 36, 18, [runs])
+    """Legends are baked as crisp SVG swatches in bg12.py (zero runtime visuals)."""
+    return None
 
 
-# ---------------------------------------------------------------- KPI Cards (Icon Badge + Monospace Hero + Oct-Jan Micro-Chart)
-def kpi_card_v12(p, name, box, label, k, ac_m, py_m, style='bars', bar_col_m=None):
-    x, y, w, h = box
-    textbox(p, f'{name}_lbl', x + 46, y + 15, w - 58, 20, [[run(label, 8, MUTED, FONT_SB)]])
-    textcard(p, f'{name}_val', x + 13, y + 44, 134, 34, f'KPI {k} AC', size=17.5, color=INK, font=NUM, wrap=False, bold=True)
-    textcard(p, f'{name}_d', x + 14, y + 82, 138, 18, f'KPI {k} Tag', size=8, font=NUM, wrap=False, color_measure=f'KPI {k} Col', bold=True)
-    textcard(p, f'{name}_py', x + 14, y + 104, 138, 18, f'KPI {k} PY', size=7, color=SUBTLE, font=NUM, wrap=False)
-
-    cx, cy, cw, ch = x + 150, y + 38, w - 160, h - 46
-    if style == 'area':
-        o = {
-            'legend': props(show=L(False)),
-            'valueAxis': props(show=L(False), gridlineShow=L(False), showAxisTitle=L(False)),
-            'categoryAxis': props(show=L(True), fontSize=D(7), labelColor=col(SUBTLE), fontFamily=L(NUM), showAxisTitle=L(False)),
-            'labels': props(show=L(False)),
-            'lineStyles': [
-                {'properties': {'strokeWidth': D(2), 'areaShow': L(False), 'strokeTransparency': D(0)}, 'selector': {'metadata': f'_Measures.{ac_m}'}},
-                {'properties': {'strokeWidth': D(1), 'strokeTransparency': D(100), 'areaMatchStrokeColor': L(True)}, 'selector': {'metadata': f'_Measures.{py_m}'}},
-            ],
-            'dataPoint': [
-                {'properties': {'fill': col(SLATE)}, 'selector': {'metadata': f'_Measures.{ac_m}'}},
-                {'properties': {'fill': col(PY_AREA)}, 'selector': {'metadata': f'_Measures.{py_m}'}},
-            ],
-        }
-        q = query({'Category': ['DimDate.Season Month'], 'Y': [(f'#{py_m}', 'PY'), (f'#{ac_m}', 'CY')]}, [('DimDate.Season Month', 'Ascending')])
-        p.add(f'{name}_spark', 'areaChart', cx, cy, cw, ch, q=q, objects=o, vco_=vco(header=False, pad=(0, 0, 0, 0), tooltip=True))
-    else:
-        o = {
-            'layout': props(clusteredGapOverlaps=L(True), clusteredGapSize=D(100)),
-            'legend': props(show=L(False)),
-            'valueAxis': props(show=L(False), gridlineShow=L(False), showAxisTitle=L(False)),
-            'categoryAxis': props(show=L(True), fontSize=D(7), labelColor=col(SUBTLE), fontFamily=L(NUM), showAxisTitle=L(False), innerPadding=D(38)),
-            'labels': props(show=L(False)),
-            'dataPoint': [measure_fill(bar_col_m)],
-            'error': error_target_tick(ac_m, py_m, color=INK),
-        }
-        q = query({'Category': ['DimDate.Season Month'], 'Y': [(f'#{ac_m}', 'CY')], 'Tooltips': [(f'#{py_m}', 'PY')]}, [('DimDate.Season Month', 'Ascending')])
-        p.add(f'{name}_spark', 'clusteredColumnChart', cx, cy, cw, ch, q=q, objects=o, vco_=vco(header=False, pad=(0, 0, 0, 0), tooltip=True))
+# ---------------------------------------------------------------- Native 5-Tile KPI New Card Visual (callout + reference labels + built-in Oct-Jan trend)
+def kpi_strip_v12(p, name, items):
+    """Single all-in-one 5-tile cardVisual spanning the KPI strip with top accent bars, callouts, PY delta/baseline reference labels & built-in Oct-Jan trend sparklines."""
+    q = query(
+        {
+            'Data': [(f'#{val_m}', lbl) for lbl, _, val_m, _, _, _ in items],
+            'TrendVisualCategory': ['DimDate.Season Month'],
+        },
+        sort=[('DimDate.Season Month', 'Ascending')],
+    )
+    o = {
+        'layout': [{
+            'properties': {
+                'orientation': L(2),
+                'maxTiles': L(5),
+                'cellPadding': D(16),
+                'alignment': L('middle'),
+                'contentOrder': L('callout_referenceLabel_image'),
+                'collage': L('Default'),
+                'calloutSize': D(54),
+                'paddingUniform': L(0),
+                'paddingIndividual': L(False),
+                'backgroundShow': L(False),
+            },
+        }],
+        'overFlow': [{
+            'properties': {
+                'overFlowStyle': L(1),
+            },
+        }],
+        'shapeCustomRectangle': [{
+            'properties': {
+                'tileShape': L('rectangleRoundedByPixel'),
+                'rectangleRoundedCurve': L(10),
+                'rectangleRoundedCurveCustomStyle': L(False),
+            },
+            'selector': {'id': 'default'},
+        }],
+        'fillCustom': [
+            {'properties': {'show': L(True)}},
+            {'properties': {'fillColor': col(WHITE), 'transparency': D(0)}, 'selector': {'id': 'default'}},
+        ],
+        'outline': [
+            {'properties': {'show': L(True)}},
+            {'properties': {'show': L(True), 'lineColor': col(HAIR), 'weight': D(1), 'transparency': D(0)}, 'selector': {'id': 'default'}},
+        ],
+        'borderCustom': [
+            {'properties': {'show': L(False)}},
+            {'properties': {'show': L(False)}, 'selector': {'id': 'default'}},
+        ],
+        'shadowCustom': [
+            {'properties': {'show': L(False)}},
+            {'properties': {'show': L(False)}, 'selector': {'id': 'default'}},
+        ],
+        'glowCustom': [
+            {'properties': {'show': L(False)}},
+            {'properties': {'show': L(False)}, 'selector': {'id': 'default'}},
+        ],
+        'divider': [
+            {'properties': {'show': L(False)}},
+            {'properties': {'show': L(False)}, 'selector': {'id': 'default'}},
+        ],
+        'accentBar': [
+            {'properties': {'show': L(True)}},
+            {'properties': {'show': L(True), 'position': L('Top'), 'width': D(3), 'color': col(SLATE), 'transparency': D(0)}, 'selector': {'id': 'default'}},
+        ] + [
+            {'properties': {'color': col(CORAL)}, 'selector': {'metadata': f'_Measures.{val_m}'}}
+            for _, _, val_m, _, _, is_risk in items if is_risk
+        ],
+        'padding': [{
+            'properties': {
+                'paddingUniform': L(10),
+                'paddingIndividual': L(True),
+                'topMargin': L(10),
+                'bottomMargin': L(10),
+                'leftMargin': L(14),
+                'rightMargin': L(10),
+            },
+            'selector': {'id': 'default'},
+        }],
+        'spacing': [{
+            'properties': {'verticalSpacing': D(2)},
+            'selector': {'id': 'default'},
+        }],
+        'cardCalloutArea': [{
+            'properties': {
+                'show': L(False),
+                'paddingUniform': L(0),
+                'paddingIndividual': L(True),
+                'topMargin': L(0),
+                'bottomMargin': L(0),
+                'leftMargin': L(0),
+                'rightMargin': L(6),
+            },
+            'selector': {'id': 'default'},
+        }],
+        'label': [
+            {'properties': {'show': L(True)}},
+            {
+                'properties': {
+                    'show': L(True),
+                    'position': L('aboveValue'),
+                    'fontFamily': L(FONT_SB),
+                    'fontSize': D(8.5),
+                    'fontColor': col(MUTED),
+                    'horizontalAlignment': L('left'),
+                    'textWrap': L(False),
+                },
+                'selector': {'id': 'default'},
+            },
+        ],
+        'value': [
+            {'properties': {'show': L(True)}},
+            {
+                'properties': {
+                    'fontColor': col(INK),
+                    'fontSize': D(17),
+                    'fontFamily': L(NUM),
+                    'bold': L(True),
+                    'horizontalAlignment': L('left'),
+                    'verticalAlignment': L('middle'),
+                    'showBlankAs': L('–'),
+                    'textWrap': L(False),
+                },
+                'selector': {'id': 'default'},
+            },
+        ] + [
+            {'properties': {'labelDisplayUnits': D(units), 'labelPrecision': L(prec)}, 'selector': {'metadata': f'_Measures.{val_m}'}}
+            for _, _, val_m, units, prec, _ in items
+        ],
+        'referenceLabelLayout': [{
+            'properties': {
+                'position': L('below'),
+                'arrangement': L('rows'),
+                'style': L('tabular'),
+                'horizontalAlignment': L('left'),
+                'verticalAlignment': L('top'),
+                'labelSpace': D(2),
+                'outerPadding': D(0),
+            },
+            'selector': {'id': 'default'},
+        }],
+        'referenceLabel': [
+            {'properties': {'backgroundShow': L(False), 'paddingUniform': L(0)}, 'selector': {'id': 'default'}},
+        ],
+        'referenceLabelTitle': [
+            {'properties': {'show': L(False)}, 'selector': {'id': 'default'}},
+        ],
+        'referenceLabelValue': [
+            {'properties': {'show': L(True)}, 'selector': {'id': 'default'}},
+        ],
+        'trendVisualLibrary': [
+            {'properties': {'show': L(True)}},
+            {
+                'properties': {
+                    'show': L(True),
+                    'includePrimaryMeasure': L(True),
+                    'chartType': L('line'),
+                    'showTooltip': L(True),
+                    'legendShow': L(False),
+                    'paddingUniform': L(0),
+                    'paddingIndividual': L(True),
+                    'topMargin': L(12),
+                    'rightMargin': L(4),
+                    'bottomMargin': L(4),
+                    'leftMargin': L(6),
+                },
+                'selector': {'id': 'default'},
+            },
+        ],
+        'cartesianTrendVisual': [{
+            'properties': {
+                'seriesColor': col(SLATE),
+                'showXAxis': L(True),
+                'categoryAxisFontFamily': L(NUM),
+                'categoryAxisFontSize': D(7),
+                'categoryAxisColor': col(SUBTLE),
+                'showYAxis': L(False),
+                'showDataLabels': L(False),
+            },
+            'selector': {'id': 'default'},
+        }],
+        'lineTrendVisual': [{
+            'properties': {
+                'lineShow': L(True),
+                'lineWidth': D(2),
+                'lineTransparency': D(0),
+                'lineStyle': L('solid'),
+                'lineShape': L('smooth'),
+                'fillArea': L(True),
+                'fillAreaTransparency': D(86),
+                'showMarkers': L(False),
+            },
+            'selector': {'id': 'default'},
+        }],
+    }
+    for i, (_, k, val_m, _, _, _) in enumerate(items):
+        md = f'_Measures.{val_m}'
+        did, pid_ref = f'ref_d_{i}', f'ref_p_{i}'
+        o['referenceLabel'].extend([
+            {
+                'properties': {'value': M(f'KPI {k} Tag')},
+                'selector': {'data': [{'dataViewWildcard': {'matchingOption': 0}}], 'id': did, 'metadata': md, 'order': 0},
+            },
+            {
+                'properties': {'value': M(f'KPI {k} PY')},
+                'selector': {'data': [{'dataViewWildcard': {'matchingOption': 0}}], 'id': pid_ref, 'metadata': md, 'order': 1},
+            },
+        ])
+        o['referenceLabelTitle'].extend([
+            {'properties': {'show': L(False)}, 'selector': {'id': did, 'metadata': md}},
+            {'properties': {'show': L(False)}, 'selector': {'id': pid_ref, 'metadata': md}},
+        ])
+        o['referenceLabelValue'].extend([
+            {
+                'properties': {'show': L(True), 'valueFontFamily': L(NUM), 'valueFontSize': D(8), 'valueBold': L(True)},
+                'selector': {'id': did, 'metadata': md},
+            },
+            {
+                'properties': {'valueFontColor': mcol(f'KPI {k} Col')},
+                'selector': {'data': [{'dataViewWildcard': {'matchingOption': 0}}], 'id': did, 'metadata': md},
+            },
+            {
+                'properties': {'show': L(True), 'valueFontFamily': L(NUM), 'valueFontSize': D(7), 'valueBold': L(False), 'valueFontColor': col(SUBTLE)},
+                'selector': {'id': pid_ref, 'metadata': md},
+            },
+        ])
+    p.add(name, 'cardVisual', X0, KPI_Y, MW, KPI_H, q=q, objects=o,
+          vco_=vco(header=False, pad=(0, 0, 0, 0), tooltip=True), schema=SCH_V_210)
 
 
 # ---------------------------------------------------------------- Native Bar Table + Heatmap + ZoomCharts
@@ -205,9 +367,6 @@ def table(p, name, blk, cat, label_w, cols, sort, rows, anchor, tt=True, y_off=8
     for i, c in enumerate(cols):
         first = i == 0
         cw = c['w'] + (label_w + 8 if first else 0)
-        hx = cx + (label_w + 8 if first else 0)
-        if c.get('hdr'):
-            textbox(p, f'{name}_h{i}', hx, y + hdr_y_off, c['w'], 20, [[run(c['hdr'], 7.5, MUTED, FONT_SB, True)]])
         k = c['kind']
 
         def axis_fix(o, show_labels):
@@ -424,7 +583,7 @@ DX, DW = DR['x'] + 24, DR['w'] - 48
 NOTATION = ('How to read Slate-Coral IBCS',
             'Blue Slate (#4F5D75) = CY & favorable gains. Silver-Grey (#8B909E / #B5BECC) = PY (one season earlier). '
             'Coral Glow (#EF8354) = adverse bars, margin erosion & 15%+ return leaks; Burnt Coral (#BA4B1D) = small adverse text. '
-            'In KPI cards, Oct–Jan micro-charts plot the solid Blue Slate CY line over the shaded PY area.')
+            'KPI cards combine the CY headline metric, PY delta & baseline labels, and a built-in Oct–Jan CY trend sparkline.')
 LIMITS = [
     ('Synthetic data.', ' Three October–January holiday windows (2023/24, 2024/25, 2025/26) across eight European city markets. 2023/24 has no PY.'),
     ('Descriptive, not causal.', ' There is no control group, randomisation or ad-exposure data, so nothing here proves a campaign caused extra sales, uplift or ROI.'),
@@ -434,7 +593,7 @@ LIMITS = [
     ('Weighted discount %', ' = discount € ÷ gross sales €. Returns carry no return date; refunds count against the original sale.'),
 ]
 GUIDES = {
-    'ch1': [('KPI strip.', 'Top 5 cards show CY hero metrics, PY delta tags, and Oct–Jan CY lines over shaded PY baselines.'),
+    'ch1': [('KPI strip.', 'Top 5 native cards show CY hero metrics, PY delta/baseline labels, and built-in Oct–Jan CY trend sparklines.'),
             ('Profit bridge.', 'Left tall card reads top-down from PY contribution to CY: Blue Slate bars added margin, Coral Glow bars eroded it.'),
             ('Month, discount & campaign drills.', 'Monthly Contribution plots the solid CY line against a dotted light grey PY line with Max (Blue Slate) and Min (Coral) callouts; Discount Depth (Combo) drills into campaigns and the expandable Campaign Scorecard matrix compares Days, Net Sales, Sales/Day, Discount %, Contribution CY, ΔPY, and color-coded Margin % across Campaign Type › Event (right-click › Drill through).')],
     'ch2': [('Product hierarchy.', 'Top-left ZoomCharts Combo Bar drills Category › Subcategory › Product.'),
@@ -490,14 +649,13 @@ TIPS_C = [('#Margin AC', 'Margin CY'), ('#Net Sales AC', 'Net sales CY'), ('#Con
 pid = PID['ch1']; p = Page(pid, '1 · What happened & why', BG['ch1']); pages['ch1'] = p; C = CARDS['ch1']
 sidebar(p, pid, 'ch1')
 header(p, pid, 'CHAPTER 1 OF 3  ·  HOLIDAY TRADING AUDIT · 8 EUROPEAN CITY MARKETS', 'What happened & why', 'Msg Ch1', nxt=CHAPTERS[1])
-for i, (lbl, k, ac_m, py_m, sty, bar_m) in enumerate([
-    ('Contribution profit', 'Contribution', 'Contribution AC k', 'Contribution PY k', 'area', None),
-    ('Contribution margin', 'Margin', 'Margin AC', 'Margin PY', 'area', None),
-    ('Net sales', 'Net Sales', 'Net Sales AC k', 'Net Sales PY k', 'area', None),
-    ('Weighted discount', 'Discount', 'Discount AC', 'Discount PY', 'area', None),
-    ('Sales at 20%+ discount', 'Deep', 'Deep Share AC', 'Deep Share PY', 'area', None),
-]):
-    kpi_card_v12(p, f'{pid}_k{i}', KPIS[i], lbl, k, ac_m, py_m, style=sty, bar_col_m=bar_m)
+kpi_strip_v12(p, f'{pid}_kpis', [
+    ('Contribution profit', 'Contribution', 'Contribution AC', 1000, 1, False),
+    ('Contribution margin', 'Margin', 'Margin AC', 1, 1, False),
+    ('Net sales', 'Net Sales', 'Net Sales AC', 1000, 1, False),
+    ('Weighted discount', 'Discount', 'Discount AC', 1, 1, True),
+    ('Sales at 20%+ discount', 'Deep', 'Deep Share AC', 1, 1, True),
+])
 
 br_leg_y = card_head(p, f'{pid}_br', C['bridge'], 'Title Bridge Var', 'PROFIT BRIDGE', 'kEUR · PY to CY')
 card_legend(p, f'{pid}_br_leg', C['bridge'], [
@@ -515,12 +673,6 @@ table(p, f'{pid}_br', C['bridge'], 'Bridge Lines.Label', 126,
 
 mc_x, mc_y, mc_w, mc_h = C['month']
 m_leg_y = card_head(p, f'{pid}_month', C['month'], 'Title Month AC', 'CONTRIBUTION BY MONTH', 'kEUR · Oct–Jan · CY solid vs PY dotted')
-textbox(p, f'{pid}_month_leg', mc_x + 18, mc_y + m_leg_y, mc_w - 36, 18, [[
-    run('━━ ', 7.5, SLATE, FONT_SB, True), run('CY   ', 7.5, MUTED),
-    run('··· ', 9, SUBTLE, FONT_SB, True), run('PY   ', 7.5, MUTED),
-    run('● ', 8.5, SLATE), run('Max   ', 7.5, SLATE, FONT_SB, True),
-    run('● ', 8.5, CORAL), run('Min', 7.5, CORAL_TEXT, FONT_SB, True),
-]])
 month_objs = {
     'legend': props(show=L(False)),
     'valueAxis': props(show=L(False), gridlineShow=L(False), showAxisTitle=L(False)),
@@ -623,14 +775,13 @@ drawers['ch1'] = drawer(p, pid, GUIDES['ch1'])
 pid = PID['ch2']; p = Page(pid, '2 · Where it leaks', BG['ch2']); pages['ch2'] = p; C = CARDS['ch2']
 sidebar(p, pid, 'ch2')
 header(p, pid, 'CHAPTER 2 OF 3  ·  PRODUCTS, CHANNELS, MARKETS & RETURNS', 'Where it leaks', 'Msg Ch3', nxt=CHAPTERS[2])
-for i, (lbl, k, ac_m, py_m, sty, bar_m) in enumerate([
-    ('Online electronics margin', 'OE Margin', 'OE Margin AC', 'OE Margin PY', 'area', None),
-    ('Net sales sold at a loss', 'Loss Share', 'Loss Share AC', 'Loss Share PY', 'area', None),
-    ('Return rate · all units', 'Return', 'Return AC', 'Return PY', 'area', None),
-    ('Return rate · apparel', 'Apparel Return', 'Apparel Return Rate AC', 'Apparel Return Rate PY', 'area', None),
-    ('Average order value', 'AOV', 'AOV AC', 'AOV PY', 'area', None),
-]):
-    kpi_card_v12(p, f'{pid}_k{i}', KPIS[i], lbl, k, ac_m, py_m, style=sty, bar_col_m=bar_m)
+kpi_strip_v12(p, f'{pid}_kpis', [
+    ('Online electronics margin', 'OE Margin', 'OE Margin AC', 1, 1, True),
+    ('Net sales sold at a loss', 'Loss Share', 'Loss Share AC', 1, 1, True),
+    ('Return rate · all units', 'Return', 'Return AC', 1, 1, True),
+    ('Return rate · apparel', 'Apparel Return', 'Apparel Return Rate AC', 1, 1, True),
+    ('Average order value', 'AOV', 'AOV AC', 1, 0, False),
+])
 
 zc_chart(p, f'{pid}_zc_cat', 'combobar', C['cat'],
          {'Category': ['DimProduct.Category', 'DimProduct.Subcategory', 'DimProduct.Product'],
@@ -695,51 +846,27 @@ sidebar(p, pid, 'ch3')
 header(p, pid, 'CHAPTER 3 OF 3  ·  FOUR RECOMMENDED MOVES', 'What to do', 'Msg Ch4', nxt=CHAPTERS[0])
 
 cx_, cy_, cw_, ch_ = C['callout']
-textbox(p, f'{pid}_up_t', cx_ + 20, cy_ + 16, cw_ - 40, 18, [[slabel('COMBINED INDICATIVE UPSIDE', 7.5, MUTED), run('   ·   per season', 7.5, SUBTLE)]])
 textcard(p, f'{pid}_up_v', cx_ + 18, cy_ + 40, cw_ - 36, 54, 'Pot Total Text', size=26, color=SLATE, font=NUM, wrap=False, bold=True)
-textbox(p, f'{pid}_up_n', cx_ + 20, cy_ + 102, cw_ - 40, 48, [[run('Projected from CY volumes & margins assuming volumes hold; order of magnitude, not a forecast.', 8.5, BODY)]])
 
 ux, uy, uw, uh = C['upside_bar']
 card_head(p, f'{pid}_up', C['upside_bar'], None, 'UPSIDE BY MOVE', 'kEUR · CY simulation')
-card_legend(p, f'{pid}_up_leg', C['upside_bar'], [('■', SLATE, 'Indicative CY contribution upside (€k)')], y_off=34)
 table(p, f'{pid}_up', (ux, uy, uw, uh), 'Moves.Label', 190,
       [{'kind': 'var', 'hdr': '', 'w': 308, 'm': 'Pot by Move k', 'label': 'Upside', 'fill': SLATE, 'end': 'Axis Moves End'}],
       [('#Pot by Move k', 'Descending')], rows=4, anchor='Anchor Moves', tt=False, y_off=58, hdr_y_off=44)
 
-lx_, ly_, lw_, lh_ = C['limits']
-card_head(p, f'{pid}_lim', C['limits'], None, 'ANALYTICAL GUARDRAILS', 'what this dataset cannot tell you')
-LIM_SHORT = [
-    ('Not causal.', ' Synthetic data with no control group: nothing proves a campaign caused uplift or ROI.'),
-    ('Before overhead.', ' Contribution excludes corporate overhead, interest and tax.'),
-    ('Unequal lengths.', ' Campaigns run 3 to 17 days; compare margins and sales/day, not raw totals.'),
-    ('Allocated spend.', ' Campaign budgets are spread across sales lines by gross-sales share.'),
-]
-for i, (t_, d_) in enumerate(LIM_SHORT):
-    iy = ly_ + 48 + i * 62
-    textbox(p, f'{pid}_lim_b{i}', lx_ + 48, iy, lw_ - 66, 48, [[run(t_, 9, INK, FONT_SB, True), run(d_, 9, BODY)]])
-
 MOVES = [
-    ('ACT-01', 'Keep every event discount below 20%', 'Evidence Discount', 'Pot Discount Text', 'ch1',
-     'Cap Black Friday and New Year offers at 19% in 2 test markets; compare against 6 control markets.'),
-    ('ACT-02', 'Sell online electronics on value, not price', 'Evidence OE', 'Pot OE Text', 'ch2',
-     'Bundle laptops with accessories online; restrict price cuts to aged clearance SKUs only.'),
-    ('ACT-03', 'Bring apparel returns down to store average', 'Evidence Returns', 'Pot Returns Text', 'ch2',
-     'Add fit notes and sizing guides to the 10 most-returned apparel items before peak traffic.'),
-    ('ACT-04', 'Run New Year as clearance, not a second Christmas', 'Evidence NY', 'Pot NY Text', 'ch1',
-     'Limit New Year promotions to aged inventory and exclude high-return apparel lines.'),
+    ('ACT-01', 'Evidence Discount', 'Pot Discount Text', 'ch1'),
+    ('ACT-02', 'Evidence OE', 'Pot OE Text', 'ch2'),
+    ('ACT-03', 'Evidence Returns', 'Pot Returns Text', 'ch2'),
+    ('ACT-04', 'Evidence NY', 'Pot NY Text', 'ch1'),
 ]
-for i, (code, title, ev, pot, src, test) in enumerate(MOVES):
+for i, (code, ev, pot, src) in enumerate(MOVES):
     x, y, w, h = ACTION_ROWS[i]
     nm = f'{pid}_m{i}'
-    textbox(p, f'{nm}_code', x + 20, y + 18, 68, 24, [[run(code, 8.5, BODY, NUM, True)]], align='center')
-    textbox(p, f'{nm}_title', x + 102, y + 16, 610, 28, [[run(title, 12, INK, FONT_SB, True)]])
     textcard(p, f'{nm}_ev', x + 102, y + 50, 610, 96, ev, size=9, color=BODY, font=FONT, wrap=True)
     tbutton(p, f'{nm}_link', x + 92, y + h - 44, 300, 36, f'See evidence in Chapter {src[-1]}  →',
             lpage(PID[src]), SLATE, INK, size=9, tip=f'Open Chapter {src[-1]}', align='left')
-    textbox(p, f'{nm}_plbl', x + 758, y + 20, 280, 18, [[slabel('INDICATIVE UPSIDE', 7, MUTED)]])
     textcard(p, f'{nm}_pot', x + 756, y + 40, 280, 38, pot, size=19, color=SLATE, font=NUM, wrap=False, bold=True)
-    textbox(p, f'{nm}_tlbl', x + 758, y + 88, 280, 18, [[slabel('PILOT TEST', 7, MUTED)]])
-    textbox(p, f'{nm}_test', x + 758, y + 108, 280, 78, [[run(test, 9, BODY)]])
 
 drawers['ch3'] = drawer(p, pid, GUIDES['ch3'])
 
@@ -750,7 +877,6 @@ sidebar(p, pid, 'ch1')
 header(p, pid, 'DRILL-THROUGH  ·  CAMPAIGN PROFILE', 'Campaign profile', 'Title Drill AC', back=True)
 
 fx_, fy_, fw_, fh_ = C['facts']
-textbox(p, f'{pid}_facts_hdr', fx_ + 18, fy_ + 12, fw_ - 36, 18, [[slabel('EVENT FACTS', 7.5, MUTED), run('   ·   for the campaign or type you drilled into', 7.5, SUBTLE)]])
 textcard(p, f'{pid}_facts_txt', fx_ + 18, fy_ + 34, fw_ - 36, 62, 'Drill Campaign Facts', size=9.5, color=BODY, font=FONT, wrap=True)
 
 pl_leg_y = card_head(p, f'{pid}_pl', C['pnl'], 'Title Bridge AC', 'PROFIT AND LOSS', 'kEUR · costs in brackets')
@@ -785,17 +911,16 @@ drawers['profile'] = drawer(p, pid, GUIDES['profile'])
 
 # ================================================================== Tooltip page
 p = Page(TT_PAGE, 'Snapshot tooltip', 'bg_tooltip_c43.png', tooltip=True, w=TT['w'], h=TT['h']); pages['tooltip'] = p
-textcard(p, 'tt_header', 20, 8, 328, 28, 'TT Header', size=10.5, color=INK, font=FONT_SB, wrap=True, bold=True)
-textcard(p, 'tt_sel', 20, 38, 328, 16, 'Period Short', size=7, color=MUTED, font=NUM, wrap=False)
-for i, (lbl, k, x, y) in enumerate([
-    ('NET SALES · CY', 'Net Sales', 20, 70),
-    ('CONTRIBUTION · CY', 'Contribution', 198, 70),
-    ('MARGIN · CY', 'Margin', 20, 156),
-    ('WEIGHTED DISCOUNT · CY', 'Discount', 198, 156),
+textcard(p, 'tt_header', 20, 6, 328, 50, 'TT Header', size=10.5, color=INK, font=FONT_SB, wrap=True, bold=True,
+         sub_measure='Period Short', sub_size=7, sub_color=MUTED, sub_font=NUM)
+for i, (k, x, y) in enumerate([
+    ('Net Sales', 20, 70),
+    ('Contribution', 198, 70),
+    ('Margin', 20, 156),
+    ('Discount', 198, 156),
 ]):
-    textbox(p, f'tt_l{i}', x, y, 154, 16, [[slabel(lbl, 6.5, MUTED)]])
-    textcard(p, f'tt_v{i}', x, y + 16, 154, 28, f'KPI {k} AC', size=15, color=INK, font=NUM, wrap=False, bold=True)
-    textcard(p, f'tt_d{i}', x, y + 46, 160, 18, f'KPI {k} Tag', size=7.5, font=NUM, wrap=False, color_measure=f'KPI {k} Col', bold=True)
+    textcard(p, f'tt_v{i}', x, y + 16, 160, 46, f'KPI {k} AC', size=15, color=INK, font=NUM, wrap=False, bold=True,
+             sub_measure=f'KPI {k} Tag', sub_size=7.5, sub_color_measure=f'KPI {k} Col', sub_font=NUM, sub_bold=True)
 for v in p.visuals:
     v['visual']['visualContainerObjects']['visualTooltip'] = props(show=L(False))
 

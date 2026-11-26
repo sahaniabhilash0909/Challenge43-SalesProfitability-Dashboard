@@ -821,7 +821,7 @@ table _Measures
 
 	measure 'AC Season' =
 			VAR d = CALCULATE ( MAX ( FactSales[SaleDate] ), 'Scope'[Scope] = "AC" )
-			RETURN LOOKUPVALUE ( DimDate[Season], DimDate[Date], d )
+			RETURN CALCULATE ( MAX ( DimDate[Season] ), REMOVEFILTERS ( DimDate ), DimDate[Date] = d )
 		displayFolder: 13 IBCS
 		lineageTag: 52baaee3-678b-4b38-9b07-5b857a3c7205
 
@@ -1649,8 +1649,9 @@ table _Measures
 		lineageTag: 9f991f8d-15ae-483d-bcbb-7278b7ebf85b
 
 	measure 'Axis PL Start' =
-			VAR mn = MINX ( ALLSELECTED ( 'PnL Lines' ), MIN ( [PL AC k], [PL PY k] ) )
-			VAR mx = MAXX ( ALLSELECTED ( 'PnL Lines' ), MAX ( [PL AC k], [PL PY k] ) )
+			VAR t = ADDCOLUMNS ( ALLSELECTED ( 'PnL Lines' ), "@a", [PL AC k], "@p", [PL PY k] )
+			VAR mn = MINX ( t, MIN ( [@a], [@p] ) )
+			VAR mx = MAXX ( t, MAX ( [@a], [@p] ) )
 			RETURN IF ( mn < 0, mn - 0.35 * ( MAX ( mx, 0 ) - mn ), 0 )
 		displayFolder: 15 Redesign
 		lineageTag: d0d8b4ed-76fb-4445-aa35-7e1a5d88f036
@@ -2100,11 +2101,45 @@ table _Measures
 		displayFolder: 15 Redesign\Story\Bridge
 		lineageTag: 378563fa-e4ce-432e-9e1f-d787d9ed2e58
 
-	measure 'Bridge Cum k' = VAR cur = SELECTEDVALUE ( 'Bridge Lines'[Sort] ) RETURN [Contribution PY k] + SUMX ( FILTER ( ALL ( 'Bridge Lines' ), 'Bridge Lines'[Kind] = "Delta" && 'Bridge Lines'[Sort] < cur ), [Bridge Impact k] )
+	measure 'Bridge Cum k' =
+			VAR cur = SELECTEDVALUE ( 'Bridge Lines'[Sort] )
+			VAR py = [Contribution PY k]
+			VAR delta_sum =
+			    IF (
+			        NOT ISBLANK ( py ) && cur > 1,
+			        VAR ac_num = CALCULATE (
+			            IF ( cur > 1, [Gross Sales], 0 )
+			            - IF ( cur > 2, [Discount Amount], 0 )
+			            - IF ( cur > 3, [Refunds], 0 )
+			            - IF ( cur > 4, [Net COGS], 0 )
+			            - IF ( cur > 5, [Fulfilment Cost], 0 )
+			            - IF ( cur > 6, [Payment Fees], 0 )
+			            - IF ( cur > 7, [Return Handling Cost], 0 )
+			            - IF ( cur > 8, [Campaign Spend], 0 ),
+			            'Scope'[Scope] = "AC"
+			        )
+			        VAR py_num = CALCULATE (
+			            IF ( cur > 1, [Gross Sales], 0 )
+			            - IF ( cur > 2, [Discount Amount], 0 )
+			            - IF ( cur > 3, [Refunds], 0 )
+			            - IF ( cur > 4, [Net COGS], 0 )
+			            - IF ( cur > 5, [Fulfilment Cost], 0 )
+			            - IF ( cur > 6, [Payment Fees], 0 )
+			            - IF ( cur > 7, [Return Handling Cost], 0 )
+			            - IF ( cur > 8, [Campaign Spend], 0 ),
+			            'Scope'[Scope] = "PY"
+			        )
+			        RETURN ( ac_num - py_num ) / 1000,
+			        0
+			    )
+			RETURN IF ( ISBLANK ( py ), BLANK (), py + delta_sum )
 		displayFolder: 15 Redesign\Story\Bridge
 		lineageTag: 02e2d98b-792a-4b5a-8cd7-c2c5ef510eed
 
-	measure 'Bridge Base k' = IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Delta" && NOT ISBLANK ( [Bridge Impact k] ), MIN ( [Bridge Cum k], [Bridge Cum k] + [Bridge Impact k] ) )
+	measure 'Bridge Base k' =
+			VAR imp = [Bridge Impact k]
+			VAR cum = [Bridge Cum k]
+			RETURN IF ( SELECTEDVALUE ( 'Bridge Lines'[Kind] ) = "Delta" && NOT ISBLANK ( imp ), MIN ( cum, cum + imp ) )
 		formatString: #,0.0
 		displayFolder: 15 Redesign\Story\Bridge
 		lineageTag: d3d57639-112f-43bb-8bce-b2e04cd6ede7
@@ -2252,7 +2287,31 @@ table _Measures
 		displayFolder: 15 Redesign\Story\Bridge
 		lineageTag: 333ed0e7-0eb0-4d55-8663-85c5c2436f24
 
-	measure 'Bridge Max k' = MAX ( MAX ( [Contribution AC k], [Contribution PY k] ), MAXX ( FILTER ( ALL ( 'Bridge Lines' ), 'Bridge Lines'[Kind] = "Delta" ), [Bridge Cum k] + MAX ( [Bridge Impact k], 0 ) ) )
+	measure 'Bridge Max k' =
+			VAR py = [Contribution PY k]
+			VAR ac = [Contribution AC k]
+			RETURN
+			    IF (
+			        ISBLANK ( py ),
+			        BLANK (),
+			        VAR d1 = ( CALCULATE ( [Gross Sales], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Gross Sales], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d2 = -( CALCULATE ( [Discount Amount], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Discount Amount], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d3 = -( CALCULATE ( [Refunds], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Refunds], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d4 = -( CALCULATE ( [Net COGS], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Net COGS], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d5 = -( CALCULATE ( [Fulfilment Cost], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Fulfilment Cost], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d6 = -( CALCULATE ( [Payment Fees], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Payment Fees], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d7 = -( CALCULATE ( [Return Handling Cost], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Return Handling Cost], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR d8 = -( CALCULATE ( [Campaign Spend], 'Scope'[Scope] = "AC" ) - CALCULATE ( [Campaign Spend], 'Scope'[Scope] = "PY" ) ) / 1000
+			        VAR c1 = py + MAX ( d1, 0 )
+			        VAR c2 = py + d1 + MAX ( d2, 0 )
+			        VAR c3 = py + d1 + d2 + MAX ( d3, 0 )
+			        VAR c4 = py + d1 + d2 + d3 + MAX ( d4, 0 )
+			        VAR c5 = py + d1 + d2 + d3 + d4 + MAX ( d5, 0 )
+			        VAR c6 = py + d1 + d2 + d3 + d4 + d5 + MAX ( d6, 0 )
+			        VAR c7 = py + d1 + d2 + d3 + d4 + d5 + d6 + MAX ( d7, 0 )
+			        VAR c8 = py + d1 + d2 + d3 + d4 + d5 + d6 + d7 + MAX ( d8, 0 )
+			        RETURN MAXX ( { ac, py, c1, c2, c3, c4, c5, c6, c7, c8 }, [Value] )
+			    )
 		displayFolder: 15 Redesign\Story\Bridge
 		lineageTag: 7565ea2a-2505-4830-bcfa-c077cb919d07
 
@@ -2446,27 +2505,33 @@ table _Measures
 		lineageTag: 7a73a728-db28-4bdf-a74d-6e6c07aeb13f
 
 	measure 'Month Contrib Max AC k' =
-			VAR v = [Contribution AC k]
-			VAR mx =
-			    IF (
-			        ISINSCOPE ( DimDate[Date] ),
-			        MAXX ( ALLSELECTED ( DimDate[Date] ), [Contribution AC k] ),
-			        MAXX ( ALLSELECTED ( DimDate[Season Month], DimDate[SeasonMonthSort] ), [Contribution AC k] )
-			    )
-			RETURN IF ( NOT ISBLANK ( v ) && v = mx, v )
+			CALCULATE (
+			    VAR v = DIVIDE ( [Contribution Profit], 1000 )
+			    VAR mx =
+			        IF (
+			            ISINSCOPE ( DimDate[Date] ),
+			            MAXX ( ALLSELECTED ( DimDate[Date] ), DIVIDE ( [Contribution Profit], 1000 ) ),
+			            MAXX ( ALLSELECTED ( DimDate[Season Month], DimDate[SeasonMonthSort] ), DIVIDE ( [Contribution Profit], 1000 ) )
+			        )
+			    RETURN IF ( NOT ISBLANK ( v ) && v = mx, v ),
+			    'Scope'[Scope] = "AC"
+			)
 		formatString: \€#,0.0\k;−\€#,0.0\k;\€0.0\k
 		displayFolder: 16 V8\Monthly
 		lineageTag: b0817bec-be01-4af7-98dd-1b75cbb622e1
 
 	measure 'Month Contrib Min AC k' =
-			VAR v = [Contribution AC k]
-			VAR mn =
-			    IF (
-			        ISINSCOPE ( DimDate[Date] ),
-			        MINX ( ALLSELECTED ( DimDate[Date] ), [Contribution AC k] ),
-			        MINX ( ALLSELECTED ( DimDate[Season Month], DimDate[SeasonMonthSort] ), [Contribution AC k] )
-			    )
-			RETURN IF ( NOT ISBLANK ( v ) && v = mn, v )
+			CALCULATE (
+			    VAR v = DIVIDE ( [Contribution Profit], 1000 )
+			    VAR mn =
+			        IF (
+			            ISINSCOPE ( DimDate[Date] ),
+			            MINX ( ALLSELECTED ( DimDate[Date] ), DIVIDE ( [Contribution Profit], 1000 ) ),
+			            MINX ( ALLSELECTED ( DimDate[Season Month], DimDate[SeasonMonthSort] ), DIVIDE ( [Contribution Profit], 1000 ) )
+			        )
+			    RETURN IF ( NOT ISBLANK ( v ) && v = mn, v ),
+			    'Scope'[Scope] = "AC"
+			)
 		formatString: \€#,0.0\k;−\€#,0.0\k;\€0.0\k
 		displayFolder: 16 V8\Monthly
 		lineageTag: 6760aa54-4293-4ae1-8821-ea2be322ca9b

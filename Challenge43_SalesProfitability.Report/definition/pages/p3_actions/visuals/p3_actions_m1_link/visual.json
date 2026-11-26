@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_m1_link",
   "position": {
     "x": 912,
     "y": 534,
-    "z": 4500,
+    "z": 2000,
     "height": 36,
     "width": 300,
-    "tabOrder": 4500
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'See evidence in Chapter 2  \u2192'"
+                  "Value": "'See evidence in Chapter 2  →'"
                 }
               }
             },
@@ -349,7 +349,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

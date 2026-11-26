@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_nav_ch1",
   "position": {
     "x": 66,
     "y": 124,
-    "z": 300,
+    "z": 100,
     "height": 42,
     "width": 148,
-    "tabOrder": 300
+    "tabOrder": 100
   },
   "visual": {
     "visualType": "actionButton",
@@ -349,7 +349,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_up_0",
   "position": {
     "x": 280,
     "y": 398,
-    "z": 2800,
+    "z": 1500,
     "height": 266,
     "width": 506,
-    "tabOrder": 2800
+    "tabOrder": 1500
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -27,26 +27,8 @@
                 }
               },
               "queryRef": "Moves.Label",
-              "nativeQueryRef": "Label"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Pot by Move k"
-                }
-              },
-              "queryRef": "_Measures.Pot by Move k",
-              "nativeQueryRef": "Pot by Move k",
-              "displayName": "Upside"
+              "nativeQueryRef": "Label",
+              "active": true
             }
           ]
         },
@@ -68,6 +50,25 @@
               "displayName": "row"
             }
           ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Pot by Move k"
+                }
+              },
+              "queryRef": "_Measures.Pot by Move k",
+              "nativeQueryRef": "Pot by Move k",
+              "displayName": "Upside"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -85,8 +86,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {

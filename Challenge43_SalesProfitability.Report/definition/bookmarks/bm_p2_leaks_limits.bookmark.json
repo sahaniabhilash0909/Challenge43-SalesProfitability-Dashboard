@@ -1,8 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
-  "displayName": "ch2 \u00b7 limits",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.2.0/schema.json",
+  "displayName": "ch2 · limits",
   "name": "bm_p2_leaks_limits",
   "options": {
+    "applyOnlyToTargetVisuals": true,
     "targetVisualNames": [
       "p2_leaks_dw_img",
       "p2_leaks_dw_close",
@@ -22,11 +23,10 @@
       "p2_leaks_dw_guide_hdr",
       "p2_leaks_dw_g_txt"
     ],
-    "applyOnlyToTargetVisuals": true,
     "suppressData": true
   },
   "explorationState": {
-    "version": "1.3",
+    "version": "1.0",
     "activeSection": "p2_leaks",
     "sections": {
       "p2_leaks": {

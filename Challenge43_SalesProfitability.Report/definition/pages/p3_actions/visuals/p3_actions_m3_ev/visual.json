@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p3_actions_m3_ev",
   "position": {
     "x": 922,
     "y": 862,
-    "z": 6000,
+    "z": 2500,
     "height": 96,
     "width": 610,
-    "tabOrder": 6000
+    "tabOrder": 2500
   },
   "visual": {
     "visualType": "shape",
@@ -249,7 +249,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

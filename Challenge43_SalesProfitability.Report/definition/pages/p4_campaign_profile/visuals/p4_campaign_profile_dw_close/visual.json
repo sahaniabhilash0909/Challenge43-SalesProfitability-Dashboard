@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p4_campaign_profile_dw_close",
   "position": {
     "x": 1784,
     "y": 76,
-    "z": 4500,
+    "z": 2500,
     "height": 30,
     "width": 76,
-    "tabOrder": 4500
+    "tabOrder": 2500
   },
   "visual": {
     "visualType": "actionButton",
@@ -56,7 +56,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Close  \u2715'"
+                  "Value": "'Close  ✕'"
                 }
               }
             },
@@ -349,8 +349,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   },
   "isHidden": true
 }

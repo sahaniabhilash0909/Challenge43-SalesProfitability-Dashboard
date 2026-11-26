@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_zc_chan_m",
   "position": {
     "x": 1294,
     "y": 701,
-    "z": 6400,
+    "z": 2300,
     "height": 38,
     "width": 564,
-    "tabOrder": 6400
+    "tabOrder": 2300
   },
   "visual": {
     "visualType": "shape",
@@ -249,7 +249,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

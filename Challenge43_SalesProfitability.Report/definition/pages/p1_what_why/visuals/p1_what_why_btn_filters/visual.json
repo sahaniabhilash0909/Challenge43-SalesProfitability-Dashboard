@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_btn_filters",
   "position": {
     "x": 64,
     "y": 580,
-    "z": 1000,
+    "z": 600,
     "height": 38,
     "width": 150,
-    "tabOrder": 1000
+    "tabOrder": 600
   },
   "visual": {
     "visualType": "actionButton",
@@ -349,7 +349,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

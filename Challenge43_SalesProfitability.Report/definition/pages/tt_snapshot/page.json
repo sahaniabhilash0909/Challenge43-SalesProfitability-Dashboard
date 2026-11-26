@@ -5,6 +5,11 @@
   "displayOption": "ActualSize",
   "height": 236,
   "width": 368,
+  "pageBinding": {
+    "name": "tt_binding",
+    "type": "Tooltip",
+    "parameters": []
+  },
   "objects": {
     "background": [
       {
@@ -71,11 +76,6 @@
       }
     ]
   },
-  "type": "Tooltip",
-  "pageBinding": {
-    "name": "tt_binding",
-    "type": "Tooltip",
-    "referenceScope": "Default"
-  },
-  "visibility": "HiddenInViewMode"
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
 }

@@ -7,15 +7,27 @@ table Scope
 		precedence: 10
 
 		calculationItem AC =
-				VAR _sel = CALCULATETABLE ( VALUES ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
-				VAR _maxSale = CALCULATE ( MAX ( FactSales[SaleDate] ), REMOVEFILTERS ( DimDate ), _sel )
-				VAR _acSeason = LOOKUPVALUE ( DimDate[Season], DimDate[Date], _maxSale )
+				VAR _oneSel = CALCULATE ( SELECTEDVALUE ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
+				VAR _acSeason =
+				    IF (
+				        NOT ISBLANK ( _oneSel ),
+				        _oneSel,
+				        VAR _sel = CALCULATETABLE ( VALUES ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
+				        VAR _maxSale = CALCULATE ( MAX ( FactSales[SaleDate] ), REMOVEFILTERS ( DimDate ), _sel )
+				        RETURN CALCULATE ( MAX ( DimDate[Season] ), REMOVEFILTERS ( DimDate ), DimDate[Date] = _maxSale )
+				    )
 				RETURN CALCULATE ( SELECTEDMEASURE (), KEEPFILTERS ( DimDate[Season] = _acSeason ) )
 
 		calculationItem PY =
-				VAR _sel = CALCULATETABLE ( VALUES ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
-				VAR _maxSale = CALCULATE ( MAX ( FactSales[SaleDate] ), REMOVEFILTERS ( DimDate ), _sel )
-				VAR _acSeason = LOOKUPVALUE ( DimDate[Season], DimDate[Date], _maxSale )
+				VAR _oneSel = CALCULATE ( SELECTEDVALUE ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
+				VAR _acSeason =
+				    IF (
+				        NOT ISBLANK ( _oneSel ),
+				        _oneSel,
+				        VAR _sel = CALCULATETABLE ( VALUES ( DimDate[Season] ), ALLSELECTED ( DimDate ) )
+				        VAR _maxSale = CALCULATE ( MAX ( FactSales[SaleDate] ), REMOVEFILTERS ( DimDate ), _sel )
+				        RETURN CALCULATE ( MAX ( DimDate[Season] ), REMOVEFILTERS ( DimDate ), DimDate[Date] = _maxSale )
+				    )
 				VAR _acRows = CALCULATE ( COUNTROWS ( FactSales ), KEEPFILTERS ( DimDate[Season] = _acSeason ) )
 				RETURN
 				    IF ( ISBLANK ( _acRows ), BLANK (),

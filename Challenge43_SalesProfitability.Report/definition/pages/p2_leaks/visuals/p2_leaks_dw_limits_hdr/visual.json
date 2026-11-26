@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_dw_limits_hdr",
   "position": {
     "x": 1432,
     "y": 70,
-    "z": 8200,
+    "z": 4000,
     "height": 50,
     "width": 340,
-    "tabOrder": 8200
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "textbox",
@@ -187,8 +187,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": false
+    }
   },
   "isHidden": true
 }

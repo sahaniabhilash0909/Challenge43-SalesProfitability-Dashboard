@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p2_leaks_dw_img",
   "position": {
     "x": 0,
     "y": 0,
-    "z": 6700,
+    "z": 2500,
     "height": 1080,
     "width": 1920,
-    "tabOrder": 6700
+    "tabOrder": 2500
   },
   "visual": {
     "visualType": "image",
@@ -180,8 +180,7 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   },
   "isHidden": true
 }

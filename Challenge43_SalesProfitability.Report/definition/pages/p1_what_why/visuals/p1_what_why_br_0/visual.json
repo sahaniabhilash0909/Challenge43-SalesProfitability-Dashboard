@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "p1_what_why_br_0",
   "position": {
     "x": 280,
     "y": 403,
-    "z": 5100,
+    "z": 1600,
     "height": 601,
     "width": 526,
-    "tabOrder": 5100
+    "tabOrder": 1600
   },
   "visual": {
     "visualType": "barChart",
@@ -27,7 +27,27 @@
                 }
               },
               "queryRef": "Bridge Lines.Label",
-              "nativeQueryRef": "Label"
+              "nativeQueryRef": "Label",
+              "active": true
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Anchor Bridge"
+                }
+              },
+              "queryRef": "_Measures.Anchor Bridge",
+              "nativeQueryRef": "Anchor Bridge",
+              "displayName": "row"
             }
           ]
         },
@@ -124,25 +144,6 @@
               "displayName": "Tail"
             }
           ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Anchor Bridge"
-                }
-              },
-              "queryRef": "_Measures.Anchor Bridge",
-              "nativeQueryRef": "Anchor Bridge",
-              "displayName": "row"
-            }
-          ]
         }
       },
       "sortDefinition": {
@@ -160,8 +161,7 @@
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
